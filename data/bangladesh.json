@@ -1,0 +1,80 @@
+[
+  {
+    "id": "bangladesh_001",
+    "word": "Hilsa Fish",
+    "hints": {
+      "easy": "A type of seafood",
+      "medium": "A beloved fish that Bangladeshis consider national treasure",
+      "spicy": "The queen of fish — Bengalis fight over who cooks it better, with mustard paste or steamed"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["BD"],
+    "tags": ["food", "fish", "national"]
+  },
+  {
+    "id": "bangladesh_002",
+    "word": "Pahela Baishakh",
+    "hints": {
+      "easy": "A celebration",
+      "medium": "The Bengali New Year celebration",
+      "spicy": "Red and white saris, panta ilish, and Mongol Shobhajatra — when Bengal welcomes a new year"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": ["BD"],
+    "tags": ["festival", "new year", "bengali"]
+  },
+  {
+    "id": "bangladesh_003",
+    "word": "Rickshaw Art",
+    "hints": {
+      "easy": "A type of art",
+      "medium": "Colorful paintings found on Bangladeshi rickshaws",
+      "spicy": "Film stars, tigers, and village scenes — rolling galleries that make Dhaka streets an open museum"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": ["BD"],
+    "tags": ["art", "rickshaw", "dhaka"]
+  },
+  {
+    "id": "bangladesh_004",
+    "word": "Pitha",
+    "hints": {
+      "easy": "A type of sweet",
+      "medium": "Traditional Bengali rice cakes made in winter",
+      "spicy": "Bhapa, puli, chitoi — grandmother's winter kitchen filled with steam and date palm jaggery"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["BD"],
+    "tags": ["food", "sweet", "winter"]
+  },
+  {
+    "id": "bangladesh_005",
+    "word": "Jamdani",
+    "hints": {
+      "easy": "A type of fabric",
+      "medium": "A handwoven muslin fabric from Bangladesh",
+      "spicy": "Translucent, hand-woven magic — the sari so fine, emperors once paid fortunes for it"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": ["BD"],
+    "tags": ["fabric", "sari", "handloom"]
+  },
+  {
+    "id": "bangladesh_006",
+    "word": "Sundarbans",
+    "hints": {
+      "easy": "A natural place",
+      "medium": "The world's largest mangrove forest in Bangladesh",
+      "spicy": "Where the Royal Bengal Tiger roams — a maze of rivers, honey hunters, and crocodiles"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": ["BD"],
+    "tags": ["nature", "forest", "tiger"]
+  }
+]

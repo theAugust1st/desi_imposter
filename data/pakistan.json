@@ -1,0 +1,80 @@
+[
+  {
+    "id": "pakistan_001",
+    "word": "Nihari",
+    "hints": {
+      "easy": "A type of food",
+      "medium": "A slow-cooked meat stew popular in Pakistan",
+      "spicy": "Simmered overnight with bone marrow and spices — the breakfast of champions in Lahore and Karachi"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["PK"],
+    "tags": ["food", "meat", "breakfast"]
+  },
+  {
+    "id": "pakistan_002",
+    "word": "Truck Art",
+    "hints": {
+      "easy": "A type of art",
+      "medium": "Colorful decorative painting on Pakistani trucks",
+      "spicy": "Mirrors, chains, poetry, and peacocks — mobile masterpieces that turn highways into galleries"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": ["PK"],
+    "tags": ["art", "trucks", "decoration"]
+  },
+  {
+    "id": "pakistan_003",
+    "word": "Badshahi Mosque",
+    "hints": {
+      "easy": "A religious building",
+      "medium": "A grand Mughal-era mosque in Lahore",
+      "spicy": "Red sandstone and white marble — the Mughal masterpiece that can hold 100,000 worshippers"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": ["PK"],
+    "tags": ["mosque", "mughal", "lahore"]
+  },
+  {
+    "id": "pakistan_004",
+    "word": "Chapli Kebab",
+    "hints": {
+      "easy": "A type of food",
+      "medium": "A spiced meat patty from Peshawar",
+      "spicy": "Flat, round, loaded with pomegranate seeds and spices — the Pashtun kebab that melts in your mouth"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["PK"],
+    "tags": ["food", "kebab", "peshawar"]
+  },
+  {
+    "id": "pakistan_005",
+    "word": "Qawwali",
+    "hints": {
+      "easy": "A type of music",
+      "medium": "Sufi devotional music popular in Pakistan",
+      "spicy": "Clapping, harmonium, and spiritual ecstasy — Nusrat Fateh Ali Khan made the world weep with it"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": ["PK"],
+    "tags": ["music", "sufi", "devotional"]
+  },
+  {
+    "id": "pakistan_006",
+    "word": "Karakoram Highway",
+    "hints": {
+      "easy": "A road",
+      "medium": "A scenic mountain highway connecting Pakistan and China",
+      "spicy": "The eighth wonder of the world — a road carved through the highest mountains on Earth"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": ["PK"],
+    "tags": ["road", "mountains", "engineering"]
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "india_001",
+    "word": "Vada Pav",
+    "hints": {
+      "easy": "A type of street food",
+      "medium": "A famous Mumbai street snack with a potato patty",
+      "spicy": "A spiced potato fritter in a bun — Mumbai's answer to the burger, sold at every street corner"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["food", "street food", "mumbai"]
+  },
+  {
+    "id": "india_002",
+    "word": "Holi",
+    "hints": {
+      "easy": "A festival",
+      "medium": "A colorful spring festival celebrated in India",
+      "spicy": "The festival of colors where strangers become friends and everyone ends up drenched in gulaal"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["festival", "colors", "spring"]
+  },
+  {
+    "id": "india_003",
+    "word": "Bollywood",
+    "hints": {
+      "easy": "An entertainment industry",
+      "medium": "India's Hindi film industry based in Mumbai",
+      "spicy": "Song, dance, drama, and three-hour movies — where every love story needs a rain scene"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["entertainment", "movies", "mumbai"]
+  },
+  {
+    "id": "india_004",
+    "word": "Pani Puri",
+    "hints": {
+      "easy": "A type of snack",
+      "medium": "A crispy hollow shell filled with spiced water",
+      "spicy": "Crack, fill, and pop — the street snack where you race against the dripping water"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["food", "street food"]
+  },
+  {
+    "id": "india_005",
+    "word": "Sachin Tendulkar",
+    "hints": {
+      "easy": "A famous person",
+      "medium": "A legendary Indian cricket player",
+      "spicy": "The God of Cricket — 100 international centuries and a billion prayers every time he batted"
+    },
+    "category": "person",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["cricket", "legend", "sports"]
+  },
+  {
+    "id": "india_006",
+    "word": "Taj Mahal",
+    "hints": {
+      "easy": "A famous building",
+      "medium": "A white marble monument in Agra",
+      "spicy": "A monument to eternal love built by a Mughal emperor — the most photographed building in India"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["monument", "love", "agra"]
+  },
+  {
+    "id": "india_007",
+    "word": "Dosa",
+    "hints": {
+      "easy": "A type of food",
+      "medium": "A crispy South Indian crepe made from rice batter",
+      "spicy": "Golden, crispy, and served with sambar and chutney — breakfast that can be dinner"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": ["IN"],
+    "tags": ["food", "south india", "breakfast"]
+  }
+]
