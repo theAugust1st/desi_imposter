@@ -24,6 +24,10 @@ const pakistan = pakistanWords as WordEntry[];
  * - Other country words (Nepal, Bangladesh, Pakistan) are ONLY included
  *   if someone from that country is present in the room
  * 
+ * Error Boundary:
+ * - If the combined pool is empty (shouldn't happen), falls back to shared.json
+ * - Logs a warning for debugging purposes
+ * 
  * @param selectedNationalities - Array of region codes representing who's in the room
  * @returns Combined word pool filtered by selected nationalities
  */
@@ -38,7 +42,38 @@ export function buildWordPool(selectedNationalities: Region[]): WordEntry[] {
     ...(selectedNationalities.includes('PK') ? pakistan : []),
   ];
 
-  return [...alwaysIncluded, ...conditionalWords];
+  const pool = [...alwaysIncluded, ...conditionalWords];
+
+  // Error boundary: if pool is somehow empty, fallback to shared words
+  if (pool.length === 0) {
+    console.warn('[buildWordPool] Word pool is empty! Falling back to shared words.');
+    return shared.length > 0 ? shared : getFallbackWord();
+  }
+
+  return pool;
+}
+
+/**
+ * Emergency fallback word if all data files are empty
+ * This should never happen in production, but provides safety
+ */
+function getFallbackWord(): WordEntry[] {
+  console.error('[getFallbackWord] All word files are empty! Using emergency fallback.');
+  return [
+    {
+      id: 'fallback_001',
+      word: 'Chai',
+      hints: {
+        easy: 'A type of drink',
+        medium: 'A hot spiced tea drunk across South Asia',
+        spicy: 'Brewed with milk, cardamom, ginger and sugar',
+      },
+      category: 'food',
+      scope: 'shared',
+      regions: ['IN', 'NP', 'BD', 'PK'],
+      tags: ['food', 'daily life'],
+    },
+  ];
 }
 
 /**

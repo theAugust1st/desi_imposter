@@ -19,26 +19,26 @@ import Animated, {
   FadeOut,
   Layout,
 } from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, radius, fonts, shadows } from '../constants/theme';
+import { colors, spacing, radius, fonts } from '../constants/theme';
 import { useGameStore } from '../store/gameStore';
 import { getTotalWordCount } from '../data';
+import { haptics } from '../hooks/useHaptics';
 import type { Region } from '../constants/regions';
 import type { HintDifficulty } from '../types';
 import RegionPicker from '../components/RegionPicker';
 import DifficultyPicker from '../components/DifficultyPicker';
+import RangoliBackground from '../components/RangoliBackground';
 
 const MIN_PLAYERS = 3;
 const MAX_PLAYERS = 10;
 
 export default function SetupScreen() {
-  const { setConfig, setPlayers, startGame, config } = useGameStore();
+  const { setConfig, setPlayers, startGame } = useGameStore();
   
   const [playerNames, setPlayerNames] = useState<string[]>(['', '', '']);
   const [selectedRegions, setSelectedRegions] = useState<Region[]>(['IN']);
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
-  const [newPlayerName, setNewPlayerName] = useState('');
 
   const buttonScale = useSharedValue(1);
 
@@ -49,16 +49,16 @@ export default function SetupScreen() {
 
   const handleAddPlayer = () => {
     if (!canAddPlayer) return;
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    haptics.lightTap();
     setPlayerNames([...playerNames, '']);
   };
 
   const handleRemovePlayer = (index: number) => {
     if (playerNames.length <= MIN_PLAYERS) {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+      haptics.warning();
       return;
     }
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    haptics.lightTap();
     setPlayerNames(playerNames.filter((_, i) => i !== index));
   };
 
@@ -69,17 +69,19 @@ export default function SetupScreen() {
   };
 
   const handleRegionChange = (regions: Region[]) => {
+    haptics.selection();
     setSelectedRegions(regions);
   };
 
   const handleDifficultyChange = (difficulty: HintDifficulty) => {
+    haptics.selection();
     setSelectedDifficulty(difficulty);
   };
 
   const handleStartGame = async () => {
     if (!canStartGame) return;
 
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    haptics.mediumTap();
     buttonScale.value = withSpring(0.95);
     
     // Update store with config
@@ -100,12 +102,20 @@ export default function SetupScreen() {
     router.push('/distribute/0');
   };
 
+  const handleBack = () => {
+    haptics.lightTap();
+    router.back();
+  };
+
   const buttonAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: buttonScale.value }],
   }));
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Rangoli Background Pattern */}
+      <RangoliBackground opacity={0.05} />
+
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardView}
@@ -118,13 +128,7 @@ export default function SetupScreen() {
         >
           {/* Header */}
           <View style={styles.header}>
-            <Pressable
-              onPress={() => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.back();
-              }}
-              style={styles.backButton}
-            >
+            <Pressable onPress={handleBack} style={styles.backButton}>
               <Ionicons name="arrow-back" size={24} color={colors.textLight} />
             </Pressable>
             <Text style={styles.title}>Game Setup</Text>

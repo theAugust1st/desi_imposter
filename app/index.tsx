@@ -4,41 +4,22 @@ import { router } from 'expo-router';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withRepeat,
-  withTiming,
   withSequence,
-  Easing,
+  withTiming,
 } from 'react-native-reanimated';
-import { useEffect } from 'react';
-import * as Haptics from 'expo-haptics';
 import { colors, spacing, radius, fonts } from '../constants/theme';
+import { haptics } from '../hooks/useHaptics';
+import RangoliBackground from '../components/RangoliBackground';
 
 export default function HomeScreen() {
-  const patternOpacity = useSharedValue(0.05);
   const buttonScale = useSharedValue(1);
-
-  useEffect(() => {
-    // Subtle breathing animation for background pattern
-    patternOpacity.value = withRepeat(
-      withSequence(
-        withTiming(0.1, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
-        withTiming(0.05, { duration: 2000, easing: Easing.inOut(Easing.ease) })
-      ),
-      -1,
-      false
-    );
-  }, []);
-
-  const patternStyle = useAnimatedStyle(() => ({
-    opacity: patternOpacity.value,
-  }));
 
   const buttonAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: buttonScale.value }],
   }));
 
   const handleStartGame = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    haptics.buttonPress();
     buttonScale.value = withSequence(
       withTiming(0.95, { duration: 100 }),
       withTiming(1, { duration: 100 })
@@ -48,26 +29,8 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Background Pattern Placeholder */}
-      <Animated.View style={[styles.patternOverlay, patternStyle]}>
-        <View style={styles.patternGrid}>
-          {/* Rangoli-inspired geometric pattern - simplified SVG placeholder */}
-          {Array.from({ length: 6 }).map((_, row) =>
-            Array.from({ length: 4 }).map((_, col) => (
-              <View
-                key={`${row}-${col}`}
-                style={[
-                  styles.patternDot,
-                  {
-                    top: row * 120 + 60,
-                    left: col * 100 + 50,
-                  },
-                ]}
-              />
-            ))
-          )}
-        </View>
-      </Animated.View>
+      {/* Rangoli Background Pattern */}
+      <RangoliBackground opacity={0.07} />
 
       <View style={styles.content}>
         {/* Title Section */}
@@ -93,22 +56,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-  },
-  patternOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    overflow: 'hidden',
-  },
-  patternGrid: {
-    flex: 1,
-    position: 'relative',
-  },
-  patternDot: {
-    position: 'absolute',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: colors.primary,
   },
   content: {
     flex: 1,

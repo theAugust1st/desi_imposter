@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
 import * as ScreenCapture from 'expo-screen-capture';
-import * as Haptics from 'expo-haptics';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -13,6 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { colors, spacing, radius, fonts } from '../../constants/theme';
 import { useGameStore } from '../../store/gameStore';
+import { haptics } from '../../hooks/useHaptics';
 import CoverScreen from '../../components/CoverScreen';
 import RoleCard from '../../components/RoleCard';
 import ImposterCard from '../../components/ImposterCard';
@@ -54,12 +54,12 @@ export default function DistributeScreen() {
 
   // Handle confirmation - "Are you [Name]?"
   const handleConfirmYes = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    haptics.mediumTap();
     setPhase('reveal');
   };
 
   const handleConfirmNo = () => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+    haptics.warning();
     setPhase('cover');
   };
 
