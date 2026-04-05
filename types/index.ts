@@ -50,6 +50,7 @@ export interface GameState {
   // Actions
   setConfig: (config: Partial<GameConfig>) => void;
   setPlayers: (names: string[]) => void;
+  clearPlayers: () => void;
   startGame: () => void;
   nextPlayer: () => void;
   goToDiscussion: () => void;

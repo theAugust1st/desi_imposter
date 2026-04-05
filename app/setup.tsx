@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, radius, fonts } from '../constants/theme';
-import { useGameStore } from '../store/gameStore';
+import { useGameStore, usePlayers, useConfig } from '../store/gameStore';
 import { getTotalWordCount } from '../data';
 import { haptics } from '../hooks/useHaptics';
 import type { Region } from '../constants/regions';
@@ -27,13 +27,35 @@ const MIN_PLAYERS = 3;
 const MAX_PLAYERS = 10;
 
 export default function SetupScreen() {
-  const { setConfig, setPlayers, startGame } = useGameStore();
+  const { setConfig, setPlayers, startGame, clearPlayers } = useGameStore();
+  const storePlayers = usePlayers();
+  const storeConfig = useConfig();
   
   const [playerNames, setPlayerNames] = useState<string[]>(['', '', '']);
   const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
 
   const buttonScale = useRef(new Animated.Value(1)).current;
+
+  // On mount, pre-fill from store if players exist
+  useEffect(() => {
+    if (storePlayers.length > 0) {
+      // Pre-fill with existing player names from store
+      const names = storePlayers.map((p) => p.name);
+      // Ensure at least MIN_PLAYERS slots
+      while (names.length < MIN_PLAYERS) {
+        names.push('');
+      }
+      setPlayerNames(names);
+    }
+    // Also restore region and difficulty settings
+    if (storeConfig.selectedNationalities.length > 0) {
+      setSelectedRegions(storeConfig.selectedNationalities);
+    }
+    if (storeConfig.hintDifficulty) {
+      setSelectedDifficulty(storeConfig.hintDifficulty);
+    }
+  }, []);
 
   const validPlayers = playerNames.filter((name) => name.trim().length > 0);
   const canStartGame = validPlayers.length >= MIN_PLAYERS && selectedRegions.length >= 1;
@@ -53,6 +75,12 @@ export default function SetupScreen() {
     }
     haptics.lightTap();
     setPlayerNames(playerNames.filter((_, i) => i !== index));
+  };
+
+  const handleClearAllPlayers = () => {
+    haptics.lightTap();
+    setPlayerNames(['', '', '']);
+    clearPlayers();
   };
 
   const handlePlayerNameChange = (index: number, name: string) => {
@@ -169,6 +197,12 @@ export default function SetupScreen() {
               <Pressable onPress={handleAddPlayer} style={styles.addPlayerButton}>
                 <Ionicons name="add-circle-outline" size={24} color={colors.primary} />
                 <Text style={styles.addPlayerText}>Add Player</Text>
+              </Pressable>
+            )}
+
+            {validPlayers.length > 0 && (
+              <Pressable onPress={handleClearAllPlayers} style={styles.clearAllButton}>
+                <Text style={styles.clearAllText}>Clear All Players</Text>
               </Pressable>
             )}
           </View>
@@ -327,6 +361,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.primary,
     marginLeft: spacing.sm,
+  },
+  clearAllButton: {
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+    marginTop: spacing.sm,
+  },
+  clearAllText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.danger,
   },
   wordCount: {
     fontFamily: fonts.body,

@@ -43,6 +43,13 @@ export const useGameStore = create<GameState>((set, get) => ({
     });
   },
 
+  clearPlayers: () => {
+    set({
+      players: [],
+      config: { ...get().config, playerCount: 0 },
+    });
+  },
+
   startGame: async () => {
     const state = get();
     const { config, players } = state;

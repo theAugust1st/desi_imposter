@@ -11,7 +11,6 @@ export default function RevealScreen() {
   const players = usePlayers();
   const imposterIndex = useImposterIndex();
   const playAgain = useGameStore((state) => state.playAgain);
-  const resetGame = useGameStore((state) => state.resetGame);
 
   // Play Again - same players, new word, new imposter
   const handlePlayAgain = useCallback(async () => {
@@ -20,18 +19,11 @@ export default function RevealScreen() {
     router.replace('/distribute/0');
   }, [playAgain]);
 
-  // Reset Players - go to setup with players pre-filled
-  const handleResetPlayers = useCallback(() => {
+  // Back to Setup - go to setup with players pre-filled (no store clearing)
+  const handleBackToSetup = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.replace('/setup');
+    router.push('/setup');
   }, []);
-
-  // New Game - clear everything, go home
-  const handleNewGame = useCallback(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    resetGame();
-    router.replace('/');
-  }, [resetGame]);
 
   // Safety check
   if (imposterIndex === null) {
@@ -39,8 +31,8 @@ export default function RevealScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>Something went wrong</Text>
-          <Pressable style={styles.errorButton} onPress={handleNewGame}>
-            <Text style={styles.errorButtonText}>Back to Home</Text>
+          <Pressable style={styles.errorButton} onPress={handleBackToSetup}>
+            <Text style={styles.errorButtonText}>Back to Setup</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -48,6 +40,20 @@ export default function RevealScreen() {
   }
 
   const imposter = players[imposterIndex];
+
+  // Fallback if imposter is undefined (players array was cleared)
+  if (!imposter) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.errorContainer}>
+          <Text style={styles.headerText}>Game Over</Text>
+          <Pressable style={styles.errorButton} onPress={() => router.replace('/')}>
+            <Text style={styles.errorButtonText}>Back to Home</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -83,26 +89,15 @@ export default function RevealScreen() {
             <Text style={styles.primaryButtonText}>Play Again 🔄</Text>
           </Pressable>
 
-          {/* Reset Players - edit players in setup */}
+          {/* Back to Setup - edit players in setup */}
           <Pressable
             style={({ pressed }) => [
               styles.secondaryButton,
               pressed && styles.buttonPressed,
             ]}
-            onPress={handleResetPlayers}
+            onPress={handleBackToSetup}
           >
-            <Text style={styles.secondaryButtonText}>Reset Players ✏️</Text>
-          </Pressable>
-
-          {/* New Game - clear all, go home */}
-          <Pressable
-            style={({ pressed }) => [
-              styles.secondaryButton,
-              pressed && styles.buttonPressed,
-            ]}
-            onPress={handleNewGame}
-          >
-            <Text style={styles.secondaryButtonText}>New Game 🏠</Text>
+            <Text style={styles.secondaryButtonText}>Back to Setup ⚙️</Text>
           </Pressable>
         </View>
       </View>
