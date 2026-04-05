@@ -1,80 +1,32 @@
 [
-  {
-    "id": "bangladesh_001",
-    "word": "Hilsa Fish",
-    "hints": {
-      "easy": "Seafood",
-      "medium": "Bengali fish",
-      "spicy": "Mustard preparation"
-    },
-    "category": "food",
-    "scope": "local",
-    "regions": ["BD"],
-    "tags": ["food", "fish", "national"]
-  },
-  {
-    "id": "bangladesh_002",
-    "word": "Pahela Baishakh",
-    "hints": {
-      "easy": "Celebration",
-      "medium": "New year",
-      "spicy": "Bengali calendar"
-    },
-    "category": "festival",
-    "scope": "local",
-    "regions": ["BD"],
-    "tags": ["festival", "new year", "bengali"]
-  },
-  {
-    "id": "bangladesh_003",
-    "word": "Rickshaw Art",
-    "hints": {
-      "easy": "Art",
-      "medium": "Vehicle painting",
-      "spicy": "Dhaka decoration"
-    },
-    "category": "culture",
-    "scope": "local",
-    "regions": ["BD"],
-    "tags": ["art", "rickshaw", "dhaka"]
-  },
-  {
-    "id": "bangladesh_004",
-    "word": "Pitha",
-    "hints": {
-      "easy": "Sweet",
-      "medium": "Rice cake",
-      "spicy": "Winter treat"
-    },
-    "category": "food",
-    "scope": "local",
-    "regions": ["BD"],
-    "tags": ["food", "sweet", "winter"]
-  },
-  {
-    "id": "bangladesh_005",
-    "word": "Jamdani",
-    "hints": {
-      "easy": "Fabric",
-      "medium": "Woven cloth",
-      "spicy": "Muslin sari"
-    },
-    "category": "culture",
-    "scope": "local",
-    "regions": ["BD"],
-    "tags": ["fabric", "sari", "handloom"]
-  },
-  {
-    "id": "bangladesh_006",
-    "word": "Sundarbans",
-    "hints": {
-      "easy": "Nature",
-      "medium": "Mangrove forest",
-      "spicy": "Tiger habitat"
-    },
-    "category": "place",
-    "scope": "local",
-    "regions": ["BD"],
-    "tags": ["nature", "forest", "tiger"]
-  }
+  {"id":"bd_001","word":"Hilsa","hints":{"easy":"National fish","medium":"Rainy season","spicy":"Bony"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_002","word":"Pitha","hints":{"easy":"Rice cake","medium":"Winter sweet","spicy":"Steamed"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_003","word":"Mishti Doi","hints":{"easy":"Sweet yogurt","medium":"Clay pot","spicy":"Caramelised"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_004","word":"Pahela Baishakh","hints":{"easy":"New year","medium":"Bengali new year","spicy":"Mangal Shobhajatra"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
+  {"id":"bd_005","word":"Jamdani","hints":{"easy":"Fine cloth","medium":"Woven sari","spicy":"Muslin"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","clothing"]},
+  {"id":"bd_006","word":"Muslin","hints":{"easy":"Fine fabric","medium":"Dhaka cloth","spicy":"Transparent"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_007","word":"Ekushey","hints":{"easy":"Language day","medium":"21st February","spicy":"Shaheed"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_008","word":"Padma Bridge","hints":{"easy":"Long bridge","medium":"River crossing","spicy":"Padma"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
+  {"id":"bd_009","word":"Sundarbans","hints":{"easy":"Mangrove forest","medium":"Tiger forest","spicy":"Delta"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
+  {"id":"bd_010","word":"Rickshaw Art","hints":{"easy":"Painted vehicle","medium":"Colourful cycle","spicy":"Decorative"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","art"]},
+  {"id":"bd_011","word":"Cox's Bazar","hints":{"easy":"Long beach","medium":"Longest beach","spicy":"Coastal"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
+  {"id":"bd_012","word":"Dhaka","hints":{"easy":"Capital city","medium":"Rickshaw city","spicy":"Megacity"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
+  {"id":"bd_013","word":"Lungi","hints":{"easy":"Wrap cloth","medium":"Men sarong","spicy":"Tied"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","clothing"]},
+  {"id":"bd_014","word":"Bhorta","hints":{"easy":"Mashed side","medium":"Smashed veggie","spicy":"Mixed"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_015","word":"Shutki","hints":{"easy":"Dried fish","medium":"Smelly fish","spicy":"Preserved"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_016","word":"Baul","hints":{"easy":"Folk singer","medium":"Mystic music","spicy":"Wandering"},"category":"music","scope":"local","regions":["BD"],"tags":["music"]},
+  {"id":"bd_017","word":"Shorshe Ilish","hints":{"easy":"Fish curry","medium":"Mustard fish","spicy":"Hilsa mustard"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_018","word":"Nakshi Kantha","hints":{"easy":"Embroidered quilt","medium":"Stitched blanket","spicy":"Patchwork"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","art"]},
+  {"id":"bd_019","word":"Victory Day","hints":{"easy":"National day","medium":"16th December","spicy":"Liberation"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_020","word":"Hilsa Festival","hints":{"easy":"Fish festival","medium":"Rainy celebration","spicy":"Padma fish"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
+  {"id":"bd_021","word":"Luchi","hints":{"easy":"Fried bread","medium":"Puffed bread","spicy":"Deep fried"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_022","word":"Bhapa Pitha","hints":{"easy":"Steamed cake","medium":"Rice dumpling","spicy":"Coconut filled"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
+  {"id":"bd_023","word":"Sitalapati","hints":{"easy":"Woven mat","medium":"Cool mat","spicy":"Bamboo weave"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_024","word":"Pohela Falgun","hints":{"easy":"Spring festival","medium":"First spring","spicy":"Yellow dress"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
+  {"id":"bd_025","word":"Mela","hints":{"easy":"Village fair","medium":"Outdoor market","spicy":"Seasonal"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_026","word":"Rabindranath","hints":{"easy":"Poet","medium":"Nobel winner","spicy":"Tagore"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_027","word":"National Anthem","hints":{"easy":"Country song","medium":"Tagore wrote","spicy":"Amar Sonar"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
+  {"id":"bd_028","word":"Shab e Barat","hints":{"easy":"Night of fate","medium":"Mid Shaban","spicy":"Forgiveness night"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
+  {"id":"bd_029","word":"Boishakhi Mela","hints":{"easy":"New year fair","medium":"Cultural fair","spicy":"Charukola"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
+  {"id":"bd_030","word":"Hilsa Rice","hints":{"easy":"Fish rice","medium":"National combo","spicy":"Steamed together"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]}
 ]

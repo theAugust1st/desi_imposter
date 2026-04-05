@@ -1,132 +1,62 @@
 [
-  {
-    "id": "shared_001",
-    "word": "Biryani",
-    "hints": {
-      "easy": "Food",
-      "medium": "Rice dish",
-      "spicy": "Layered rice"
-    },
-    "category": "food",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["food", "celebration"]
-  },
-  {
-    "id": "shared_002",
-    "word": "Rickshaw",
-    "hints": {
-      "easy": "Transport",
-      "medium": "Three wheels",
-      "spicy": "Decorated vehicle"
-    },
-    "category": "culture",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["transport", "daily life"]
-  },
-  {
-    "id": "shared_003",
-    "word": "Chai",
-    "hints": {
-      "easy": "Drink",
-      "medium": "Hot beverage",
-      "spicy": "Spiced milk"
-    },
-    "category": "food",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["food", "daily life"]
-  },
-  {
-    "id": "shared_004",
-    "word": "Samosa",
-    "hints": {
-      "easy": "Snack",
-      "medium": "Fried pastry",
-      "spicy": "Triangular filling"
-    },
-    "category": "food",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["food", "street food"]
-  },
-  {
-    "id": "shared_005",
-    "word": "Cricket",
-    "hints": {
-      "easy": "Sport",
-      "medium": "Bat ball",
-      "spicy": "Wicket game"
-    },
-    "category": "cricket",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["sport"]
-  },
-  {
-    "id": "shared_006",
-    "word": "Mehndi",
-    "hints": {
-      "easy": "Decoration",
-      "medium": "Hand art",
-      "spicy": "Henna patterns"
-    },
-    "category": "culture",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["wedding", "beauty", "festival"]
-  },
-  {
-    "id": "shared_007",
-    "word": "Eid",
-    "hints": {
-      "easy": "Festival",
-      "medium": "Muslim celebration",
-      "spicy": "Post-fasting feast"
-    },
-    "category": "festival",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["festival", "religion"]
-  },
-  {
-    "id": "shared_008",
-    "word": "Bazaar",
-    "hints": {
-      "easy": "Place",
-      "medium": "Open market",
-      "spicy": "Haggling vendors"
-    },
-    "category": "place",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["place", "daily life"]
-  },
-  {
-    "id": "shared_009",
-    "word": "Lassi",
-    "hints": {
-      "easy": "Drink",
-      "medium": "Yogurt beverage",
-      "spicy": "Creamy cold"
-    },
-    "category": "food",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["food", "drink"]
-  },
-  {
-    "id": "shared_010",
-    "word": "Diwali",
-    "hints": {
-      "easy": "Festival",
-      "medium": "Light celebration",
-      "spicy": "Diya fireworks"
-    },
-    "category": "festival",
-    "scope": "shared",
-    "regions": ["IN", "NP", "BD", "PK"],
-    "tags": ["festival", "lights"]
-  }
+  {"id":"shared_001","word":"Biryani","hints":{"easy":"Rice dish","medium":"Celebration food","spicy":"Layered"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","celebration"]},
+  {"id":"shared_002","word":"Samosa","hints":{"easy":"Fried snack","medium":"Street triangle","spicy":"Stuffed"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","street"]},
+  {"id":"shared_003","word":"Chai","hints":{"easy":"Hot drink","medium":"Morning ritual","spicy":"Brewed"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","drink"]},
+  {"id":"shared_004","word":"Lassi","hints":{"easy":"Cold drink","medium":"Yogurt based","spicy":"Churned"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","drink"]},
+  {"id":"shared_005","word":"Halwa","hints":{"easy":"Sweet dish","medium":"Funeral sweet","spicy":"Dense"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","sweet"]},
+  {"id":"shared_006","word":"Naan","hints":{"easy":"Bread type","medium":"Tandoor baked","spicy":"Flat"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_007","word":"Kebab","hints":{"easy":"Grilled meat","medium":"Skewer food","spicy":"Charred"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","meat"]},
+  {"id":"shared_008","word":"Pulao","hints":{"easy":"Rice dish","medium":"One pot","spicy":"Fragrant"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_009","word":"Raita","hints":{"easy":"Side dish","medium":"Cooling sauce","spicy":"Whipped"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_010","word":"Kheer","hints":{"easy":"Sweet rice","medium":"Eid dessert","spicy":"Milky"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","sweet"]},
+  {"id":"shared_011","word":"Eid","hints":{"easy":"Muslim festival","medium":"Moon sighting","spicy":"Sevaiyan"},"category":"festival","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["festival"]},
+  {"id":"shared_012","word":"Diwali","hints":{"easy":"Lights festival","medium":"Diya night","spicy":"Crackers"},"category":"festival","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["festival"]},
+  {"id":"shared_013","word":"Mehndi","hints":{"easy":"Hand art","medium":"Wedding ritual","spicy":"Paste"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","wedding"]},
+  {"id":"shared_014","word":"Rickshaw","hints":{"easy":"Three wheeler","medium":"City ride","spicy":"Pedalled"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","transport"]},
+  {"id":"shared_015","word":"Bazaar","hints":{"easy":"Open market","medium":"Haggling place","spicy":"Lanes"},"category":"places","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["places"]},
+  {"id":"shared_016","word":"Cricket","hints":{"easy":"Bat sport","medium":"11 players","spicy":"Wicket"},"category":"cricket","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["cricket"]},
+  {"id":"shared_017","word":"Six","hints":{"easy":"Cricket shot","medium":"Over boundary","spicy":"Maximum"},"category":"cricket","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["cricket"]},
+  {"id":"shared_018","word":"Wicket","hints":{"easy":"Cricket term","medium":"Three stumps","spicy":"Fallen"},"category":"cricket","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["cricket"]},
+  {"id":"shared_019","word":"Over","hints":{"easy":"Cricket unit","medium":"Six balls","spicy":"Bowled"},"category":"cricket","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["cricket"]},
+  {"id":"shared_020","word":"Bollywood","hints":{"easy":"Indian movies","medium":"Mumbai films","spicy":"Masala"},"category":"bollywood","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["bollywood"]},
+  {"id":"shared_021","word":"Hero","hints":{"easy":"Main actor","medium":"Film star","spicy":"Protagonist"},"category":"bollywood","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["bollywood"]},
+  {"id":"shared_022","word":"Item Song","hints":{"easy":"Dance number","medium":"Film song","spicy":"Cameo"},"category":"bollywood","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["bollywood"]},
+  {"id":"shared_023","word":"Arranged Marriage","hints":{"easy":"Family wedding","medium":"Parents decide","spicy":"Rishta"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]},
+  {"id":"shared_024","word":"Dowry","hints":{"easy":"Wedding gift","medium":"Bride payment","spicy":"Demanded"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]},
+  {"id":"shared_025","word":"Joint Family","hints":{"easy":"Big family","medium":"All together","spicy":"Crowded"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]},
+  {"id":"shared_026","word":"Mosque","hints":{"easy":"Prayer place","medium":"Muslim worship","spicy":"Minaret"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","religion"]},
+  {"id":"shared_027","word":"Qawwali","hints":{"easy":"Sufi music","medium":"Devotional song","spicy":"Spiritual"},"category":"music","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["music"]},
+  {"id":"shared_028","word":"Monsoon","hints":{"easy":"Rainy season","medium":"Annual rains","spicy":"Humid"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture"]},
+  {"id":"shared_029","word":"Chowk","hints":{"easy":"Town square","medium":"City center","spicy":"Crossroads"},"category":"places","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["places"]},
+  {"id":"shared_030","word":"Dupatta","hints":{"easy":"Head scarf","medium":"Women clothing","spicy":"Draped"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","clothing"]},
+  {"id":"shared_031","word":"Chapati","hints":{"easy":"Flat bread","medium":"Daily bread","spicy":"Rolled"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_032","word":"Pickle","hints":{"easy":"Spicy condiment","medium":"Preserved side","spicy":"Fermented"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_033","word":"Kurta","hints":{"easy":"Long shirt","medium":"Traditional top","spicy":"Stitched"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","clothing"]},
+  {"id":"shared_034","word":"Sandal","hints":{"easy":"Open shoe","medium":"Summer footwear","spicy":"Strapped"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture"]},
+  {"id":"shared_035","word":"Masala","hints":{"easy":"Spice mix","medium":"Cooking blend","spicy":"Ground"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_036","word":"Daal","hints":{"easy":"Lentil dish","medium":"Daily staple","spicy":"Simmered"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_037","word":"Chutney","hints":{"easy":"Dipping sauce","medium":"Tangy side","spicy":"Crushed"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_038","word":"Mithai","hints":{"easy":"Indian sweets","medium":"Festival gift","spicy":"Sugary"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","sweet"]},
+  {"id":"shared_039","word":"Bangles","hints":{"easy":"Wrist jewelry","medium":"Wedding wear","spicy":"Circular"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","jewelry"]},
+  {"id":"shared_040","word":"Eidi","hints":{"easy":"Eid money","medium":"Festival gift","spicy":"Envelope"},"category":"festival","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["festival"]},
+  {"id":"shared_041","word":"Fasting","hints":{"easy":"No eating","medium":"Religious act","spicy":"Roza"},"category":"festival","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["festival","religion"]},
+  {"id":"shared_042","word":"Mango","hints":{"easy":"Summer fruit","medium":"King fruit","spicy":"Dripping"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","fruit"]},
+  {"id":"shared_043","word":"Turmeric","hints":{"easy":"Yellow spice","medium":"Haldi ceremony","spicy":"Staining"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","spice"]},
+  {"id":"shared_044","word":"Cardamom","hints":{"easy":"Chai spice","medium":"Fragrant pod","spicy":"Aromatic"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food","spice"]},
+  {"id":"shared_045","word":"Shalwar","hints":{"easy":"Loose pants","medium":"Traditional bottom","spicy":"Pleated"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","clothing"]},
+  {"id":"shared_046","word":"Masjid","hints":{"easy":"Worship place","medium":"Friday prayers","spicy":"Dome"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","religion"]},
+  {"id":"shared_047","word":"Pagoda","hints":{"easy":"Tall tower","medium":"Religious structure","spicy":"Tiered"},"category":"places","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["places"]},
+  {"id":"shared_048","word":"Rickshaw Art","hints":{"easy":"Vehicle painting","medium":"Street decoration","spicy":"Colourful"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","art"]},
+  {"id":"shared_049","word":"Henna","hints":{"easy":"Hand design","medium":"Natural dye","spicy":"Reddish"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture"]},
+  {"id":"shared_050","word":"Dholak","hints":{"easy":"Drum instrument","medium":"Wedding music","spicy":"Two sided"},"category":"music","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["music"]},
+  {"id":"shared_051","word":"Biryani Pot","hints":{"easy":"Cooking vessel","medium":"Dum cooking","spicy":"Sealed"},"category":"food","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["food"]},
+  {"id":"shared_052","word":"Maulvi","hints":{"easy":"Religious man","medium":"Mosque leader","spicy":"Turban"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","religion"]},
+  {"id":"shared_053","word":"Eid Prayer","hints":{"easy":"Morning prayer","medium":"Open ground","spicy":"Congregation"},"category":"festival","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["festival"]},
+  {"id":"shared_054","word":"Ludo","hints":{"easy":"Board game","medium":"Family game","spicy":"Dice"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture","game"]},
+  {"id":"shared_055","word":"Load Shedding","hints":{"easy":"Power cut","medium":"Electricity gone","spicy":"Dark"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture"]},
+  {"id":"shared_056","word":"Chappal","hints":{"easy":"Slipper","medium":"Thrown warning","spicy":"Flat"},"category":"culture","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["culture"]},
+  {"id":"shared_057","word":"Aunty","hints":{"easy":"Older woman","medium":"Nosy neighbour","spicy":"Gossip"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]},
+  {"id":"shared_058","word":"Uncle","hints":{"easy":"Older man","medium":"Free advice","spicy":"Lecture"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]},
+  {"id":"shared_059","word":"Arranged Meeting","hints":{"easy":"First meeting","medium":"Rishta visit","spicy":"Awkward"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]},
+  {"id":"shared_060","word":"Report Card","hints":{"easy":"School grades","medium":"Parent fear","spicy":"Numbers"},"category":"family","scope":"shared","regions":["IN","NP","BD","PK"],"tags":["family"]}
 ]
