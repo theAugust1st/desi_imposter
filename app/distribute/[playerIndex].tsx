@@ -6,70 +6,73 @@ import * as ScreenCapture from 'expo-screen-capture';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, radius, fonts, shadows } from '../../constants/theme';
 import { useGameStore } from '../../store/gameStore';
-import PlayerAvatar from '../../components/PlayerAvatar';
 import { getRegionLabel, SHARED_LABEL } from '../../constants/regions';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-const PANEL_SLIDE_THRESHOLD = 100; // Distance to swipe before revealing
+const REVEAL_THRESHOLD = 40;
+const SNAP_UP_POSITION = -SCREEN_HEIGHT;
 
 export default function DistributeScreen() {
   const { players, currentWord, config } = useGameStore();
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
 
-  // Panel animation
-  const panelY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
+  // Card 1 Y position only
+  const card1TranslateY = useRef(new Animated.Value(0)).current;
 
   const currentPlayer = players[currentPlayerIndex];
   const isLastPlayer = currentPlayerIndex === players.length - 1;
   const isImposter = currentPlayer?.isImposter;
 
-  // Prevent screen capture throughout the distribution flow
+  // Prevent screen capture
   useEffect(() => {
-    const preventCapture = async () => {
-      await ScreenCapture.preventScreenCaptureAsync();
-    };
-    preventCapture();
-
+    ScreenCapture.preventScreenCaptureAsync();
     return () => {
       ScreenCapture.allowScreenCaptureAsync();
     };
   }, []);
 
-  // Reset panel position when player changes
+  // Reset when player changes
   useEffect(() => {
-    panelY.setValue(SCREEN_HEIGHT);
+    card1TranslateY.setValue(0);
     setIsRevealed(false);
   }, [currentPlayerIndex]);
 
-  // PanResponder for swipe up gesture
+  // PanResponder for Card 1 drag
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => !isRevealed,
       onMoveShouldSetPanResponder: (_, gestureState) => {
-        return !isRevealed && Math.abs(gestureState.dy) > 5;
+        return !isRevealed && gestureState.dy < -5;
+      },
+      onPanResponderGrant: () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       },
       onPanResponderMove: (_, gestureState) => {
-        if (!isRevealed && gestureState.dy < 0) {
-          // Only allow upward movement
-          panelY.setValue(SCREEN_HEIGHT + gestureState.dy);
+        // Only allow upward movement (negative dy)
+        if (gestureState.dy < 0) {
+          card1TranslateY.setValue(gestureState.dy);
         }
       },
       onPanResponderRelease: (_, gestureState) => {
-        if (!isRevealed && gestureState.dy < -PANEL_SLIDE_THRESHOLD) {
-          // Swipe up threshold met - reveal
+        if (gestureState.dy < -REVEAL_THRESHOLD) {
+          // Threshold met - show button immediately, snap card back
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          Animated.spring(panelY, {
+          setIsRevealed(true);
+          
+          // Spring card back down to original position
+          Animated.spring(card1TranslateY, {
             toValue: 0,
+            tension: 300,
+            friction: 10,
             useNativeDriver: true,
-            damping: 20,
-          }).start(() => {
-            setIsRevealed(true);
-          });
+          }).start();
         } else {
-          // Snap back down
-          Animated.spring(panelY, {
-            toValue: SCREEN_HEIGHT,
+          // Snap back down (not enough drag)
+          Animated.spring(card1TranslateY, {
+            toValue: 0,
+            tension: 300,
+            friction: 10,
             useNativeDriver: true,
           }).start();
         }
@@ -80,130 +83,112 @@ export default function DistributeScreen() {
   const handleNextPerson = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
-    // Slide panel down
-    Animated.spring(panelY, {
-      toValue: SCREEN_HEIGHT,
-      useNativeDriver: true,
-    }).start(() => {
-      if (isLastPlayer) {
-        // Navigate to discussion
-        router.replace('/discussion');
-      } else {
-        // Move to next player
-        setCurrentPlayerIndex((prev) => prev + 1);
-      }
-    });
+    // Reset Card 1 position instantly
+    card1TranslateY.setValue(0);
+    
+    if (isLastPlayer) {
+      router.push('/discussion');
+    } else {
+      setCurrentPlayerIndex((prev) => prev + 1);
+    }
   };
 
   // Safety check
   if (!currentPlayer || !currentWord) {
     return (
-      <SafeAreaView style={styles.errorContainer}>
-        <Text style={styles.errorText}>Game state error. Please restart.</Text>
-        <Pressable onPress={() => router.replace('/')}>
-          <Text style={styles.errorLink}>Go Home</Text>
-        </Pressable>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>Game state error. Please restart.</Text>
+          <Pressable onPress={() => router.replace('/')}>
+            <Text style={styles.errorLink}>Go Home</Text>
+          </Pressable>
+        </View>
       </SafeAreaView>
     );
   }
 
-  // Get role content
-  const getRoleContent = () => {
-    if (isImposter) {
-      const hint = currentWord.hints[config.hintDifficulty];
-      return {
-        role: 'IMPOSTER 🕵️',
-        content: hint,
-        backgroundColor: colors.danger,
-        textColor: colors.textLight,
-        note: 'Bluff. Don\'t get caught.',
-      };
-    } else {
-      const originLabel = currentWord.scope === 'shared' 
-        ? SHARED_LABEL 
-        : getRegionLabel(currentWord.regions[0]);
-      
-      return {
-        role: 'VILLAGER',
-        content: currentWord.word,
-        backgroundColor: colors.surface,
-        textColor: colors.textDark,
-        note: 'Remember this. Don\'t say it out loud.',
-        origin: originLabel,
-      };
+  // Get origin label for villager
+  const getOriginLabel = () => {
+    if (currentWord.scope === 'shared') {
+      return SHARED_LABEL;
     }
+    if (currentWord.regions.length > 0) {
+      return getRegionLabel(currentWord.regions[0]);
+    }
+    return SHARED_LABEL;
   };
 
-  const roleContent = getRoleContent();
+  // Get initials from player name
+  const getInitials = (name: string): string => {
+    const trimmed = name.trim();
+    if (!trimmed) return '?';
+    const parts = trimmed.split(' ').filter(Boolean);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return trimmed.slice(0, 2).toUpperCase();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Cover Screen */}
-      <View style={styles.coverContainer}>
-        <View style={styles.coverContent}>
-          <PlayerAvatar 
-            name={currentPlayer.name} 
-            index={currentPlayerIndex} 
-            size="large" 
-          />
-          <Text style={styles.playerTurnText}>{currentPlayer.name}'s turn</Text>
-          <Text style={styles.instructionText}>⬆️ Slide up to reveal your role</Text>
+      {/* Static header text */}
+      <Text style={styles.passPhoneText}>Pass the phone 👋</Text>
+
+      {/* Cards container - centered on screen */}
+      <View style={styles.cardsContainer}>
+        {/* Card 2 (BOTTOM) - Role content, static, always there */}
+        <View style={styles.card2}>
+          {isImposter ? (
+            <>
+              <Text style={styles.imposterLabel}>You are the Imposter 🕵️</Text>
+              <Text style={styles.hintWord}>
+                {currentWord.hints[config.hintDifficulty]}
+              </Text>
+              <Text style={styles.hintLabel}>Your hint</Text>
+            </>
+          ) : (
+            <>
+              <Text style={styles.villagerLabel}>VILLAGER</Text>
+              <Text style={styles.villagerWord}>{currentWord.word}</Text>
+              <Text style={styles.villagerOrigin}>{getOriginLabel()}</Text>
+            </>
+          )}
         </View>
+
+        {/* Card 1 (TOP) - Player name card, slides up */}
+        <Animated.View
+          style={[
+            styles.card1,
+            { transform: [{ translateY: card1TranslateY }] },
+          ]}
+          {...panResponder.panHandlers}
+        >
+          <View style={styles.avatar}>
+            <Text style={styles.avatarInitials}>{getInitials(currentPlayer.name)}</Text>
+          </View>
+          <Text style={styles.playerName}>{currentPlayer.name}</Text>
+          <View style={styles.divider} />
+          <Text style={styles.arrowIcon}>↑</Text>
+          <Text style={styles.slideHint}>Slide up to reveal</Text>
+        </Animated.View>
       </View>
 
-      {/* Slide-up Panel */}
-      <Animated.View
-        style={[
-          styles.panel,
-          {
-            backgroundColor: roleContent.backgroundColor,
-            transform: [{ translateY: panelY }],
-          },
-        ]}
-        {...(!isRevealed ? panResponder.panHandlers : {})}
-      >
-        {/* Swipe Indicator */}
-        {!isRevealed && (
-          <View style={styles.swipeIndicator}>
-            <View style={styles.swipeHandle} />
-          </View>
-        )}
-
-        {/* Role Content */}
-        <View style={styles.roleContent}>
-          <Text style={[styles.roleLabel, { color: roleContent.textColor }]}>
-            {roleContent.role}
-          </Text>
-          
-          <Text style={[styles.roleMain, { color: roleContent.textColor }]}>
-            {roleContent.content}
-          </Text>
-
-          {roleContent.origin && (
-            <Text style={[styles.roleOrigin, { color: roleContent.textColor }]}>
-              {roleContent.origin}
+      {/* Next Person Button - appears instantly when spring completes */}
+      {isRevealed && (
+        <View style={styles.buttonWrapper}>
+          <Pressable
+            style={({ pressed }) => [
+              styles.nextButton,
+              pressed && styles.nextButtonPressed,
+            ]}
+            onPress={handleNextPerson}
+          >
+            <Text style={styles.nextButtonText}>
+              {isLastPlayer ? 'Start Discussion →' : 'Next Person →'}
             </Text>
-          )}
-
-          <Text style={[styles.roleNote, { color: roleContent.textColor }]}>
-            {roleContent.note}
-          </Text>
-
-          {isRevealed && (
-            <Pressable
-              style={({ pressed }) => [
-                styles.nextButton,
-                pressed && styles.nextButtonPressed,
-              ]}
-              onPress={handleNextPerson}
-            >
-              <Text style={styles.nextButtonText}>
-                {isLastPlayer ? 'Start Discussion →' : 'Next Person →'}
-              </Text>
-            </Pressable>
-          )}
+          </Pressable>
         </View>
-      </Animated.View>
+      )}
     </SafeAreaView>
   );
 }
@@ -211,11 +196,10 @@ export default function DistributeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.coverBg,
+    backgroundColor: '#FFF8EE',
   },
   errorContainer: {
     flex: 1,
-    backgroundColor: colors.background,
     justifyContent: 'center',
     alignItems: 'center',
     padding: spacing.lg,
@@ -232,94 +216,150 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.primary,
   },
-  coverContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  coverContent: {
-    alignItems: 'center',
-  },
-  playerTurnText: {
-    fontFamily: fonts.heading,
-    fontSize: 32,
-    color: colors.textLight,
-    marginTop: spacing.lg,
-    marginBottom: spacing.md,
-  },
-  instructionText: {
+
+  // Static header
+  passPhoneText: {
     fontFamily: fonts.body,
     fontSize: 16,
     color: colors.textMuted,
     textAlign: 'center',
+    marginTop: spacing.lg,
   },
-  panel: {
+
+  // Cards container - centers both cards
+  cardsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+  },
+
+  // Card 2 (BOTTOM) - Role card, static
+  card2: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: SCREEN_HEIGHT,
-    borderTopLeftRadius: radius.xl,
-    borderTopRightRadius: radius.xl,
+    width: '90%',
+    backgroundColor: colors.surface,
+    borderRadius: 24,
+    paddingVertical: spacing.xl,
+    paddingHorizontal: spacing.lg,
+    alignItems: 'center',
+    zIndex: 5,
     ...shadows.card,
   },
-  swipeIndicator: {
-    paddingTop: spacing.md,
-    paddingBottom: spacing.sm,
+
+  // Card 1 (TOP) - Player card, slides up
+  card1: {
+    position: 'absolute',
+    width: '90%',
+    backgroundColor: colors.surface,
+    borderRadius: 24,
+    paddingVertical: spacing.xl,
+    paddingHorizontal: spacing.lg,
     alignItems: 'center',
+    zIndex: 10,
+    ...shadows.card,
   },
-  swipeHandle: {
-    width: 40,
-    height: 4,
-    borderRadius: radius.sm,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-  },
-  roleContent: {
-    flex: 1,
-    padding: spacing.xl,
-    alignItems: 'center',
+
+  // Card 1 content
+  avatar: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: colors.primary,
     justifyContent: 'center',
-  },
-  roleLabel: {
-    fontFamily: fonts.label,
-    fontSize: 12,
-    letterSpacing: 2,
-    textTransform: 'uppercase',
-    marginBottom: spacing.lg,
-  },
-  roleMain: {
-    fontFamily: fonts.heading,
-    fontSize: 48,
-    textAlign: 'center',
+    alignItems: 'center',
     marginBottom: spacing.md,
   },
-  roleOrigin: {
+  avatarInitials: {
+    fontFamily: fonts.label,
+    fontSize: 24,
+    color: colors.textDark,
+  },
+  playerName: {
+    fontFamily: fonts.heading,
+    fontSize: 28,
+    color: colors.textDark,
+    textAlign: 'center',
+    marginBottom: spacing.lg,
+  },
+  divider: {
+    width: 60,
+    height: 2,
+    backgroundColor: '#E0E0E0',
+    marginBottom: spacing.lg,
+  },
+  arrowIcon: {
+    fontSize: 32,
+    color: colors.primary,
+    marginBottom: spacing.sm,
+  },
+  slideHint: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textMuted,
+  },
+
+  // Card 2 content - Villager
+  villagerLabel: {
+    fontFamily: fonts.label,
+    fontSize: 13,
+    color: colors.secondary,
+    letterSpacing: 2,
+    textTransform: 'uppercase',
+    marginBottom: spacing.md,
+  },
+  villagerWord: {
+    fontFamily: fonts.heading,
+    fontSize: 48,
+    color: colors.primary,
+    textAlign: 'center',
+    marginBottom: spacing.sm,
+  },
+  villagerOrigin: {
     fontFamily: fonts.body,
     fontSize: 14,
-    opacity: 0.8,
-    marginBottom: spacing.xl,
+    color: colors.textMuted,
   },
-  roleNote: {
+
+  // Card 2 content - Imposter
+  imposterLabel: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textMuted,
+    marginBottom: spacing.md,
+  },
+  hintWord: {
+    fontFamily: fonts.heading,
+    fontSize: 56,
+    color: colors.textDark,
+    textAlign: 'center',
+    marginBottom: spacing.sm,
+  },
+  hintLabel: {
     fontFamily: fonts.body,
     fontSize: 12,
-    opacity: 0.8,
-    textAlign: 'center',
-    fontStyle: 'italic',
-    marginBottom: spacing.xxl,
+    color: colors.textMuted,
+  },
+
+  // Button wrapper
+  buttonWrapper: {
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.xxl,
+    alignItems: 'center',
   },
   nextButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: colors.primary,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
     borderRadius: radius.xl,
-    marginTop: spacing.xl,
   },
   nextButtonPressed: {
     opacity: 0.8,
+    transform: [{ scale: 0.98 }],
   },
   nextButtonText: {
     fontFamily: fonts.heading,
     fontSize: 18,
-    color: colors.textLight,
+    color: colors.textDark,
   },
 });

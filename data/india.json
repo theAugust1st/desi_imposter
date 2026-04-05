@@ -3,9 +3,9 @@
     "id": "india_001",
     "word": "Vada Pav",
     "hints": {
-      "easy": "A type of street food",
-      "medium": "A famous Mumbai street snack with a potato patty",
-      "spicy": "A spiced potato fritter in a bun — Mumbai's answer to the burger, sold at every street corner"
+      "easy": "Snack",
+      "medium": "Potato bun",
+      "spicy": "Mumbai burger"
     },
     "category": "food",
     "scope": "local",
@@ -16,9 +16,9 @@
     "id": "india_002",
     "word": "Holi",
     "hints": {
-      "easy": "A festival",
-      "medium": "A colorful spring festival celebrated in India",
-      "spicy": "The festival of colors where strangers become friends and everyone ends up drenched in gulaal"
+      "easy": "Festival",
+      "medium": "Color celebration",
+      "spicy": "Spring colors"
     },
     "category": "festival",
     "scope": "local",
@@ -29,9 +29,9 @@
     "id": "india_003",
     "word": "Bollywood",
     "hints": {
-      "easy": "An entertainment industry",
-      "medium": "India's Hindi film industry based in Mumbai",
-      "spicy": "Song, dance, drama, and three-hour movies — where every love story needs a rain scene"
+      "easy": "Entertainment",
+      "medium": "Film industry",
+      "spicy": "Hindi movies"
     },
     "category": "culture",
     "scope": "local",
@@ -42,9 +42,9 @@
     "id": "india_004",
     "word": "Pani Puri",
     "hints": {
-      "easy": "A type of snack",
-      "medium": "A crispy hollow shell filled with spiced water",
-      "spicy": "Crack, fill, and pop — the street snack where you race against the dripping water"
+      "easy": "Snack",
+      "medium": "Crispy shell",
+      "spicy": "Spiced water"
     },
     "category": "food",
     "scope": "local",
@@ -55,9 +55,9 @@
     "id": "india_005",
     "word": "Sachin Tendulkar",
     "hints": {
-      "easy": "A famous person",
-      "medium": "A legendary Indian cricket player",
-      "spicy": "The God of Cricket — 100 international centuries and a billion prayers every time he batted"
+      "easy": "Person",
+      "medium": "Cricket legend",
+      "spicy": "Master blaster"
     },
     "category": "person",
     "scope": "local",
@@ -68,9 +68,9 @@
     "id": "india_006",
     "word": "Taj Mahal",
     "hints": {
-      "easy": "A famous building",
-      "medium": "A white marble monument in Agra",
-      "spicy": "A monument to eternal love built by a Mughal emperor — the most photographed building in India"
+      "easy": "Building",
+      "medium": "White monument",
+      "spicy": "Marble tomb"
     },
     "category": "place",
     "scope": "local",
@@ -81,9 +81,9 @@
     "id": "india_007",
     "word": "Dosa",
     "hints": {
-      "easy": "A type of food",
-      "medium": "A crispy South Indian crepe made from rice batter",
-      "spicy": "Golden, crispy, and served with sambar and chutney — breakfast that can be dinner"
+      "easy": "Food",
+      "medium": "Crispy crepe",
+      "spicy": "Rice batter"
     },
     "category": "food",
     "scope": "local",

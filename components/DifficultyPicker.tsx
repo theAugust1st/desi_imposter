@@ -160,13 +160,14 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.sm,
     borderRadius: radius.lg,
-    borderWidth: 2,
-    borderColor: colors.textMuted,
-    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
   },
   difficultyButtonSelected: {
+    borderWidth: 2,
     borderColor: colors.primary,
-    backgroundColor: 'rgba(245, 166, 35, 0.15)',
+    backgroundColor: '#FFF3E0',
   },
   emoji: {
     fontSize: 24,

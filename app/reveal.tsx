@@ -1,58 +1,45 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
+import { useCallback } from 'react';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
-import { colors, spacing, fonts, radius } from '../constants/theme';
-import {
-  useGameStore,
-  usePlayers,
-  useImposterIndex,
-  useCurrentWord,
-} from '../store/gameStore';
-import RevealAnimation from '../components/RevealAnimation';
+import { colors, spacing, fonts, radius, shadows } from '../constants/theme';
+import { useGameStore, usePlayers, useImposterIndex } from '../store/gameStore';
+import PlayerAvatar from '../components/PlayerAvatar';
 
 export default function RevealScreen() {
   const players = usePlayers();
   const imposterIndex = useImposterIndex();
-  const currentWord = useCurrentWord();
+  const playAgain = useGameStore((state) => state.playAgain);
   const resetGame = useGameStore((state) => state.resetGame);
 
-  const [animationComplete, setAnimationComplete] = useState(false);
+  // Play Again - same players, new word, new imposter
+  const handlePlayAgain = useCallback(async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await playAgain();
+    router.replace('/distribute/0');
+  }, [playAgain]);
 
-  // Button animations
-  const buttonsOpacity = useRef(new Animated.Value(0)).current;
-
-  const handleAnimationComplete = useCallback(() => {
-    setAnimationComplete(true);
-    // Delay then fade in buttons
-    setTimeout(() => {
-      Animated.timing(buttonsOpacity, {
-        toValue: 1,
-        duration: 400,
-        useNativeDriver: true,
-      }).start();
-    }, 500);
+  // Reset Players - go to setup with players pre-filled
+  const handleResetPlayers = useCallback(() => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.replace('/setup');
   }, []);
 
-  const handlePlayAgain = useCallback(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  // New Game - clear everything, go home
+  const handleNewGame = useCallback(() => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     resetGame();
-    router.replace('/setup');
+    router.replace('/');
   }, [resetGame]);
 
-  const handleBackToHome = useCallback(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.replace('/');
-  }, []);
-
   // Safety check
-  if (imposterIndex === null || !currentWord) {
+  if (imposterIndex === null) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>Something went wrong</Text>
-          <Pressable style={styles.errorButton} onPress={handleBackToHome}>
+          <Pressable style={styles.errorButton} onPress={handleNewGame}>
             <Text style={styles.errorButtonText}>Back to Home</Text>
           </Pressable>
         </View>
@@ -60,45 +47,64 @@ export default function RevealScreen() {
     );
   }
 
+  const imposter = players[imposterIndex];
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>The Moment of Truth</Text>
+          <Text style={styles.headerEmoji}>🕵️</Text>
+          <Text style={styles.headerText}>The Imposter was...</Text>
         </View>
 
-        {/* Reveal Animation */}
-        <View style={styles.animationContainer}>
-          <RevealAnimation
-            players={players}
-            imposterIndex={imposterIndex}
-            secretWord={currentWord.word}
-            onAnimationComplete={handleAnimationComplete}
-          />
+        {/* Imposter Card */}
+        <View style={styles.imposterSection}>
+          <View style={styles.imposterCard}>
+            <PlayerAvatar
+              name={imposter.name}
+              index={imposterIndex}
+              size="large"
+            />
+            <Text style={styles.imposterName}>{imposter.name}</Text>
+          </View>
         </View>
 
         {/* Action Buttons */}
-        {animationComplete && (
-          <Animated.View style={[styles.actions, { opacity: buttonsOpacity }]}>
-            <Pressable
-              style={({ pressed }) => [
-                styles.playAgainButton,
-                pressed && styles.buttonPressed,
-              ]}
-              onPress={handlePlayAgain}
-            >
-              <Text style={styles.playAgainText}>Play Again 🎉</Text>
-            </Pressable>
+        <View style={styles.actions}>
+          {/* Play Again - same players, new word */}
+          <Pressable
+            style={({ pressed }) => [
+              styles.primaryButton,
+              pressed && styles.buttonPressed,
+            ]}
+            onPress={handlePlayAgain}
+          >
+            <Text style={styles.primaryButtonText}>Play Again 🔄</Text>
+          </Pressable>
 
-            <Pressable
-              style={styles.homeLink}
-              onPress={handleBackToHome}
-            >
-              <Text style={styles.homeLinkText}>Back to Home</Text>
-            </Pressable>
-          </Animated.View>
-        )}
+          {/* Reset Players - edit players in setup */}
+          <Pressable
+            style={({ pressed }) => [
+              styles.secondaryButton,
+              pressed && styles.buttonPressed,
+            ]}
+            onPress={handleResetPlayers}
+          >
+            <Text style={styles.secondaryButtonText}>Reset Players ✏️</Text>
+          </Pressable>
+
+          {/* New Game - clear all, go home */}
+          <Pressable
+            style={({ pressed }) => [
+              styles.secondaryButton,
+              pressed && styles.buttonPressed,
+            ]}
+            onPress={handleNewGame}
+          >
+            <Text style={styles.secondaryButtonText}>New Game 🏠</Text>
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -112,52 +118,75 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: spacing.lg,
+    justifyContent: 'space-between',
   },
   header: {
     alignItems: 'center',
-    paddingTop: spacing.lg,
-    paddingBottom: spacing.md,
+    paddingTop: spacing.xxl,
   },
-  title: {
+  headerEmoji: {
+    fontSize: 64,
+    marginBottom: spacing.md,
+  },
+  headerText: {
     fontFamily: fonts.heading,
     fontSize: 28,
-    color: colors.primary,
+    color: colors.textDark,
     textAlign: 'center',
   },
-  animationContainer: {
+  imposterSection: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imposterCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    padding: spacing.xl,
+    alignItems: 'center',
+    minWidth: 220,
+    ...shadows.card,
+  },
+  imposterName: {
+    fontFamily: fonts.heading,
+    fontSize: 36,
+    color: colors.textDark,
+    marginTop: spacing.lg,
+    textAlign: 'center',
   },
   actions: {
     gap: spacing.md,
     paddingBottom: spacing.lg,
   },
-  playAgainButton: {
+  primaryButton: {
     backgroundColor: colors.primary,
     paddingVertical: spacing.lg,
     paddingHorizontal: spacing.xl,
     borderRadius: radius.xl,
     alignItems: 'center',
   },
+  secondaryButton: {
+    backgroundColor: colors.surface,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.xl,
+    borderRadius: radius.xl,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: colors.textMuted,
+  },
   buttonPressed: {
     opacity: 0.9,
     transform: [{ scale: 0.98 }],
   },
-  playAgainText: {
+  primaryButtonText: {
     fontFamily: fonts.heading,
     fontSize: 20,
     color: colors.textDark,
   },
-  homeLink: {
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  homeLinkText: {
-    fontFamily: fonts.body,
-    fontSize: 16,
-    color: colors.textMuted,
-    textDecorationLine: 'underline',
+  secondaryButtonText: {
+    fontFamily: fonts.heading,
+    fontSize: 20,
+    color: colors.textDark,
   },
   errorContainer: {
     flex: 1,

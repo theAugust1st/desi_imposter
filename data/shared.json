@@ -3,9 +3,9 @@
     "id": "shared_001",
     "word": "Biryani",
     "hints": {
-      "easy": "A type of food",
-      "medium": "A famous South Asian rice dish",
-      "spicy": "A layered rice dish slow-cooked with spiced meat, served at weddings and Eid"
+      "easy": "Food",
+      "medium": "Rice dish",
+      "spicy": "Layered rice"
     },
     "category": "food",
     "scope": "shared",
@@ -16,9 +16,9 @@
     "id": "shared_002",
     "word": "Rickshaw",
     "hints": {
-      "easy": "A way to travel",
-      "medium": "A three-wheeled vehicle found everywhere in South Asia",
-      "spicy": "A three-wheeled ride for hire, often brightly decorated, the pulse of every city bazaar"
+      "easy": "Transport",
+      "medium": "Three wheels",
+      "spicy": "Decorated vehicle"
     },
     "category": "culture",
     "scope": "shared",
@@ -29,9 +29,9 @@
     "id": "shared_003",
     "word": "Chai",
     "hints": {
-      "easy": "A type of drink",
-      "medium": "A hot spiced tea drunk across South Asia every morning",
-      "spicy": "Brewed with milk, cardamom, ginger and sugar — no meeting begins without it"
+      "easy": "Drink",
+      "medium": "Hot beverage",
+      "spicy": "Spiced milk"
     },
     "category": "food",
     "scope": "shared",
@@ -42,9 +42,9 @@
     "id": "shared_004",
     "word": "Samosa",
     "hints": {
-      "easy": "A type of snack",
-      "medium": "A fried pastry stuffed with spiced potato or meat",
-      "spicy": "A triangular fried snack sold at every street corner from Karachi to Kathmandu"
+      "easy": "Snack",
+      "medium": "Fried pastry",
+      "spicy": "Triangular filling"
     },
     "category": "food",
     "scope": "shared",
@@ -55,9 +55,9 @@
     "id": "shared_005",
     "word": "Cricket",
     "hints": {
-      "easy": "A sport",
-      "medium": "The most-watched sport in South Asia",
-      "spicy": "Bat, ball, and 22 yards — capable of stopping an entire nation"
+      "easy": "Sport",
+      "medium": "Bat ball",
+      "spicy": "Wicket game"
     },
     "category": "cricket",
     "scope": "shared",
@@ -68,9 +68,9 @@
     "id": "shared_006",
     "word": "Mehndi",
     "hints": {
-      "easy": "Something used in celebrations",
-      "medium": "Henna art applied on hands at weddings and festivals",
-      "spicy": "Intricate brown patterns drawn on hands — no South Asian bride is complete without it"
+      "easy": "Decoration",
+      "medium": "Hand art",
+      "spicy": "Henna patterns"
     },
     "category": "culture",
     "scope": "shared",
@@ -81,9 +81,9 @@
     "id": "shared_007",
     "word": "Eid",
     "hints": {
-      "easy": "A celebration",
-      "medium": "The most important Muslim festival celebrated across South Asia",
-      "spicy": "New clothes, sevaiyan, Eidi money — the morning that begins with prayer and ends with feasting"
+      "easy": "Festival",
+      "medium": "Muslim celebration",
+      "spicy": "Post-fasting feast"
     },
     "category": "festival",
     "scope": "shared",
@@ -94,9 +94,9 @@
     "id": "shared_008",
     "word": "Bazaar",
     "hints": {
-      "easy": "A place",
-      "medium": "A traditional open marketplace found in every South Asian city",
-      "spicy": "Narrow lanes, haggling vendors, the smell of spices — where every city comes alive"
+      "easy": "Place",
+      "medium": "Open market",
+      "spicy": "Haggling vendors"
     },
     "category": "place",
     "scope": "shared",
@@ -107,9 +107,9 @@
     "id": "shared_009",
     "word": "Lassi",
     "hints": {
-      "easy": "A type of drink",
-      "medium": "A cold yogurt-based drink popular across South Asia",
-      "spicy": "Thick, creamy, sweet or salty — the ultimate summer relief before AC existed"
+      "easy": "Drink",
+      "medium": "Yogurt beverage",
+      "spicy": "Creamy cold"
     },
     "category": "food",
     "scope": "shared",
@@ -120,9 +120,9 @@
     "id": "shared_010",
     "word": "Diwali",
     "hints": {
-      "easy": "A celebration with lights",
-      "medium": "The festival of lights celebrated across South Asia",
-      "spicy": "Diyas, fireworks, mithai boxes, and rangoli — the night that outshines every other"
+      "easy": "Festival",
+      "medium": "Light celebration",
+      "spicy": "Diya fireworks"
     },
     "category": "festival",
     "scope": "shared",

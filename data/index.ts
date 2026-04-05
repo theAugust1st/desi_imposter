@@ -20,23 +20,22 @@ const pakistan = pakistanWords as WordEntry[];
  * 
  * Rules:
  * - Shared words are ALWAYS included
- * - India words are ALWAYS included (cultural common ground, regardless of selection)
- * - Other country words (Nepal, Bangladesh, Pakistan) are ONLY included
- *   if selected by the user
+ * - Country-specific words are included ONLY if that country is selected
  * 
  * Error Boundary:
  * - If the combined pool is empty (shouldn't happen), falls back to shared.json
  * - Logs a warning for debugging purposes
  * 
  * @param selectedNationalities - Array of region codes representing user selection
- * @returns Combined word pool with India always included
+ * @returns Combined word pool based on selection
  */
 export function buildWordPool(selectedNationalities: Region[]): WordEntry[] {
-  // Always include shared and India words (India is always included silently)
-  const alwaysIncluded: WordEntry[] = [...shared, ...india];
+  // Always include shared words
+  const alwaysIncluded: WordEntry[] = [...shared];
 
-  // Conditionally include other country words based on user selection
+  // Include country words based on user selection
   const conditionalWords: WordEntry[] = [
+    ...(selectedNationalities.includes('IN') ? india : []),
     ...(selectedNationalities.includes('NP') ? nepal : []),
     ...(selectedNationalities.includes('BD') ? bangladesh : []),
     ...(selectedNationalities.includes('PK') ? pakistan : []),

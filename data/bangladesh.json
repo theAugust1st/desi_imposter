@@ -3,9 +3,9 @@
     "id": "bangladesh_001",
     "word": "Hilsa Fish",
     "hints": {
-      "easy": "A type of seafood",
-      "medium": "A beloved fish that Bangladeshis consider national treasure",
-      "spicy": "The queen of fish — Bengalis fight over who cooks it better, with mustard paste or steamed"
+      "easy": "Seafood",
+      "medium": "Bengali fish",
+      "spicy": "Mustard preparation"
     },
     "category": "food",
     "scope": "local",
@@ -16,9 +16,9 @@
     "id": "bangladesh_002",
     "word": "Pahela Baishakh",
     "hints": {
-      "easy": "A celebration",
-      "medium": "The Bengali New Year celebration",
-      "spicy": "Red and white saris, panta ilish, and Mongol Shobhajatra — when Bengal welcomes a new year"
+      "easy": "Celebration",
+      "medium": "New year",
+      "spicy": "Bengali calendar"
     },
     "category": "festival",
     "scope": "local",
@@ -29,9 +29,9 @@
     "id": "bangladesh_003",
     "word": "Rickshaw Art",
     "hints": {
-      "easy": "A type of art",
-      "medium": "Colorful paintings found on Bangladeshi rickshaws",
-      "spicy": "Film stars, tigers, and village scenes — rolling galleries that make Dhaka streets an open museum"
+      "easy": "Art",
+      "medium": "Vehicle painting",
+      "spicy": "Dhaka decoration"
     },
     "category": "culture",
     "scope": "local",
@@ -42,9 +42,9 @@
     "id": "bangladesh_004",
     "word": "Pitha",
     "hints": {
-      "easy": "A type of sweet",
-      "medium": "Traditional Bengali rice cakes made in winter",
-      "spicy": "Bhapa, puli, chitoi — grandmother's winter kitchen filled with steam and date palm jaggery"
+      "easy": "Sweet",
+      "medium": "Rice cake",
+      "spicy": "Winter treat"
     },
     "category": "food",
     "scope": "local",
@@ -55,9 +55,9 @@
     "id": "bangladesh_005",
     "word": "Jamdani",
     "hints": {
-      "easy": "A type of fabric",
-      "medium": "A handwoven muslin fabric from Bangladesh",
-      "spicy": "Translucent, hand-woven magic — the sari so fine, emperors once paid fortunes for it"
+      "easy": "Fabric",
+      "medium": "Woven cloth",
+      "spicy": "Muslin sari"
     },
     "category": "culture",
     "scope": "local",
@@ -68,9 +68,9 @@
     "id": "bangladesh_006",
     "word": "Sundarbans",
     "hints": {
-      "easy": "A natural place",
-      "medium": "The world's largest mangrove forest in Bangladesh",
-      "spicy": "Where the Royal Bengal Tiger roams — a maze of rivers, honey hunters, and crocodiles"
+      "easy": "Nature",
+      "medium": "Mangrove forest",
+      "spicy": "Tiger habitat"
     },
     "category": "place",
     "scope": "local",

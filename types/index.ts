@@ -54,5 +54,6 @@ export interface GameState {
   nextPlayer: () => void;
   goToDiscussion: () => void;
   goToReveal: () => void;
+  playAgain: () => Promise<void>;
   resetGame: () => void;
 }

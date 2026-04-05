@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import { colors, spacing, radius, fonts } from '../constants/theme';
+import { colors, spacing, fonts } from '../constants/theme';
 import { regions, type Region } from '../constants/regions';
 
 interface RegionPickerProps {
@@ -23,14 +23,32 @@ export default function RegionPicker({
     }
   };
 
+  // Organize regions in 2x2 grid: [India, Nepal], [Bangladesh, Pakistan]
+  const row1 = regions.slice(0, 2); // India, Nepal
+  const row2 = regions.slice(2, 4); // Bangladesh, Pakistan
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Who's in the room?</Text>
       <Text style={styles.hint}>
-        Select at least one nationality. India words always included.
+        Select at least one nationality
       </Text>
-      <View style={styles.grid}>
-        {regions.map((region) => (
+      
+      {/* Row 1: India, Nepal */}
+      <View style={styles.row}>
+        {row1.map((region) => (
+          <RegionButton
+            key={region.code}
+            region={region}
+            isSelected={selectedRegions.includes(region.code)}
+            onPress={() => handleToggle(region.code)}
+          />
+        ))}
+      </View>
+
+      {/* Row 2: Bangladesh, Pakistan */}
+      <View style={styles.row}>
+        {row2.map((region) => (
           <RegionButton
             key={region.code}
             region={region}
@@ -54,7 +72,7 @@ function RegionButton({ region, isSelected, onPress }: RegionButtonProps) {
 
   const handlePressIn = () => {
     Animated.spring(scale, {
-      toValue: 0.95,
+      toValue: 0.97,
       useNativeDriver: true,
     }).start();
   };
@@ -71,6 +89,7 @@ function RegionButton({ region, isSelected, onPress }: RegionButtonProps) {
       onPress={onPress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
+      style={styles.buttonContainer}
     >
       <Animated.View
         style={[
@@ -100,7 +119,7 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: fonts.label,
     fontSize: 16,
-    color: colors.textLight,
+    color: colors.textDark,
     marginBottom: spacing.xs,
   },
   hint: {
@@ -109,36 +128,40 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     marginBottom: spacing.md,
   },
-  grid: {
+  row: {
     flexDirection: 'row',
-    gap: spacing.sm,
+    gap: 12,
+    marginBottom: 12,
+  },
+  buttonContainer: {
+    flex: 1,
   },
   regionButton: {
-    flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: spacing.md,
-    borderRadius: radius.lg,
-    borderWidth: 2,
-    borderColor: colors.textMuted,
-    backgroundColor: 'transparent',
+    justifyContent: 'flex-start',
+    height: 64,
+    paddingHorizontal: spacing.md,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
   },
   regionButtonSelected: {
+    borderWidth: 2,
     borderColor: colors.primary,
-    backgroundColor: 'rgba(245, 166, 35, 0.15)',
+    backgroundColor: '#FFF3E0',
   },
   flag: {
-    fontSize: 32,
-    marginBottom: spacing.xs,
+    fontSize: 22,
+    marginRight: spacing.md,
   },
   regionName: {
-    fontFamily: fonts.body,
-    fontSize: 12,
+    fontFamily: fonts.label,
+    fontSize: 13,
     color: colors.textMuted,
-    textAlign: 'center',
   },
   regionNameSelected: {
-    color: colors.textLight,
+    color: colors.textDark,
   },
 });

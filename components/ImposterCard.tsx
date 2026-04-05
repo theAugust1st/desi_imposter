@@ -100,17 +100,6 @@ export default function ImposterCard({
     });
   };
 
-  const getDifficultyLabel = () => {
-    switch (difficulty) {
-      case 'easy':
-        return 'Easy Hint';
-      case 'medium':
-        return 'Medium Hint';
-      case 'spicy':
-        return 'Spicy Hint 🌶️';
-    }
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.forPlayer}>This is for {playerName} only 👁️</Text>
@@ -127,16 +116,19 @@ export default function ImposterCard({
           }
         ]}>
           {/* Role label */}
-          <Text style={styles.roleLabel}>IMPOSTER 🕵️</Text>
+          <Text style={styles.roleLabel}>You are the Imposter 🕵️</Text>
 
-          {/* Hint text */}
+          {/* Hint word */}
           <Text style={styles.hint}>{hint}</Text>
 
-          {/* Difficulty label */}
-          <Text style={styles.difficulty}>{getDifficultyLabel()}</Text>
+          {/* Hint label */}
+          <Text style={styles.hintLabel}>Your hint</Text>
+
+          {/* Divider */}
+          <View style={styles.divider} />
 
           {/* Note */}
-          <Text style={styles.note}>Bluff. Don't get caught.</Text>
+          <Text style={styles.note}>Don't get caught.</Text>
 
           {/* Blur overlay */}
           <Animated.View 
@@ -180,7 +172,7 @@ const styles = StyleSheet.create({
     maxWidth: 320,
   },
   card: {
-    backgroundColor: colors.danger,
+    backgroundColor: colors.surface,
     borderRadius: radius.lg,
     padding: spacing.xl,
     alignItems: 'center',
@@ -188,37 +180,40 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   roleLabel: {
-    fontFamily: fonts.label,
-    fontSize: 12,
-    color: colors.textLight,
-    letterSpacing: 2,
-    textTransform: 'uppercase',
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textMuted,
     marginBottom: spacing.lg,
   },
   hint: {
     fontFamily: fonts.heading,
-    fontSize: 32,
-    color: colors.textLight,
+    fontSize: 48,
+    color: colors.textDark,
     textAlign: 'center',
-    marginBottom: spacing.md,
-    lineHeight: 40,
+    marginBottom: spacing.sm,
   },
-  difficulty: {
+  hintLabel: {
     fontFamily: fonts.body,
     fontSize: 12,
-    color: 'rgba(255, 248, 238, 0.7)',
-    marginBottom: spacing.xl,
+    color: colors.textMuted,
+    marginBottom: spacing.lg,
+  },
+  divider: {
+    width: 60,
+    height: 1,
+    backgroundColor: '#E0E0E0',
+    marginBottom: spacing.md,
   },
   note: {
     fontFamily: fonts.body,
-    fontSize: 12,
-    color: 'rgba(255, 248, 238, 0.7)',
+    fontSize: 13,
+    color: colors.textMuted,
     textAlign: 'center',
     fontStyle: 'italic',
   },
   blurOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(192, 57, 43, 0.95)',
+    backgroundColor: 'rgba(255, 248, 238, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: radius.lg,
@@ -226,11 +221,11 @@ const styles = StyleSheet.create({
   blurText: {
     fontFamily: fonts.body,
     fontSize: 16,
-    color: colors.textLight,
+    color: colors.textMuted,
   },
   dismissButton: {
     marginTop: spacing.xl,
-    backgroundColor: colors.textLight,
+    backgroundColor: colors.primary,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
     borderRadius: radius.xl,
@@ -238,6 +233,6 @@ const styles = StyleSheet.create({
   dismissText: {
     fontFamily: fonts.label,
     fontSize: 16,
-    color: colors.danger,
+    color: colors.textDark,
   },
 });

@@ -3,9 +3,9 @@
     "id": "pakistan_001",
     "word": "Nihari",
     "hints": {
-      "easy": "A type of food",
-      "medium": "A slow-cooked meat stew popular in Pakistan",
-      "spicy": "Simmered overnight with bone marrow and spices — the breakfast of champions in Lahore and Karachi"
+      "easy": "Food",
+      "medium": "Meat stew",
+      "spicy": "Slow cooked"
     },
     "category": "food",
     "scope": "local",
@@ -16,9 +16,9 @@
     "id": "pakistan_002",
     "word": "Truck Art",
     "hints": {
-      "easy": "A type of art",
-      "medium": "Colorful decorative painting on Pakistani trucks",
-      "spicy": "Mirrors, chains, poetry, and peacocks — mobile masterpieces that turn highways into galleries"
+      "easy": "Art",
+      "medium": "Vehicle decoration",
+      "spicy": "Highway gallery"
     },
     "category": "culture",
     "scope": "local",
@@ -29,9 +29,9 @@
     "id": "pakistan_003",
     "word": "Badshahi Mosque",
     "hints": {
-      "easy": "A religious building",
-      "medium": "A grand Mughal-era mosque in Lahore",
-      "spicy": "Red sandstone and white marble — the Mughal masterpiece that can hold 100,000 worshippers"
+      "easy": "Building",
+      "medium": "Grand mosque",
+      "spicy": "Mughal architecture"
     },
     "category": "place",
     "scope": "local",
@@ -42,9 +42,9 @@
     "id": "pakistan_004",
     "word": "Chapli Kebab",
     "hints": {
-      "easy": "A type of food",
-      "medium": "A spiced meat patty from Peshawar",
-      "spicy": "Flat, round, loaded with pomegranate seeds and spices — the Pashtun kebab that melts in your mouth"
+      "easy": "Food",
+      "medium": "Meat patty",
+      "spicy": "Peshawar specialty"
     },
     "category": "food",
     "scope": "local",
@@ -55,9 +55,9 @@
     "id": "pakistan_005",
     "word": "Qawwali",
     "hints": {
-      "easy": "A type of music",
-      "medium": "Sufi devotional music popular in Pakistan",
-      "spicy": "Clapping, harmonium, and spiritual ecstasy — Nusrat Fateh Ali Khan made the world weep with it"
+      "easy": "Music",
+      "medium": "Devotional singing",
+      "spicy": "Sufi tradition"
     },
     "category": "culture",
     "scope": "local",
@@ -68,9 +68,9 @@
     "id": "pakistan_006",
     "word": "Karakoram Highway",
     "hints": {
-      "easy": "A road",
-      "medium": "A scenic mountain highway connecting Pakistan and China",
-      "spicy": "The eighth wonder of the world — a road carved through the highest mountains on Earth"
+      "easy": "Road",
+      "medium": "Mountain highway",
+      "spicy": "Highest route"
     },
     "category": "place",
     "scope": "local",

@@ -3,9 +3,9 @@
     "id": "nepal_001",
     "word": "Dashain",
     "hints": {
-      "easy": "A festival",
-      "medium": "Nepal's biggest Hindu festival lasting 15 days",
-      "spicy": "Tika on the forehead, new clothes, and elders' blessings — Nepal comes home for this one"
+      "easy": "Festival",
+      "medium": "Hindu celebration",
+      "spicy": "Tika blessings"
     },
     "category": "festival",
     "scope": "local",
@@ -16,9 +16,9 @@
     "id": "nepal_002",
     "word": "Momo",
     "hints": {
-      "easy": "A type of food",
-      "medium": "Steamed dumplings popular in Nepal",
-      "spicy": "Juicy meat wrapped in dough, dipped in fiery achar — Nepal's gift to the world"
+      "easy": "Food",
+      "medium": "Steamed dumplings",
+      "spicy": "Meat filling"
     },
     "category": "food",
     "scope": "local",
@@ -29,9 +29,9 @@
     "id": "nepal_003",
     "word": "Mount Everest",
     "hints": {
-      "easy": "A natural landmark",
-      "medium": "The world's tallest mountain, located in Nepal",
-      "spicy": "8,849 meters of glory — the roof of the world that Nepalis call Sagarmatha"
+      "easy": "Landmark",
+      "medium": "Tallest peak",
+      "spicy": "Himalayan summit"
     },
     "category": "place",
     "scope": "local",
@@ -42,9 +42,9 @@
     "id": "nepal_004",
     "word": "Tihar",
     "hints": {
-      "easy": "A festival with lights",
-      "medium": "A five-day festival of lights in Nepal",
-      "spicy": "Deusi Bhailo songs, worshiping dogs and crows, and celebrating brothers and sisters"
+      "easy": "Festival",
+      "medium": "Light celebration",
+      "spicy": "Dog worship"
     },
     "category": "festival",
     "scope": "local",
@@ -55,9 +55,9 @@
     "id": "nepal_005",
     "word": "Dal Bhat",
     "hints": {
-      "easy": "A type of meal",
-      "medium": "The traditional Nepali meal of rice and lentils",
-      "spicy": "Rice, lentils, vegetables, and pickles — 'Dal Bhat power, 24 hour' as Nepalis say"
+      "easy": "Meal",
+      "medium": "Rice lentils",
+      "spicy": "Daily staple"
     },
     "category": "food",
     "scope": "local",
@@ -68,9 +68,9 @@
     "id": "nepal_006",
     "word": "Pashupatinath",
     "hints": {
-      "easy": "A religious place",
-      "medium": "A sacred Hindu temple in Kathmandu",
-      "spicy": "The holiest Shiva temple in Nepal, where cremation ghats line the Bagmati River"
+      "easy": "Temple",
+      "medium": "Holy shrine",
+      "spicy": "Shiva temple"
     },
     "category": "place",
     "scope": "local",
