@@ -1,17 +1,7 @@
-import { useEffect, useState, useCallback } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withSequence,
-  withDelay,
-  withSpring,
-  Easing,
-  runOnJS,
-} from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 import * as ScreenCapture from 'expo-screen-capture';
 import { colors, spacing, fonts, radius, shadows } from '../constants/theme';
@@ -32,12 +22,12 @@ export default function DiscussionScreen() {
   const [showResult, setShowResult] = useState(false);
 
   // Animation values
-  const titleScale = useSharedValue(0);
-  const titleOpacity = useSharedValue(0);
-  const slotScale = useSharedValue(1);
-  const resultOpacity = useSharedValue(0);
-  const resultScale = useSharedValue(0.8);
-  const buttonOpacity = useSharedValue(0);
+  const titleScale = useRef(new Animated.Value(0)).current;
+  const titleOpacity = useRef(new Animated.Value(0)).current;
+  const slotScale = useRef(new Animated.Value(1)).current;
+  const resultOpacity = useRef(new Animated.Value(0)).current;
+  const resultScale = useRef(new Animated.Value(0.8)).current;
+  const buttonOpacity = useRef(new Animated.Value(0)).current;
 
   // Release screen capture on discussion screen
   useEffect(() => {
@@ -53,7 +43,7 @@ export default function DiscussionScreen() {
 
     let interval = SLOT_INTERVAL;
     let elapsed = 0;
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const spin = () => {
       // Exponential slowdown as we approach the end
@@ -70,18 +60,40 @@ export default function DiscussionScreen() {
         // Show result with animation
         setTimeout(() => {
           setShowResult(true);
-          resultOpacity.value = withTiming(1, { duration: 400 });
-          resultScale.value = withSpring(1, { damping: 12 });
-          buttonOpacity.value = withDelay(300, withTiming(1, { duration: 400 }));
+          Animated.timing(resultOpacity, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }).start();
+          Animated.spring(resultScale, {
+            toValue: 1,
+            damping: 12,
+            useNativeDriver: true,
+          }).start();
+          setTimeout(() => {
+            Animated.timing(buttonOpacity, {
+              toValue: 1,
+              duration: 400,
+              useNativeDriver: true,
+            }).start();
+          }, 300);
         }, 300);
       } else {
         // Keep spinning through random players
         setSlotIndex((prev) => (prev + 1) % players.length);
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        slotScale.value = withSequence(
-          withTiming(1.05, { duration: 30 }),
-          withTiming(1, { duration: 50 })
-        );
+        Animated.sequence([
+          Animated.timing(slotScale, {
+            toValue: 1.05,
+            duration: 30,
+            useNativeDriver: true,
+          }),
+          Animated.timing(slotScale, {
+            toValue: 1,
+            duration: 50,
+            useNativeDriver: true,
+          }),
+        ]).start();
         timeoutId = setTimeout(spin, interval);
       }
     };
@@ -93,8 +105,16 @@ export default function DiscussionScreen() {
 
   // Intro animation
   useEffect(() => {
-    titleOpacity.value = withTiming(1, { duration: 500 });
-    titleScale.value = withSpring(1, { damping: 12 });
+    Animated.timing(titleOpacity, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+    Animated.spring(titleScale, {
+      toValue: 1,
+      damping: 12,
+      useNativeDriver: true,
+    }).start();
   }, []);
 
   const handleReveal = useCallback(() => {
@@ -103,31 +123,19 @@ export default function DiscussionScreen() {
     router.push('/reveal');
   }, [goToReveal]);
 
-  const titleStyle = useAnimatedStyle(() => ({
-    opacity: titleOpacity.value,
-    transform: [{ scale: titleScale.value }],
-  }));
-
-  const slotStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: slotScale.value }],
-  }));
-
-  const resultStyle = useAnimatedStyle(() => ({
-    opacity: resultOpacity.value,
-    transform: [{ scale: resultScale.value }],
-  }));
-
-  const buttonStyle = useAnimatedStyle(() => ({
-    opacity: buttonOpacity.value,
-  }));
-
   const currentPlayer = players[slotIndex];
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         {/* Header */}
-        <Animated.View style={[styles.header, titleStyle]}>
+        <Animated.View style={[
+          styles.header,
+          {
+            opacity: titleOpacity,
+            transform: [{ scale: titleScale }],
+          }
+        ]}>
           <Text style={styles.emoji}>🎉</Text>
           <Text style={styles.title}>Time to Play!</Text>
           <Text style={styles.subtitle}>Discuss and find the imposter</Text>
@@ -139,7 +147,10 @@ export default function DiscussionScreen() {
             {isSpinning ? 'Picking who goes first...' : 'First to speak:'}
           </Text>
 
-          <Animated.View style={[styles.slotCard, slotStyle]}>
+          <Animated.View style={[
+            styles.slotCard,
+            { transform: [{ scale: slotScale }] }
+          ]}>
             {currentPlayer && (
               <>
                 <PlayerAvatar
@@ -153,7 +164,13 @@ export default function DiscussionScreen() {
           </Animated.View>
 
           {showResult && (
-            <Animated.Text style={[styles.goesFirst, resultStyle]}>
+            <Animated.Text style={[
+              styles.goesFirst,
+              {
+                opacity: resultOpacity,
+                transform: [{ scale: resultScale }],
+              }
+            ]}>
               goes first! 🎤
             </Animated.Text>
           )}
@@ -161,7 +178,10 @@ export default function DiscussionScreen() {
 
         {/* Actions */}
         {showResult && (
-          <Animated.View style={[styles.actions, buttonStyle]}>
+          <Animated.View style={[
+            styles.actions,
+            { opacity: buttonOpacity }
+          ]}>
             {/* Peek Button */}
             <PeekButton />
 

@@ -1,13 +1,7 @@
-import { useState, useCallback } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withDelay,
-} from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, fonts, radius } from '../constants/theme';
 import {
@@ -27,11 +21,18 @@ export default function RevealScreen() {
   const [animationComplete, setAnimationComplete] = useState(false);
 
   // Button animations
-  const buttonsOpacity = useSharedValue(0);
+  const buttonsOpacity = useRef(new Animated.Value(0)).current;
 
   const handleAnimationComplete = useCallback(() => {
     setAnimationComplete(true);
-    buttonsOpacity.value = withDelay(500, withTiming(1, { duration: 400 }));
+    // Delay then fade in buttons
+    setTimeout(() => {
+      Animated.timing(buttonsOpacity, {
+        toValue: 1,
+        duration: 400,
+        useNativeDriver: true,
+      }).start();
+    }, 500);
   }, []);
 
   const handlePlayAgain = useCallback(() => {
@@ -44,10 +45,6 @@ export default function RevealScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.replace('/');
   }, []);
-
-  const buttonsStyle = useAnimatedStyle(() => ({
-    opacity: buttonsOpacity.value,
-  }));
 
   // Safety check
   if (imposterIndex === null || !currentWord) {
@@ -83,7 +80,7 @@ export default function RevealScreen() {
 
         {/* Action Buttons */}
         {animationComplete && (
-          <Animated.View style={[styles.actions, buttonsStyle]}>
+          <Animated.View style={[styles.actions, { opacity: buttonsOpacity }]}>
             <Pressable
               style={({ pressed }) => [
                 styles.playAgainButton,

@@ -1,9 +1,5 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-  useSharedValue,
-} from 'react-native-reanimated';
+import { useRef } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, radius, fonts } from '../constants/theme';
 import type { HintDifficulty } from '../types';
@@ -71,18 +67,20 @@ function DifficultyButton({
   isSelected,
   onPress,
 }: DifficultyButtonProps) {
-  const scale = useSharedValue(1);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-  }));
+  const scale = useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.95);
+    Animated.spring(scale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+    }).start();
   };
 
   const handlePressOut = () => {
-    scale.value = withSpring(1);
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
   };
 
   const getEmoji = () => {
@@ -107,7 +105,7 @@ function DifficultyButton({
         style={[
           styles.difficultyButton,
           isSelected && styles.difficultyButtonSelected,
-          animatedStyle,
+          { transform: [{ scale }] },
         ]}
       >
         <Text style={styles.emoji}>{getEmoji()}</Text>

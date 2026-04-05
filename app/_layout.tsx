@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import {
@@ -40,7 +39,7 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style="light" />
       <Stack
         screenOptions={{
@@ -48,14 +47,8 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: colors.background },
           animation: 'slide_from_right',
         }}
-      >
-        <Stack.Screen name="index" />
-        <Stack.Screen name="setup" />
-        <Stack.Screen name="distribute/[playerIndex]" />
-        <Stack.Screen name="discussion" />
-        <Stack.Screen name="reveal" />
-      </Stack>
-    </GestureHandlerRootView>
+      />
+    </View>
   );
 }
 

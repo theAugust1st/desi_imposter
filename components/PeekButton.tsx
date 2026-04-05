@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,15 +6,9 @@ import {
   Pressable,
   Modal,
   ScrollView,
-} from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withRepeat,
-  withSequence,
+  Animated,
   Easing,
-} from 'react-native-reanimated';
+} from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, fonts, radius, shadows } from '../constants/theme';
 import {
@@ -37,31 +31,40 @@ export default function PeekButton() {
   const imposterIndex = useImposterIndex();
 
   const [phase, setPhase] = useState<PeekPhase>('idle');
-  const [peekingPlayerIndex, setPeekingPlayerIndex] = useState<number | null>(null);
   const [selectedPlayerIndex, setSelectedPlayerIndex] = useState<number | null>(null);
 
   // Warning flash animation
-  const warningOpacity = useSharedValue(1);
+  const warningOpacity = useRef(new Animated.Value(1)).current;
+  const flashAnimRef = useRef<Animated.CompositeAnimation | null>(null);
 
   const handlePeekPress = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setPhase('warning');
-    setPeekingPlayerIndex(null);
     setSelectedPlayerIndex(null);
 
     // Flash animation
-    warningOpacity.value = withRepeat(
-      withSequence(
-        withTiming(0.3, { duration: 200 }),
-        withTiming(1, { duration: 200 })
-      ),
-      -1, // Infinite repeat
-      true
+    flashAnimRef.current = Animated.loop(
+      Animated.sequence([
+        Animated.timing(warningOpacity, {
+          toValue: 0.3,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(warningOpacity, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ])
     );
+    flashAnimRef.current.start();
 
     // After warning, show player selection
     setTimeout(() => {
-      warningOpacity.value = 1;
+      if (flashAnimRef.current) {
+        flashAnimRef.current.stop();
+      }
+      warningOpacity.setValue(1);
       setPhase('select');
     }, WARNING_DURATION);
   }, []);
@@ -69,28 +72,24 @@ export default function PeekButton() {
   const handleSelectPlayer = useCallback((index: number) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setSelectedPlayerIndex(index);
-    setPeekingPlayerIndex(index);
     setPhase('reveal');
 
     // Auto-close after reveal duration
     setTimeout(() => {
       setPhase('idle');
-      setPeekingPlayerIndex(null);
       setSelectedPlayerIndex(null);
     }, REVEAL_DURATION);
   }, []);
 
   const handleCancel = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    warningOpacity.value = 1;
+    if (flashAnimRef.current) {
+      flashAnimRef.current.stop();
+    }
+    warningOpacity.setValue(1);
     setPhase('idle');
-    setPeekingPlayerIndex(null);
     setSelectedPlayerIndex(null);
   }, []);
-
-  const warningStyle = useAnimatedStyle(() => ({
-    opacity: warningOpacity.value,
-  }));
 
   // Get the peeking player's role info
   const getPeekContent = () => {
@@ -139,7 +138,7 @@ export default function PeekButton() {
         animationType="fade"
         onRequestClose={handleCancel}
       >
-        <Animated.View style={[styles.warningOverlay, warningStyle]}>
+        <Animated.View style={[styles.warningOverlay, { opacity: warningOpacity }]}>
           <View style={styles.warningContent}>
             <Text style={styles.warningEmoji}>⚠️</Text>
             <Text style={styles.warningText}>SOMEONE IS PEEKING!</Text>

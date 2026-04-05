@@ -1,15 +1,8 @@
-import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { useState, useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
 import * as ScreenCapture from 'expo-screen-capture';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  FadeIn,
-  FadeOut,
-} from 'react-native-reanimated';
 import { colors, spacing, radius, fonts } from '../../constants/theme';
 import { useGameStore } from '../../store/gameStore';
 import { haptics } from '../../hooks/useHaptics';
@@ -27,10 +20,23 @@ export default function DistributeScreen() {
   const { players, currentWord, config, nextPlayer } = useGameStore();
 
   const [phase, setPhase] = useState<DistributionPhase>('cover');
-  const buttonScale = useSharedValue(1);
+  const buttonScale = useRef(new Animated.Value(1)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const currentPlayer = players[playerIndex];
   const isLastPlayer = playerIndex === players.length - 1;
+
+  // Fade in animation when confirm phase starts
+  useEffect(() => {
+    if (phase === 'confirm') {
+      fadeAnim.setValue(0);
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [phase]);
 
   // Prevent screen capture throughout the distribution flow
   useEffect(() => {
@@ -55,12 +61,24 @@ export default function DistributeScreen() {
   // Handle confirmation - "Are you [Name]?"
   const handleConfirmYes = () => {
     haptics.mediumTap();
-    setPhase('reveal');
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => {
+      setPhase('reveal');
+    });
   };
 
   const handleConfirmNo = () => {
     haptics.warning();
-    setPhase('cover');
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => {
+      setPhase('cover');
+    });
   };
 
   // Handle dismiss from role card - go to next player or discussion
@@ -75,16 +93,18 @@ export default function DistributeScreen() {
     }
   };
 
-  const buttonAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: buttonScale.value }],
-  }));
-
   const handleButtonPressIn = () => {
-    buttonScale.value = withSpring(0.95);
+    Animated.spring(buttonScale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+    }).start();
   };
 
   const handleButtonPressOut = () => {
-    buttonScale.value = withSpring(1);
+    Animated.spring(buttonScale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
   };
 
   // Safety check
@@ -113,9 +133,7 @@ export default function DistributeScreen() {
     return (
       <SafeAreaView style={styles.confirmContainer}>
         <Animated.View
-          entering={FadeIn.duration(300)}
-          exiting={FadeOut.duration(200)}
-          style={styles.confirmContent}
+          style={[styles.confirmContent, { opacity: fadeAnim }]}
         >
           <PlayerAvatar name={currentPlayer.name} index={playerIndex} size="large" />
           
@@ -128,7 +146,11 @@ export default function DistributeScreen() {
               onPressIn={handleButtonPressIn}
               onPressOut={handleButtonPressOut}
             >
-              <Animated.View style={[styles.confirmButton, styles.confirmButtonYes, buttonAnimatedStyle]}>
+              <Animated.View style={[
+                styles.confirmButton,
+                styles.confirmButtonYes,
+                { transform: [{ scale: buttonScale }] }
+              ]}>
                 <Text style={styles.confirmButtonTextYes}>Yes, that's me</Text>
               </Animated.View>
             </Pressable>
@@ -138,7 +160,11 @@ export default function DistributeScreen() {
               onPressIn={handleButtonPressIn}
               onPressOut={handleButtonPressOut}
             >
-              <Animated.View style={[styles.confirmButton, styles.confirmButtonNo, buttonAnimatedStyle]}>
+              <Animated.View style={[
+                styles.confirmButton,
+                styles.confirmButtonNo,
+                { transform: [{ scale: buttonScale }] }
+              ]}>
                 <Text style={styles.confirmButtonTextNo}>No, wrong person</Text>
               </Animated.View>
             </Pressable>

@@ -1,15 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  useAnimatedProps,
-  withTiming,
-  runOnJS,
-  cancelAnimation,
-  Easing,
-} from 'react-native-reanimated';
+import { useEffect, useRef, useState } from 'react';
+import { StyleSheet, View, Animated, Easing, Text, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import Svg, { Circle } from 'react-native-svg';
 import { colors } from '../constants/theme';
@@ -29,16 +19,21 @@ interface HoldToRevealProps {
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function HoldToReveal({ onReveal, disabled = false }: HoldToRevealProps) {
-  const progress = useSharedValue(0);
-  const isHolding = useSharedValue(false);
+  const progress = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(1)).current;
+  const [isHolding, setIsHolding] = useState(false);
   const hapticIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hasCompletedRef = useRef(false);
+  const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Cleanup haptic interval on unmount
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (hapticIntervalRef.current) {
         clearInterval(hapticIntervalRef.current);
+      }
+      if (holdTimeoutRef.current) {
+        clearTimeout(holdTimeoutRef.current);
       }
     };
   }, []);
@@ -69,54 +64,81 @@ export default function HoldToReveal({ onReveal, disabled = false }: HoldToRevea
     onReveal();
   };
 
-  const handleStart = () => {
+  const handlePressIn = () => {
+    if (disabled) return;
+    
     hasCompletedRef.current = false;
+    setIsHolding(true);
     startHapticFeedback();
+    
+    // Scale down
+    Animated.timing(scale, {
+      toValue: 0.95,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+    
+    // Animate progress
+    Animated.timing(progress, {
+      toValue: 1,
+      duration: HOLD_DURATION,
+      easing: Easing.linear,
+      useNativeDriver: false, // strokeDashoffset doesn't support native driver
+    }).start();
+    
+    // Set timeout for completion
+    holdTimeoutRef.current = setTimeout(() => {
+      handleComplete();
+    }, HOLD_DURATION);
   };
 
-  const handleEnd = () => {
+  const handlePressOut = () => {
+    if (disabled) return;
+    
+    setIsHolding(false);
     stopHapticFeedback();
+    
+    // Clear the completion timeout
+    if (holdTimeoutRef.current) {
+      clearTimeout(holdTimeoutRef.current);
+      holdTimeoutRef.current = null;
+    }
+    
+    // Scale back
+    Animated.timing(scale, {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+    
+    // Reset progress if not completed
+    if (!hasCompletedRef.current) {
+      Animated.timing(progress, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }).start();
+    }
   };
 
-  const gesture = Gesture.LongPress()
-    .minDuration(HOLD_DURATION)
-    .maxDistance(50)
-    .onBegin(() => {
-      if (disabled) return;
-      isHolding.value = true;
-      runOnJS(handleStart)();
-      progress.value = withTiming(1, {
-        duration: HOLD_DURATION,
-        easing: Easing.linear,
-      });
-    })
-    .onFinalize((_, success) => {
-      isHolding.value = false;
-      runOnJS(handleEnd)();
-      
-      if (success && !disabled) {
-        runOnJS(handleComplete)();
-      } else {
-        // Cancelled early - reset progress
-        cancelAnimation(progress);
-        progress.value = withTiming(0, { duration: 200 });
-      }
-    });
-
-  const progressProps = useAnimatedProps(() => {
-    return {
-      strokeDashoffset: CIRCUMFERENCE * (1 - progress.value),
-    };
+  const strokeDashoffset = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [CIRCUMFERENCE, 0],
   });
 
-  const buttonStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: isHolding.value ? 0.95 : 1 }],
-    opacity: disabled ? 0.5 : 1,
-  }));
-
   return (
-    <GestureDetector gesture={gesture}>
-      <Animated.View style={[styles.container, buttonStyle]}>
+    <Pressable
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      disabled={disabled}
+    >
+      <Animated.View style={[
+        styles.container,
+        {
+          transform: [{ scale }],
+          opacity: disabled ? 0.5 : 1,
+        }
+      ]}>
         {/* Background circle */}
         <View style={styles.backgroundCircle} />
         
@@ -140,7 +162,7 @@ export default function HoldToReveal({ onReveal, disabled = false }: HoldToRevea
             strokeWidth={STROKE_WIDTH}
             fill="transparent"
             strokeDasharray={CIRCUMFERENCE}
-            animatedProps={progressProps}
+            strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             rotation="-90"
             origin={`${BUTTON_SIZE / 2}, ${BUTTON_SIZE / 2}`}
@@ -149,10 +171,10 @@ export default function HoldToReveal({ onReveal, disabled = false }: HoldToRevea
         
         {/* Center icon */}
         <View style={styles.iconContainer}>
-          <Animated.Text style={styles.icon}>👁️</Animated.Text>
+          <Text style={styles.icon}>👁️</Text>
         </View>
       </Animated.View>
-    </GestureDetector>
+    </Pressable>
   );
 }
 

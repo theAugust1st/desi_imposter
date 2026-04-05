@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -8,17 +8,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-  useSharedValue,
-  FadeIn,
-  FadeOut,
-  Layout,
-} from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, radius, fonts } from '../constants/theme';
 import { useGameStore } from '../store/gameStore';
@@ -40,7 +33,7 @@ export default function SetupScreen() {
   const [selectedRegions, setSelectedRegions] = useState<Region[]>(['IN']);
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
 
-  const buttonScale = useSharedValue(1);
+  const buttonScale = useRef(new Animated.Value(1)).current;
 
   const validPlayers = playerNames.filter((name) => name.trim().length > 0);
   const canStartGame = validPlayers.length >= MIN_PLAYERS;
@@ -82,7 +75,10 @@ export default function SetupScreen() {
     if (!canStartGame) return;
 
     haptics.mediumTap();
-    buttonScale.value = withSpring(0.95);
+    Animated.spring(buttonScale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+    }).start();
     
     // Update store with config
     setConfig({
@@ -96,7 +92,10 @@ export default function SetupScreen() {
     // Start the game (assigns word, imposter, etc.)
     await startGame();
     
-    buttonScale.value = withSpring(1);
+    Animated.spring(buttonScale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
     
     // Navigate to distribution
     router.push('/distribute/0');
@@ -106,10 +105,6 @@ export default function SetupScreen() {
     haptics.lightTap();
     router.back();
   };
-
-  const buttonAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: buttonScale.value }],
-  }));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -143,11 +138,8 @@ export default function SetupScreen() {
             </Text>
 
             {playerNames.map((name, index) => (
-              <Animated.View
+              <View
                 key={index}
-                entering={FadeIn.duration(200)}
-                exiting={FadeOut.duration(200)}
-                layout={Layout.springify()}
                 style={styles.playerRow}
               >
                 <View style={styles.playerNumber}>
@@ -170,7 +162,7 @@ export default function SetupScreen() {
                     <Ionicons name="close-circle" size={24} color={colors.danger} />
                   </Pressable>
                 )}
-              </Animated.View>
+              </View>
             ))}
 
             {canAddPlayer && (
@@ -211,7 +203,7 @@ export default function SetupScreen() {
               style={[
                 styles.startButton,
                 !canStartGame && styles.startButtonDisabled,
-                buttonAnimatedStyle,
+                { transform: [{ scale: buttonScale }] },
               ]}
             >
               <Text

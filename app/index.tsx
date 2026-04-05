@@ -1,29 +1,28 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { useRef } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSequence,
-  withTiming,
-} from 'react-native-reanimated';
 import { colors, spacing, radius, fonts } from '../constants/theme';
 import { haptics } from '../hooks/useHaptics';
 import RangoliBackground from '../components/RangoliBackground';
 
 export default function HomeScreen() {
-  const buttonScale = useSharedValue(1);
-
-  const buttonAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: buttonScale.value }],
-  }));
+  const buttonScale = useRef(new Animated.Value(1)).current;
 
   const handleStartGame = () => {
     haptics.buttonPress();
-    buttonScale.value = withSequence(
-      withTiming(0.95, { duration: 100 }),
-      withTiming(1, { duration: 100 })
-    );
+    Animated.sequence([
+      Animated.timing(buttonScale, {
+        toValue: 0.95,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(buttonScale, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
     router.push('/setup');
   };
 
@@ -42,7 +41,10 @@ export default function HomeScreen() {
         {/* CTA Button */}
         <View style={styles.buttonSection}>
           <Pressable onPress={handleStartGame}>
-            <Animated.View style={[styles.button, buttonAnimatedStyle]}>
+            <Animated.View style={[
+              styles.button,
+              { transform: [{ scale: buttonScale }] }
+            ]}>
               <Text style={styles.buttonText}>Start New Game</Text>
             </Animated.View>
           </Pressable>

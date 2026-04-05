@@ -1,15 +1,5 @@
-import { useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withSequence,
-  withDelay,
-  interpolate,
-  Extrapolation,
-  runOnJS,
-} from 'react-native-reanimated';
+import { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated, Easing } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, radius, fonts, shadows } from '../constants/theme';
 import { getRegionLabel, SHARED_LABEL } from '../constants/regions';
@@ -24,64 +14,85 @@ interface RoleCardProps {
 }
 
 export default function RoleCard({ word, playerName, onDismiss }: RoleCardProps) {
-  const flipProgress = useSharedValue(0);
-  const blurOpacity = useSharedValue(0);
-  const buttonScale = useSharedValue(1);
+  const flipProgress = useRef(new Animated.Value(0)).current;
+  const blurOpacity = useRef(new Animated.Value(0)).current;
+  const buttonScale = useRef(new Animated.Value(1)).current;
+  const blurTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // Start flip animation on mount
-    flipProgress.value = withTiming(1, { duration: 600 });
+    Animated.timing(flipProgress, {
+      toValue: 1,
+      duration: 600,
+      useNativeDriver: true,
+    }).start();
 
     // Auto-blur after 10 seconds
-    const timer = setTimeout(() => {
-      blurOpacity.value = withTiming(1, { duration: 500 });
+    blurTimerRef.current = setTimeout(() => {
+      Animated.timing(blurOpacity, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
     }, AUTO_BLUR_DELAY);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (blurTimerRef.current) {
+        clearTimeout(blurTimerRef.current);
+      }
+    };
   }, []);
 
-  const cardStyle = useAnimatedStyle(() => {
-    const rotateY = interpolate(
-      flipProgress.value,
-      [0, 1],
-      [90, 0],
-      Extrapolation.CLAMP
-    );
-
-    return {
-      transform: [
-        { perspective: 1000 },
-        { rotateY: `${rotateY}deg` },
-      ],
-      opacity: interpolate(flipProgress.value, [0, 0.5, 1], [0, 0.5, 1]),
-    };
+  const rotateY = flipProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['90deg', '0deg'],
   });
 
-  const blurStyle = useAnimatedStyle(() => ({
-    opacity: blurOpacity.value,
-  }));
-
-  const buttonAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: buttonScale.value }],
-  }));
+  const cardOpacity = flipProgress.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0, 0.5, 1],
+  });
 
   const handleDismiss = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    buttonScale.value = withSequence(
-      withTiming(0.95, { duration: 100 }),
-      withTiming(1, { duration: 100 })
-    );
+    Animated.sequence([
+      Animated.timing(buttonScale, {
+        toValue: 0.95,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(buttonScale, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
     onDismiss();
   };
 
   const handleTapToReveal = () => {
-    if (blurOpacity.value > 0) {
-      blurOpacity.value = withTiming(0, { duration: 300 });
-      // Re-set the auto-blur timer
-      setTimeout(() => {
-        blurOpacity.value = withTiming(1, { duration: 500 });
-      }, AUTO_BLUR_DELAY);
-    }
+    // Check if blurred by looking at current value
+    blurOpacity.stopAnimation((value) => {
+      if (value > 0) {
+        Animated.timing(blurOpacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+        
+        // Re-set the auto-blur timer
+        if (blurTimerRef.current) {
+          clearTimeout(blurTimerRef.current);
+        }
+        blurTimerRef.current = setTimeout(() => {
+          Animated.timing(blurOpacity, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true,
+          }).start();
+        }, AUTO_BLUR_DELAY);
+      }
+    });
   };
 
   // Get the origin label
@@ -101,7 +112,16 @@ export default function RoleCard({ word, playerName, onDismiss }: RoleCardProps)
       <Text style={styles.forPlayer}>This is for {playerName} only 👁️</Text>
       
       <Pressable onPress={handleTapToReveal} style={styles.cardWrapper}>
-        <Animated.View style={[styles.card, cardStyle]}>
+        <Animated.View style={[
+          styles.card,
+          {
+            transform: [
+              { perspective: 1000 },
+              { rotateY },
+            ],
+            opacity: cardOpacity,
+          }
+        ]}>
           {/* Role label */}
           <Text style={styles.roleLabel}>VILLAGER</Text>
 
@@ -115,7 +135,10 @@ export default function RoleCard({ word, playerName, onDismiss }: RoleCardProps)
           <Text style={styles.note}>Remember this. Don't say it out loud.</Text>
 
           {/* Blur overlay */}
-          <Animated.View style={[styles.blurOverlay, blurStyle]} pointerEvents="none">
+          <Animated.View 
+            style={[styles.blurOverlay, { opacity: blurOpacity }]} 
+            pointerEvents="none"
+          >
             <Text style={styles.blurText}>Tap to peek</Text>
           </Animated.View>
         </Animated.View>
@@ -123,7 +146,10 @@ export default function RoleCard({ word, playerName, onDismiss }: RoleCardProps)
 
       {/* Dismiss button */}
       <Pressable onPress={handleDismiss}>
-        <Animated.View style={[styles.dismissButton, buttonAnimatedStyle]}>
+        <Animated.View style={[
+          styles.dismissButton,
+          { transform: [{ scale: buttonScale }] }
+        ]}>
           <Text style={styles.dismissText}>I've Seen It — Cover Screen</Text>
         </Animated.View>
       </Pressable>

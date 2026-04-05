@@ -1,11 +1,7 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-  useSharedValue,
-} from 'react-native-reanimated';
+import { useRef } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import { colors, spacing, radius, fonts, shadows } from '../constants/theme';
+import { colors, spacing, radius, fonts } from '../constants/theme';
 import { regions, type Region } from '../constants/regions';
 
 interface RegionPickerProps {
@@ -60,18 +56,20 @@ interface RegionButtonProps {
 }
 
 function RegionButton({ region, isSelected, onPress }: RegionButtonProps) {
-  const scale = useSharedValue(1);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-  }));
+  const scale = useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.95);
+    Animated.spring(scale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+    }).start();
   };
 
   const handlePressOut = () => {
-    scale.value = withSpring(1);
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
   };
 
   return (
@@ -85,7 +83,7 @@ function RegionButton({ region, isSelected, onPress }: RegionButtonProps) {
           styles.regionButton,
           isSelected && styles.regionButtonSelected,
           region.isRequired && styles.regionButtonRequired,
-          animatedStyle,
+          { transform: [{ scale }] },
         ]}
       >
         <Text style={styles.flag}>{region.flag}</Text>
