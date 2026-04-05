@@ -140,16 +140,29 @@ export default function DistributeScreen() {
         <View style={styles.card2}>
           {isImposter ? (
             <>
-              <Text style={styles.imposterLabel}>You are the Imposter 🕵️</Text>
-              <Text style={styles.hintWord}>
+              <Text style={styles.imposterLabel}>
+                You are the <Text style={styles.imposterHighlight}>Imposter</Text> 🕵️
+              </Text>
+              <Text
+                style={styles.hintWord}
+                adjustsFontSizeToFit={true}
+                numberOfLines={1}
+              >
                 {currentWord.hints[config.hintDifficulty]}
               </Text>
               <Text style={styles.hintLabel}>Your hint</Text>
+              <Text style={styles.imposterNote}>Don't get caught.</Text>
             </>
           ) : (
             <>
               <Text style={styles.villagerLabel}>VILLAGER</Text>
-              <Text style={styles.villagerWord}>{currentWord.word}</Text>
+              <Text
+                style={styles.villagerWord}
+                adjustsFontSizeToFit={true}
+                numberOfLines={1}
+              >
+                {currentWord.word}
+              </Text>
               <Text style={styles.villagerOrigin}>{getOriginLabel()}</Text>
             </>
           )}
@@ -238,11 +251,14 @@ const styles = StyleSheet.create({
   card2: {
     position: 'absolute',
     width: '90%',
+    height: 280,
     backgroundColor: colors.surface,
     borderRadius: 24,
     paddingVertical: spacing.xl,
     paddingHorizontal: spacing.lg,
     alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
     zIndex: 5,
     ...shadows.card,
   },
@@ -251,11 +267,13 @@ const styles = StyleSheet.create({
   card1: {
     position: 'absolute',
     width: '90%',
+    height: 280,
     backgroundColor: colors.surface,
     borderRadius: 24,
     paddingVertical: spacing.xl,
     paddingHorizontal: spacing.lg,
     alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 10,
     ...shadows.card,
   },
@@ -324,20 +342,33 @@ const styles = StyleSheet.create({
   // Card 2 content - Imposter
   imposterLabel: {
     fontFamily: fonts.body,
-    fontSize: 13,
+    fontSize: 11,
     color: colors.textMuted,
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
+  },
+  imposterHighlight: {
+    fontFamily: fonts.label,
+    color: colors.danger,
   },
   hintWord: {
     fontFamily: fonts.heading,
-    fontSize: 56,
-    color: colors.textDark,
+    fontSize: 42,
+    color: '#2C2C2C',
     textAlign: 'center',
+    letterSpacing: 2,
     marginBottom: spacing.sm,
+    paddingHorizontal: spacing.sm,
   },
   hintLabel: {
     fontFamily: fonts.body,
+    fontSize: 11,
+    color: colors.textMuted,
+    marginBottom: spacing.sm,
+  },
+  imposterNote: {
+    fontFamily: fonts.body,
     fontSize: 12,
+    fontStyle: 'italic',
     color: colors.textMuted,
   },
 

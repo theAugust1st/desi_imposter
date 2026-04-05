@@ -126,7 +126,13 @@ export default function RoleCard({ word, playerName, onDismiss }: RoleCardProps)
           <Text style={styles.roleLabel}>VILLAGER</Text>
 
           {/* Secret word */}
-          <Text style={styles.word}>{word.word}</Text>
+          <Text
+            style={styles.word}
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+          >
+            {word.word}
+          </Text>
 
           {/* Origin label */}
           <Text style={styles.origin}>{getOriginLabel()}</Text>

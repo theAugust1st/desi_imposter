@@ -116,10 +116,18 @@ export default function ImposterCard({
           }
         ]}>
           {/* Role label */}
-          <Text style={styles.roleLabel}>You are the Imposter 🕵️</Text>
+          <Text style={styles.roleLabel}>
+            You are the <Text style={styles.imposterHighlight}>Imposter</Text> 🕵️
+          </Text>
 
           {/* Hint word */}
-          <Text style={styles.hint}>{hint}</Text>
+          <Text
+            style={styles.hint}
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+          >
+            {hint}
+          </Text>
 
           {/* Hint label */}
           <Text style={styles.hintLabel}>Your hint</Text>
@@ -181,20 +189,26 @@ const styles = StyleSheet.create({
   },
   roleLabel: {
     fontFamily: fonts.body,
-    fontSize: 13,
+    fontSize: 11,
     color: colors.textMuted,
     marginBottom: spacing.lg,
   },
+  imposterHighlight: {
+    fontFamily: fonts.label,
+    color: colors.danger,
+  },
   hint: {
     fontFamily: fonts.heading,
-    fontSize: 48,
-    color: colors.textDark,
+    fontSize: 42,
+    color: '#2C2C2C',
     textAlign: 'center',
+    letterSpacing: 2,
     marginBottom: spacing.sm,
+    paddingHorizontal: spacing.sm,
   },
   hintLabel: {
     fontFamily: fonts.body,
-    fontSize: 12,
+    fontSize: 11,
     color: colors.textMuted,
     marginBottom: spacing.lg,
   },
@@ -206,7 +220,7 @@ const styles = StyleSheet.create({
   },
   note: {
     fontFamily: fonts.body,
-    fontSize: 13,
+    fontSize: 12,
     color: colors.textMuted,
     textAlign: 'center',
     fontStyle: 'italic',

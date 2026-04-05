@@ -21,8 +21,8 @@ import PlayerAvatar from './PlayerAvatar';
 
 type PeekPhase = 'idle' | 'warning' | 'select' | 'reveal';
 
-const WARNING_DURATION = 3000; // 3 seconds warning
-const REVEAL_DURATION = 5000; // 5 seconds to view role
+const WARNING_DURATION = 2000; // 2 seconds warning
+const REVEAL_DURATION = 3000; // 3 seconds to view role
 
 export default function PeekButton() {
   const players = usePlayers();
@@ -100,10 +100,11 @@ export default function PeekButton() {
     if (isImposter) {
       const hint = currentWord.hints[config.hintDifficulty];
       return {
-        role: 'IMPOSTER 🕵️',
+        role: 'You are the Imposter 🕵️',
         content: hint,
-        backgroundColor: colors.danger,
-        textColor: colors.textLight,
+        backgroundColor: colors.surface,
+        textColor: colors.textDark,
+        isImposter: true,
       };
     } else {
       return {
@@ -111,6 +112,7 @@ export default function PeekButton() {
         content: currentWord.word,
         backgroundColor: colors.surface,
         textColor: colors.textDark,
+        isImposter: false,
       };
     }
   };
@@ -205,12 +207,18 @@ export default function PeekButton() {
               ]}
             >
               <Text
-                style={[styles.roleLabel, { color: peekContent.textColor }]}
+                style={[
+                  peekContent.isImposter ? styles.imposterRoleLabel : styles.roleLabel,
+                  { color: peekContent.isImposter ? colors.textMuted : peekContent.textColor },
+                ]}
               >
                 {peekContent.role}
               </Text>
               <Text
-                style={[styles.roleContent, { color: peekContent.textColor }]}
+                style={[
+                  peekContent.isImposter ? styles.imposterRoleContent : styles.roleContent,
+                  { color: peekContent.textColor },
+                ]}
               >
                 {peekContent.content}
               </Text>
@@ -360,6 +368,17 @@ const styles = StyleSheet.create({
   roleContent: {
     fontFamily: fonts.heading,
     fontSize: 36,
+    textAlign: 'center',
+    marginBottom: spacing.lg,
+  },
+  imposterRoleLabel: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    marginBottom: spacing.md,
+  },
+  imposterRoleContent: {
+    fontFamily: fonts.heading,
+    fontSize: 28,
     textAlign: 'center',
     marginBottom: spacing.lg,
   },
