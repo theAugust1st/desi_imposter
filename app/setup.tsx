@@ -30,13 +30,13 @@ export default function SetupScreen() {
   const { setConfig, setPlayers, startGame } = useGameStore();
   
   const [playerNames, setPlayerNames] = useState<string[]>(['', '', '']);
-  const [selectedRegions, setSelectedRegions] = useState<Region[]>(['IN']);
+  const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
 
   const buttonScale = useRef(new Animated.Value(1)).current;
 
   const validPlayers = playerNames.filter((name) => name.trim().length > 0);
-  const canStartGame = validPlayers.length >= MIN_PLAYERS;
+  const canStartGame = validPlayers.length >= MIN_PLAYERS && selectedRegions.length >= 1;
   const canAddPlayer = playerNames.length < MAX_PLAYERS;
   const wordCount = getTotalWordCount(selectedRegions);
 
@@ -124,7 +124,7 @@ export default function SetupScreen() {
           {/* Header */}
           <View style={styles.header}>
             <Pressable onPress={handleBack} style={styles.backButton}>
-              <Ionicons name="arrow-back" size={24} color={colors.textLight} />
+              <Ionicons name="arrow-back" size={24} color={colors.textDark} />
             </Pressable>
             <Text style={styles.title}>Game Setup</Text>
             <View style={styles.placeholder} />
@@ -214,9 +214,11 @@ export default function SetupScreen() {
               >
                 {canStartGame
                   ? 'Start Game'
-                  : `Need ${MIN_PLAYERS - validPlayers.length} more player${
+                  : validPlayers.length < MIN_PLAYERS
+                  ? `Need ${MIN_PLAYERS - validPlayers.length} more player${
                       MIN_PLAYERS - validPlayers.length === 1 ? '' : 's'
-                    }`}
+                    }`
+                  : 'Select at least 1 nationality'}
               </Text>
             </Animated.View>
           </Pressable>
@@ -254,7 +256,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: fonts.heading,
     fontSize: 24,
-    color: colors.textLight,
+    color: colors.textDark,
   },
   placeholder: {
     width: 40,
@@ -265,7 +267,7 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontFamily: fonts.label,
     fontSize: 16,
-    color: colors.textLight,
+    color: colors.textDark,
     marginBottom: spacing.xs,
   },
   sectionHint: {
@@ -296,14 +298,14 @@ const styles = StyleSheet.create({
   playerInput: {
     flex: 1,
     height: 48,
-    backgroundColor: 'rgba(255, 248, 238, 0.1)',
+    backgroundColor: colors.surface,
     borderRadius: radius.md,
     paddingHorizontal: spacing.md,
     fontFamily: fonts.body,
     fontSize: 16,
-    color: colors.textLight,
+    color: colors.textDark,
     borderWidth: 1,
-    borderColor: 'rgba(255, 248, 238, 0.2)',
+    borderColor: colors.textMuted,
   },
   removeButton: {
     padding: spacing.sm,
@@ -337,7 +339,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 248, 238, 0.1)',
+    borderTopColor: 'rgba(140, 140, 158, 0.2)',
   },
   startButton: {
     backgroundColor: colors.primary,

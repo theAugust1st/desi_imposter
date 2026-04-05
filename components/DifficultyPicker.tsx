@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: fonts.label,
     fontSize: 16,
-    color: colors.textLight,
+    color: colors.textDark,
     marginBottom: spacing.xs,
   },
   hint: {
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs,
   },
   difficultyLabelSelected: {
-    color: colors.textLight,
+    color: colors.textDark,
   },
   difficultyDescription: {
     fontFamily: fonts.body,
@@ -188,6 +188,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   difficultyDescriptionSelected: {
-    color: colors.textLight,
+    color: colors.textDark,
   },
 });

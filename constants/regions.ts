@@ -4,7 +4,6 @@ export interface RegionConfig {
   code: Region;
   name: string;
   flag: string;
-  isRequired: boolean; // India is always required
 }
 
 export const regions: RegionConfig[] = [
@@ -12,25 +11,21 @@ export const regions: RegionConfig[] = [
     code: 'IN',
     name: 'India',
     flag: '🇮🇳',
-    isRequired: true, // Always included, cannot be deselected
   },
   {
     code: 'NP',
     name: 'Nepal',
     flag: '🇳🇵',
-    isRequired: false,
   },
   {
     code: 'BD',
     name: 'Bangladesh',
     flag: '🇧🇩',
-    isRequired: false,
   },
   {
     code: 'PK',
     name: 'Pakistan',
     flag: '🇵🇰',
-    isRequired: false,
   },
 ] as const;
 

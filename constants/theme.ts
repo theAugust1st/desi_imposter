@@ -2,13 +2,13 @@ export const colors = {
   primary: '#F5A623', // Saffron Gold — marigold garlands, haldi
   secondary: '#006D77', // Deep Teal — Pakistani truck art
   danger: '#C0392B', // Crimson — imposter reveal, sindoor
-  background: '#1A1A2E', // Off-Black — night sky, premium feel
-  surface: '#FFF8EE', // Warm White — dhoti white, card bg
+  background: '#FFF8EE', // Warm Cream — light theme background
+  surface: '#FFFFFF', // Pure White — card backgrounds
   accent: '#A8E063', // Electric Lime — mehndi green, modern pop
-  textDark: '#1A1A2E',
-  textLight: '#FFF8EE',
-  textMuted: '#8C8C9E',
-  coverBg: '#000000', // PURE BLACK for cover screen
+  textDark: '#1A1A2E', // Dark text for light backgrounds
+  textLight: '#FFF8EE', // Light text for dark backgrounds (buttons, danger cards)
+  textMuted: '#8C8C9E', // Muted gray for secondary text
+  coverBg: '#000000', // PURE BLACK for cover screen (safety requirement)
   overlay: 'rgba(26, 26, 46, 0.92)',
 } as const;
 

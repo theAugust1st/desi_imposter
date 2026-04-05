@@ -13,13 +13,7 @@ export default function RegionPicker({
   selectedRegions,
   onSelectionChange,
 }: RegionPickerProps) {
-  const handleToggle = (regionCode: Region, isRequired: boolean) => {
-    // India cannot be deselected
-    if (isRequired) {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      return;
-    }
-
+  const handleToggle = (regionCode: Region) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
     if (selectedRegions.includes(regionCode)) {
@@ -33,7 +27,7 @@ export default function RegionPicker({
     <View style={styles.container}>
       <Text style={styles.label}>Who's in the room?</Text>
       <Text style={styles.hint}>
-        Select all nationalities present. This affects which words appear.
+        Select at least one nationality. India words always included.
       </Text>
       <View style={styles.grid}>
         {regions.map((region) => (
@@ -41,7 +35,7 @@ export default function RegionPicker({
             key={region.code}
             region={region}
             isSelected={selectedRegions.includes(region.code)}
-            onPress={() => handleToggle(region.code, region.isRequired)}
+            onPress={() => handleToggle(region.code)}
           />
         ))}
       </View>
@@ -82,7 +76,6 @@ function RegionButton({ region, isSelected, onPress }: RegionButtonProps) {
         style={[
           styles.regionButton,
           isSelected && styles.regionButtonSelected,
-          region.isRequired && styles.regionButtonRequired,
           { transform: [{ scale }] },
         ]}
       >
@@ -95,9 +88,6 @@ function RegionButton({ region, isSelected, onPress }: RegionButtonProps) {
         >
           {region.name}
         </Text>
-        {region.isRequired && (
-          <Text style={styles.requiredBadge}>Always On</Text>
-        )}
       </Animated.View>
     </Pressable>
   );
@@ -121,28 +111,22 @@ const styles = StyleSheet.create({
   },
   grid: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     gap: spacing.sm,
   },
   regionButton: {
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
     borderRadius: radius.lg,
     borderWidth: 2,
     borderColor: colors.textMuted,
     backgroundColor: 'transparent',
-    minWidth: 80,
   },
   regionButtonSelected: {
     borderColor: colors.primary,
     backgroundColor: 'rgba(245, 166, 35, 0.15)',
-  },
-  regionButtonRequired: {
-    borderColor: colors.secondary,
-    backgroundColor: 'rgba(0, 109, 119, 0.15)',
   },
   flag: {
     fontSize: 32,
@@ -150,16 +134,11 @@ const styles = StyleSheet.create({
   },
   regionName: {
     fontFamily: fonts.body,
-    fontSize: 14,
+    fontSize: 12,
     color: colors.textMuted,
+    textAlign: 'center',
   },
   regionNameSelected: {
     color: colors.textLight,
-  },
-  requiredBadge: {
-    fontFamily: fonts.body,
-    fontSize: 10,
-    color: colors.secondary,
-    marginTop: spacing.xs,
   },
 });

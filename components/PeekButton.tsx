@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
   playerButtonText: {
     fontFamily: fonts.label,
     fontSize: 16,
-    color: colors.textLight,
+    color: colors.textDark,
     flex: 1,
   },
   cancelButton: {
