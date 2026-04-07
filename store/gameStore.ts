@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { GameState, Player, GameConfig, WordEntry } from '../types';
 import { ALL_CATEGORIES } from '../types';
 import { buildWordPoolWithCategories } from '../data';
+import { PackManager } from '../utils/packManager';
 
 const USED_WORDS_KEY = 'desi_imposter_used_words';
 const MAX_HISTORY = 25;
@@ -23,6 +24,8 @@ export const useGameStore = create<GameState>((set, get) => ({
   currentDistributionIndex: 0,
   firstPlayerIndex: null,
   usedWordIds: [],
+  packWords: [],
+  packWordsLoaded: false,
   phase: 'idle',
 
   // Actions
@@ -52,9 +55,27 @@ export const useGameStore = create<GameState>((set, get) => ({
     });
   },
 
+  loadPackWords: async () => {
+    try {
+      const words = await PackManager.getEnabledPackWords();
+      set({ packWords: words, packWordsLoaded: true });
+      console.log(`[GameStore] Loaded ${words.length} words from content packs`);
+    } catch (error) {
+      console.error('[GameStore] Failed to load pack words:', error);
+      set({ packWords: [], packWordsLoaded: true });
+    }
+  },
+
   startGame: async () => {
     const state = get();
-    const { config, players } = state;
+    const { config, players, packWords, packWordsLoaded } = state;
+
+    // Load pack words if not already loaded
+    let currentPackWords = packWords;
+    if (!packWordsLoaded) {
+      await get().loadPackWords();
+      currentPackWords = get().packWords;
+    }
 
     // Load used word IDs from storage
     let usedWordIds: string[] = [];
@@ -67,10 +88,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       console.warn('Failed to load used words from storage:', error);
     }
 
-    // Build word pool based on selected nationalities AND categories
+    // Build word pool based on selected nationalities, categories, AND pack words
     const wordPool = buildWordPoolWithCategories(
       config.selectedNationalities,
-      config.selectedCategories
+      config.selectedCategories,
+      currentPackWords
     );
 
     // Filter out recently used words
@@ -140,13 +162,15 @@ export const useGameStore = create<GameState>((set, get) => ({
       imposterIndex: null,
       currentDistributionIndex: 0,
       firstPlayerIndex: null,
+      packWords: [],
+      packWordsLoaded: false,
       phase: 'idle',
     });
   },
 
   playAgain: async () => {
     const state = get();
-    const { config, players } = state;
+    const { config, players, packWords } = state;
 
     // Load used word IDs from storage
     let usedWordIds: string[] = [];
@@ -159,10 +183,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       console.warn('Failed to load used words from storage:', error);
     }
 
-    // Build word pool based on selected nationalities AND categories
+    // Build word pool based on selected nationalities, categories, AND pack words
     const wordPool = buildWordPoolWithCategories(
       config.selectedNationalities,
-      config.selectedCategories
+      config.selectedCategories,
+      packWords
     );
 
     // Filter out recently used words
@@ -221,3 +246,6 @@ export const useCurrentDistributionIndex = () =>
   useGameStore((state) => state.currentDistributionIndex);
 export const useFirstPlayerIndex = () =>
   useGameStore((state) => state.firstPlayerIndex);
+export const usePackWords = () => useGameStore((state) => state.packWords);
+export const usePackWordsLoaded = () =>
+  useGameStore((state) => state.packWordsLoaded);

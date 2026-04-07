@@ -73,6 +73,10 @@ export interface GameState {
   // History (anti-repeat)
   usedWordIds: string[];
 
+  // Content packs
+  packWords: WordEntry[];
+  packWordsLoaded: boolean;
+
   // Phase
   phase: GamePhase;
 
@@ -80,7 +84,8 @@ export interface GameState {
   setConfig: (config: Partial<GameConfig>) => void;
   setPlayers: (names: string[]) => void;
   clearPlayers: () => void;
-  startGame: () => void;
+  loadPackWords: () => Promise<void>;
+  startGame: () => Promise<void>;
   nextPlayer: () => void;
   goToDiscussion: () => void;
   goToReveal: () => void;

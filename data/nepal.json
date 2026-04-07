@@ -1,37 +1,986 @@
 [
-  {"id":"nepal_001","word":"Dashain","hints":{"easy":"Big festival","medium":"Tika festival","spicy":"Jamara"},"category":"festival","scope":"local","regions":["NP"],"tags":["festival"]},
-  {"id":"nepal_002","word":"Tihar","hints":{"easy":"Light festival","medium":"Diwali Nepal","spicy":"Deusi"},"category":"festival","scope":"local","regions":["NP"],"tags":["festival"]},
-  {"id":"nepal_003","word":"Momo","hints":{"easy":"Dumpling","medium":"Steamed pocket","spicy":"Jhol"},"category":"food","scope":"local","regions":["NP"],"tags":["food"]},
-  {"id":"nepal_004","word":"Dal Bhat","hints":{"easy":"Rice lentil","medium":"Daily meal","spicy":"Power"},"category":"food","scope":"local","regions":["NP"],"tags":["food"]},
-  {"id":"nepal_005","word":"Sel Roti","hints":{"easy":"Ring bread","medium":"Festival bread","spicy":"Fried ring"},"category":"food","scope":"local","regions":["NP"],"tags":["food"]},
-  {"id":"nepal_006","word":"Tongba","hints":{"easy":"Warm drink","medium":"Millet drink","spicy":"Fermented"},"category":"food","scope":"local","regions":["NP"],"tags":["food","drink"]},
-  {"id":"nepal_007","word":"Kumari","hints":{"easy":"Living goddess","medium":"Child goddess","spicy":"Nevari"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture","religion"]},
-  {"id":"nepal_008","word":"Topi","hints":{"easy":"Nepali hat","medium":"National cap","spicy":"Dhaka"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture","clothing"]},
-  {"id":"nepal_009","word":"Pashupatinath","hints":{"easy":"Hindu temple","medium":"Shiva temple","spicy":"Bagmati"},"category":"places","scope":"local","regions":["NP"],"tags":["places","religion"]},
-  {"id":"nepal_010","word":"Boudhanath","hints":{"easy":"Big stupa","medium":"Buddhist dome","spicy":"Kathmandu"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_011","word":"Everest","hints":{"easy":"Tallest mountain","medium":"Sagarmatha","spicy":"Summit"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_012","word":"Pokhara","hints":{"easy":"Lake city","medium":"Fewa lake","spicy":"Peaceful"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_013","word":"Teej","hints":{"easy":"Women festival","medium":"Red saree day","spicy":"Fasting women"},"category":"festival","scope":"local","regions":["NP"],"tags":["festival"]},
-  {"id":"nepal_014","word":"Indra Jatra","hints":{"easy":"Kathmandu festival","medium":"Rain god","spicy":"Kumari chariot"},"category":"festival","scope":"local","regions":["NP"],"tags":["festival"]},
-  {"id":"nepal_015","word":"Dhaka Fabric","hints":{"easy":"Woven cloth","medium":"Nepali textile","spicy":"Handloom"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_016","word":"Yak","hints":{"easy":"Mountain animal","medium":"Himalayan cow","spicy":"Shaggy"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_017","word":"Gurkha","hints":{"easy":"Nepali soldier","medium":"Brave warrior","spicy":"Khukuri"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_018","word":"Khukuri","hints":{"easy":"Curved knife","medium":"Gurkha weapon","spicy":"Blade"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_019","word":"Newari","hints":{"easy":"Valley people","medium":"Kathmandu tribe","spicy":"Bhaktapur"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_020","word":"Gundruk","hints":{"easy":"Fermented veg","medium":"Dried leaves","spicy":"Sour"},"category":"food","scope":"local","regions":["NP"],"tags":["food"]},
-  {"id":"nepal_021","word":"Chatamari","hints":{"easy":"Rice crepe","medium":"Newari pizza","spicy":"Topped"},"category":"food","scope":"local","regions":["NP"],"tags":["food"]},
-  {"id":"nepal_022","word":"Sherpa","hints":{"easy":"Mountain guide","medium":"Everest helper","spicy":"High altitude"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_023","word":"Buddha","hints":{"easy":"Enlightened one","medium":"Lumbini born","spicy":"Nirvana"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture","religion"]},
-  {"id":"nepal_024","word":"Lumbini","hints":{"easy":"Holy place","medium":"Buddha birthplace","spicy":"Pilgrimage"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_025","word":"Pashmina","hints":{"easy":"Soft shawl","medium":"Cashmere wrap","spicy":"Woven"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture","clothing"]},
-  {"id":"nepal_026","word":"Rooftop Farming","hints":{"easy":"Urban garden","medium":"City crops","spicy":"Terraced"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_027","word":"Madal","hints":{"easy":"Drum","medium":"Folk instrument","spicy":"Two headed"},"category":"music","scope":"local","regions":["NP"],"tags":["music"]},
-  {"id":"nepal_028","word":"Deusi Bhailo","hints":{"easy":"Tihar song","medium":"Door to door","spicy":"Blessing"},"category":"festival","scope":"local","regions":["NP"],"tags":["festival","music"]},
-  {"id":"nepal_029","word":"Bagmati","hints":{"easy":"Holy river","medium":"Kathmandu river","spicy":"Sacred"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_030","word":"Thangka","hints":{"easy":"Buddhist painting","medium":"Scroll art","spicy":"Deity"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture","art"]},
-  {"id":"nepal_031","word":"Yomari","hints":{"easy":"Sweet dumpling","medium":"Newari sweet","spicy":"Steamed fig"},"category":"food","scope":"local","regions":["NP"],"tags":["food"]},
-  {"id":"nepal_032","word":"Bhaktapur","hints":{"easy":"Old city","medium":"Pottery square","spicy":"Medieval"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_033","word":"Lokta Paper","hints":{"easy":"Handmade paper","medium":"Bark paper","spicy":"Traditional"},"category":"culture","scope":"local","regions":["NP"],"tags":["culture"]},
-  {"id":"nepal_034","word":"Annapurna","hints":{"easy":"Mountain range","medium":"Trekking route","spicy":"Circuit"},"category":"places","scope":"local","regions":["NP"],"tags":["places"]},
-  {"id":"nepal_035","word":"Raksi","hints":{"easy":"Local alcohol","medium":"Home brew","spicy":"Distilled"},"category":"food","scope":"local","regions":["NP"],"tags":["food","drink"]}
+  {
+    "id": "nepal_001",
+    "word": "Dashain",
+    "hints": {
+      "easy": "Big",
+      "medium": "Tika",
+      "spicy": "Jamara"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "nepal_002",
+    "word": "Tihar",
+    "hints": {
+      "easy": "Light",
+      "medium": "Diwali",
+      "spicy": "Deusi"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "nepal_003",
+    "word": "Momo",
+    "hints": {
+      "easy": "Dumpling",
+      "medium": "Steamed",
+      "spicy": "Jhol"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "nepal_004",
+    "word": "Dal Bhat",
+    "hints": {
+      "easy": "Rice",
+      "medium": "Daily",
+      "spicy": "Power"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "nepal_005",
+    "word": "Sel Roti",
+    "hints": {
+      "easy": "Ring",
+      "medium": "Festival",
+      "spicy": "Fried"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "nepal_006",
+    "word": "Tongba",
+    "hints": {
+      "easy": "Warm",
+      "medium": "Millet",
+      "spicy": "Fermented"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food",
+      "drink"
+    ]
+  },
+  {
+    "id": "nepal_007",
+    "word": "Kumari",
+    "hints": {
+      "easy": "Living",
+      "medium": "Child",
+      "spicy": "Nevari"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture",
+      "religion"
+    ]
+  },
+  {
+    "id": "nepal_008",
+    "word": "Topi",
+    "hints": {
+      "easy": "Nepali",
+      "medium": "National",
+      "spicy": "Dhaka"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture",
+      "clothing"
+    ]
+  },
+  {
+    "id": "nepal_009",
+    "word": "Pashupatinath",
+    "hints": {
+      "easy": "Hindu",
+      "medium": "Shiva",
+      "spicy": "Bagmati"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places",
+      "religion"
+    ]
+  },
+  {
+    "id": "nepal_010",
+    "word": "Boudhanath",
+    "hints": {
+      "easy": "Big",
+      "medium": "Buddhist",
+      "spicy": "Kathmandu"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_011",
+    "word": "Everest",
+    "hints": {
+      "easy": "Tallest",
+      "medium": "Sagarmatha",
+      "spicy": "Summit"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_012",
+    "word": "Pokhara",
+    "hints": {
+      "easy": "Lake",
+      "medium": "Fewa",
+      "spicy": "Peaceful"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_013",
+    "word": "Teej",
+    "hints": {
+      "easy": "Women",
+      "medium": "Red",
+      "spicy": "Fasting"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "nepal_014",
+    "word": "Indra Jatra",
+    "hints": {
+      "easy": "Kathmandu",
+      "medium": "Rain",
+      "spicy": "Kumari"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "nepal_015",
+    "word": "Dhaka Fabric",
+    "hints": {
+      "easy": "Woven",
+      "medium": "Nepali",
+      "spicy": "Handloom"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_016",
+    "word": "Yak",
+    "hints": {
+      "easy": "Mountain",
+      "medium": "Himalayan",
+      "spicy": "Shaggy"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_017",
+    "word": "Gurkha",
+    "hints": {
+      "easy": "Nepali",
+      "medium": "Brave",
+      "spicy": "Khukuri"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_018",
+    "word": "Khukuri",
+    "hints": {
+      "easy": "Curved",
+      "medium": "Gurkha",
+      "spicy": "Blade"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_019",
+    "word": "Newari",
+    "hints": {
+      "easy": "Valley",
+      "medium": "Kathmandu",
+      "spicy": "Bhaktapur"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_020",
+    "word": "Gundruk",
+    "hints": {
+      "easy": "Fermented",
+      "medium": "Dried",
+      "spicy": "Sour"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "nepal_021",
+    "word": "Chatamari",
+    "hints": {
+      "easy": "Rice",
+      "medium": "Newari",
+      "spicy": "Topped"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "nepal_022",
+    "word": "Sherpa",
+    "hints": {
+      "easy": "Mountain",
+      "medium": "Everest",
+      "spicy": "High"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_023",
+    "word": "Buddha",
+    "hints": {
+      "easy": "Enlightened",
+      "medium": "Lumbini",
+      "spicy": "Nirvana"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture",
+      "religion"
+    ]
+  },
+  {
+    "id": "nepal_024",
+    "word": "Lumbini",
+    "hints": {
+      "easy": "Holy",
+      "medium": "Buddha",
+      "spicy": "Pilgrimage"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_025",
+    "word": "Pashmina",
+    "hints": {
+      "easy": "Soft",
+      "medium": "Cashmere",
+      "spicy": "Woven"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture",
+      "clothing"
+    ]
+  },
+  {
+    "id": "nepal_026",
+    "word": "Rooftop Farming",
+    "hints": {
+      "easy": "Urban",
+      "medium": "City",
+      "spicy": "Terraced"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_027",
+    "word": "Madal",
+    "hints": {
+      "easy": "Drum",
+      "medium": "Folk",
+      "spicy": "Two"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "id": "nepal_028",
+    "word": "Deusi Bhailo",
+    "hints": {
+      "easy": "Tihar",
+      "medium": "Door",
+      "spicy": "Blessing"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival",
+      "music"
+    ]
+  },
+  {
+    "id": "nepal_029",
+    "word": "Bagmati",
+    "hints": {
+      "easy": "Holy",
+      "medium": "Kathmandu",
+      "spicy": "Sacred"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_030",
+    "word": "Thangka",
+    "hints": {
+      "easy": "Buddhist",
+      "medium": "Scroll",
+      "spicy": "Deity"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture",
+      "art"
+    ]
+  },
+  {
+    "id": "nepal_031",
+    "word": "Yomari",
+    "hints": {
+      "easy": "Sweet",
+      "medium": "Newari",
+      "spicy": "Steamed"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "nepal_032",
+    "word": "Bhaktapur",
+    "hints": {
+      "easy": "Old",
+      "medium": "Pottery",
+      "spicy": "Medieval"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_033",
+    "word": "Lokta Paper",
+    "hints": {
+      "easy": "Handmade",
+      "medium": "Bark",
+      "spicy": "Traditional"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "nepal_034",
+    "word": "Annapurna",
+    "hints": {
+      "easy": "Mountain",
+      "medium": "Trekking",
+      "spicy": "Circuit"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "nepal_035",
+    "word": "Raksi",
+    "hints": {
+      "easy": "Local",
+      "medium": "Home",
+      "spicy": "Distilled"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "food",
+      "drink"
+    ]
+  },
+  {
+    "id": "nepal_036",
+    "word": "Indra Jatra",
+    "hints": {
+      "easy": "Festival",
+      "medium": "Mask",
+      "spicy": "Lakhey"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival",
+      "kathmandu",
+      "newar"
+    ]
+  },
+  {
+    "id": "nepal_037",
+    "word": "Boudhanath",
+    "hints": {
+      "easy": "Stupa",
+      "medium": "Prayer",
+      "spicy": "Mandala"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "buddhist",
+      "heritage",
+      "kathmandu"
+    ]
+  },
+  {
+    "id": "nepal_038",
+    "word": "Pokhara",
+    "hints": {
+      "easy": "Lakeside",
+      "medium": "Paragliding",
+      "spicy": "Fewa"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "tourism",
+      "lake",
+      "adventure"
+    ]
+  },
+  {
+    "id": "nepal_039",
+    "word": "Everest",
+    "hints": {
+      "easy": "Mountain",
+      "medium": "Summit",
+      "spicy": "Sagarmatha"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "mountain",
+      "himalaya",
+      "trek"
+    ]
+  },
+  {
+    "id": "nepal_040",
+    "word": "Rara Lake",
+    "hints": {
+      "easy": "Lake",
+      "medium": "Remote",
+      "spicy": "Mugu"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "lake",
+      "nationalpark",
+      "remote"
+    ]
+  },
+  {
+    "id": "nepal_041",
+    "word": "Thakali Set",
+    "hints": {
+      "easy": "Thali",
+      "medium": "Lentil",
+      "spicy": "Ghee"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "meal",
+      "rice",
+      "lentil"
+    ]
+  },
+  {
+    "id": "nepal_042",
+    "word": "Gundruk",
+    "hints": {
+      "easy": "Pickle",
+      "medium": "Leafy",
+      "spicy": "Fermented"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "fermented",
+      "greens",
+      "pickle"
+    ]
+  },
+  {
+    "id": "nepal_043",
+    "word": "Dhido",
+    "hints": {
+      "easy": "Porridge",
+      "medium": "Millet",
+      "spicy": "Stiff"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "staple",
+      "millet",
+      "traditional"
+    ]
+  },
+  {
+    "id": "nepal_044",
+    "word": "Juju Dhau",
+    "hints": {
+      "easy": "Dessert",
+      "medium": "Curd",
+      "spicy": "Newari"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "yogurt",
+      "dessert",
+      "bhaktapur"
+    ]
+  },
+  {
+    "id": "nepal_045",
+    "word": "Yak Cheese",
+    "hints": {
+      "easy": "Cheese",
+      "medium": "Yak",
+      "spicy": "Himalayan"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "dairy",
+      "himalaya",
+      "snack"
+    ]
+  },
+  {
+    "id": "nepal_046",
+    "word": "Aloo Tama",
+    "hints": {
+      "easy": "Soup",
+      "medium": "Bamboo",
+      "spicy": "Fermented"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "soup",
+      "bamboo",
+      "potato"
+    ]
+  },
+  {
+    "id": "nepal_047",
+    "word": "Madal",
+    "hints": {
+      "easy": "Drum",
+      "medium": "Folk",
+      "spicy": "Twohead"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "instrument",
+      "folk",
+      "percussion"
+    ]
+  },
+  {
+    "id": "nepal_048",
+    "word": "Sarangi",
+    "hints": {
+      "easy": "String",
+      "medium": "Bowed",
+      "spicy": "Folk"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "instrument",
+      "string",
+      "folk"
+    ]
+  },
+  {
+    "id": "nepal_049",
+    "word": "Khukuri",
+    "hints": {
+      "easy": "Knife",
+      "medium": "Curved",
+      "spicy": "Gurkha"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "blade",
+      "heritage",
+      "army"
+    ]
+  },
+  {
+    "id": "nepal_050",
+    "word": "Gurkha",
+    "hints": {
+      "easy": "Soldier",
+      "medium": "Brave",
+      "spicy": "Regiment"
+    },
+    "category": "person",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "military",
+      "history",
+      "bravery"
+    ]
+  },
+  {
+    "id": "nepal_051",
+    "word": "Chitwan",
+    "hints": {
+      "easy": "Jungle",
+      "medium": "Rhino",
+      "spicy": "Safari"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "park",
+      "wildlife",
+      "tourism"
+    ]
+  },
+  {
+    "id": "nepal_052",
+    "word": "Janakpur",
+    "hints": {
+      "easy": "Maithil",
+      "medium": "Temple",
+      "spicy": "Sita"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "religion",
+      "heritage",
+      "city"
+    ]
+  },
+  {
+    "id": "nepal_053",
+    "word": "Lhosar",
+    "hints": {
+      "easy": "Newyear",
+      "medium": "Buddhist",
+      "spicy": "Tamang"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival",
+      "mountain",
+      "newyear"
+    ]
+  },
+  {
+    "id": "nepal_054",
+    "word": "Teej",
+    "hints": {
+      "easy": "Women",
+      "medium": "Fast",
+      "spicy": "Monsoon"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "festival",
+      "dance",
+      "worship"
+    ]
+  },
+  {
+    "id": "nepal_055",
+    "word": "Yomari",
+    "hints": {
+      "easy": "Dessert",
+      "medium": "Newari",
+      "spicy": "Steamed"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "NP"
+    ],
+    "tags": [
+      "sweet",
+      "festival",
+      "winter"
+    ]
+  }
 ]

@@ -1,42 +1,694 @@
 [
-  {"id":"india_001","word":"Vada Pav","hints":{"easy":"Mumbai burger","medium":"Street sandwich","spicy":"Potato bun"},"category":"food","scope":"local","regions":["IN"],"tags":["food","street"]},
-  {"id":"india_002","word":"Dosa","hints":{"easy":"Crispy crepe","medium":"South Indian","spicy":"Fermented"},"category":"food","scope":"local","regions":["IN"],"tags":["food"]},
-  {"id":"india_003","word":"Pani Puri","hints":{"easy":"Street snack","medium":"Hollow ball","spicy":"Dunked"},"category":"food","scope":"local","regions":["IN"],"tags":["food","street"]},
-  {"id":"india_004","word":"Idli","hints":{"easy":"Steamed cake","medium":"Breakfast round","spicy":"Fermented"},"category":"food","scope":"local","regions":["IN"],"tags":["food"]},
-  {"id":"india_005","word":"Butter Chicken","hints":{"easy":"Curry dish","medium":"Creamy chicken","spicy":"Orange gravy"},"category":"food","scope":"local","regions":["IN"],"tags":["food"]},
-  {"id":"india_006","word":"Holi","hints":{"easy":"Colour festival","medium":"Spring colours","spicy":"Gulal"},"category":"festival","scope":"local","regions":["IN"],"tags":["festival"]},
-  {"id":"india_007","word":"Navratri","hints":{"easy":"Nine nights","medium":"Garba dancing","spicy":"Durga"},"category":"festival","scope":"local","regions":["IN"],"tags":["festival"]},
-  {"id":"india_008","word":"Dandiya","hints":{"easy":"Stick dance","medium":"Navratri dance","spicy":"Sticks"},"category":"festival","scope":"local","regions":["IN"],"tags":["festival","dance"]},
-  {"id":"india_009","word":"Pongal","hints":{"easy":"Harvest festival","medium":"South India","spicy":"Sankranti"},"category":"festival","scope":"local","regions":["IN"],"tags":["festival"]},
-  {"id":"india_010","word":"Ganesh Puja","hints":{"easy":"Elephant god","medium":"Modak festival","spicy":"Visarjan"},"category":"festival","scope":"local","regions":["IN"],"tags":["festival"]},
-  {"id":"india_011","word":"Sachin","hints":{"easy":"Cricket legend","medium":"Master blaster","spicy":"Mumbai"},"category":"cricket","scope":"local","regions":["IN"],"tags":["cricket"]},
-  {"id":"india_012","word":"IPL","hints":{"easy":"Cricket league","medium":"T20 teams","spicy":"Auction"},"category":"cricket","scope":"local","regions":["IN"],"tags":["cricket"]},
-  {"id":"india_013","word":"Shah Rukh Khan","hints":{"easy":"Bollywood king","medium":"Romance hero","spicy":"Dimples"},"category":"bollywood","scope":"local","regions":["IN"],"tags":["bollywood"]},
-  {"id":"india_014","word":"Salman Khan","hints":{"easy":"Action star","medium":"Dabangg actor","spicy":"Bhai"},"category":"bollywood","scope":"local","regions":["IN"],"tags":["bollywood"]},
-  {"id":"india_015","word":"Amitabh","hints":{"easy":"Big B","medium":"Angry young man","spicy":"Baritone"},"category":"bollywood","scope":"local","regions":["IN"],"tags":["bollywood"]},
-  {"id":"india_016","word":"Gateway of India","hints":{"easy":"Mumbai monument","medium":"Harbour arch","spicy":"Colonial"},"category":"places","scope":"local","regions":["IN"],"tags":["places"]},
-  {"id":"india_017","word":"Taj Mahal","hints":{"easy":"White monument","medium":"Love tomb","spicy":"Agra"},"category":"places","scope":"local","regions":["IN"],"tags":["places"]},
-  {"id":"india_018","word":"Autorickshaw","hints":{"easy":"Three wheeler","medium":"City taxi","spicy":"Meter"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture","transport"]},
-  {"id":"india_019","word":"Jugaad","hints":{"easy":"Quick fix","medium":"Desi hack","spicy":"Improvised"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture"]},
-  {"id":"india_020","word":"UPSC","hints":{"easy":"Big exam","medium":"IAS exam","spicy":"Collector"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture"]},
-  {"id":"india_021","word":"Sari","hints":{"easy":"Women dress","medium":"Draped cloth","spicy":"Six yards"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture","clothing"]},
-  {"id":"india_022","word":"Bindi","hints":{"easy":"Forehead dot","medium":"Married symbol","spicy":"Kumkum"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture"]},
-  {"id":"india_023","word":"Yoga","hints":{"easy":"Exercise type","medium":"Ancient practice","spicy":"Asana"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture"]},
-  {"id":"india_024","word":"Chai Tapri","hints":{"easy":"Tea stall","medium":"Roadside chai","spicy":"Cutting"},"category":"places","scope":"local","regions":["IN"],"tags":["places","food"]},
-  {"id":"india_025","word":"Lal Qila","hints":{"easy":"Red monument","medium":"Delhi fort","spicy":"Mughal"},"category":"places","scope":"local","regions":["IN"],"tags":["places"]},
-  {"id":"india_026","word":"Paneer","hints":{"easy":"White cheese","medium":"Veg protein","spicy":"Curdled"},"category":"food","scope":"local","regions":["IN"],"tags":["food"]},
-  {"id":"india_027","word":"Thali","hints":{"easy":"Round plate","medium":"Full meal","spicy":"Unlimited"},"category":"food","scope":"local","regions":["IN"],"tags":["food"]},
-  {"id":"india_028","word":"Dhol","hints":{"easy":"Big drum","medium":"Wedding beat","spicy":"Bhangra"},"category":"music","scope":"local","regions":["IN"],"tags":["music"]},
-  {"id":"india_029","word":"Bhangra","hints":{"easy":"Punjabi dance","medium":"Harvest dance","spicy":"Dhol beat"},"category":"music","scope":"local","regions":["IN"],"tags":["music","dance"]},
-  {"id":"india_030","word":"Filmi Gaana","hints":{"easy":"Movie song","medium":"Bollywood hit","spicy":"Playback"},"category":"music","scope":"local","regions":["IN"],"tags":["music"]},
-  {"id":"india_031","word":"Aarti","hints":{"easy":"Prayer ritual","medium":"Lamp waving","spicy":"Devotional"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture","religion"]},
-  {"id":"india_032","word":"Prasad","hints":{"easy":"Temple food","medium":"God offering","spicy":"Blessed"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture","religion"]},
-  {"id":"india_033","word":"Lathi","hints":{"easy":"Long stick","medium":"Police weapon","spicy":"Bamboo"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture"]},
-  {"id":"india_034","word":"Puja","hints":{"easy":"Worship ritual","medium":"Home prayer","spicy":"Incense"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture","religion"]},
-  {"id":"india_035","word":"Rakhi","hints":{"easy":"Wrist thread","medium":"Sister brother","spicy":"Protection"},"category":"festival","scope":"local","regions":["IN"],"tags":["festival"]},
-  {"id":"india_036","word":"Kite Flying","hints":{"easy":"Sky activity","medium":"Makar festival","spicy":"Manjha"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture"]},
-  {"id":"india_037","word":"Chaat","hints":{"easy":"Street snack","medium":"Tangy mix","spicy":"Sev"},"category":"food","scope":"local","regions":["IN"],"tags":["food","street"]},
-  {"id":"india_038","word":"Nehru Jacket","hints":{"easy":"Indian jacket","medium":"Political coat","spicy":"Collar"},"category":"culture","scope":"local","regions":["IN"],"tags":["culture","clothing"]},
-  {"id":"india_039","word":"Monsoon Wedding","hints":{"easy":"Rainy wedding","medium":"Outdoor ceremony","spicy":"Drenched"},"category":"family","scope":"local","regions":["IN"],"tags":["family"]},
-  {"id":"india_040","word":"Tabla","hints":{"easy":"Hand drum","medium":"Classical beat","spicy":"Taal"},"category":"music","scope":"local","regions":["IN"],"tags":["music"]}
+  {
+    "id": "india_001",
+    "word": "Vada Pav",
+    "hints": {
+      "easy": "Mumbai",
+      "medium": "Street",
+      "spicy": "Potato"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food",
+      "street"
+    ]
+  },
+  {
+    "id": "india_002",
+    "word": "Dosa",
+    "hints": {
+      "easy": "Crispy",
+      "medium": "South",
+      "spicy": "Fermented"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "india_003",
+    "word": "Pani Puri",
+    "hints": {
+      "easy": "Street",
+      "medium": "Hollow",
+      "spicy": "Dunked"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food",
+      "street"
+    ]
+  },
+  {
+    "id": "india_004",
+    "word": "Idli",
+    "hints": {
+      "easy": "Steamed",
+      "medium": "Breakfast",
+      "spicy": "Fermented"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "india_005",
+    "word": "Butter Chicken",
+    "hints": {
+      "easy": "Curry",
+      "medium": "Creamy",
+      "spicy": "Orange"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "india_006",
+    "word": "Holi",
+    "hints": {
+      "easy": "Colour",
+      "medium": "Spring",
+      "spicy": "Gulal"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "india_007",
+    "word": "Navratri",
+    "hints": {
+      "easy": "Nine",
+      "medium": "Garba",
+      "spicy": "Durga"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "india_008",
+    "word": "Dandiya",
+    "hints": {
+      "easy": "Stick",
+      "medium": "Navratri",
+      "spicy": "Sticks"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "festival",
+      "dance"
+    ]
+  },
+  {
+    "id": "india_009",
+    "word": "Pongal",
+    "hints": {
+      "easy": "Harvest",
+      "medium": "South",
+      "spicy": "Sankranti"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "india_010",
+    "word": "Ganesh Puja",
+    "hints": {
+      "easy": "Elephant",
+      "medium": "Modak",
+      "spicy": "Visarjan"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "india_011",
+    "word": "Sachin",
+    "hints": {
+      "easy": "Cricket",
+      "medium": "Master",
+      "spicy": "Mumbai"
+    },
+    "category": "cricket",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "cricket"
+    ]
+  },
+  {
+    "id": "india_012",
+    "word": "IPL",
+    "hints": {
+      "easy": "Cricket",
+      "medium": "Teams",
+      "spicy": "Auction"
+    },
+    "category": "cricket",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "cricket"
+    ]
+  },
+  {
+    "id": "india_013",
+    "word": "Shah Rukh Khan",
+    "hints": {
+      "easy": "Bollywood",
+      "medium": "Romance",
+      "spicy": "Dimples"
+    },
+    "category": "bollywood",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "bollywood"
+    ]
+  },
+  {
+    "id": "india_014",
+    "word": "Salman Khan",
+    "hints": {
+      "easy": "Action",
+      "medium": "Dabangg",
+      "spicy": "Bhai"
+    },
+    "category": "bollywood",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "bollywood"
+    ]
+  },
+  {
+    "id": "india_015",
+    "word": "Amitabh",
+    "hints": {
+      "easy": "Big",
+      "medium": "Angry",
+      "spicy": "Baritone"
+    },
+    "category": "bollywood",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "bollywood"
+    ]
+  },
+  {
+    "id": "india_016",
+    "word": "Gateway of India",
+    "hints": {
+      "easy": "Mumbai",
+      "medium": "Harbour",
+      "spicy": "Colonial"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "india_017",
+    "word": "Taj Mahal",
+    "hints": {
+      "easy": "White",
+      "medium": "Love",
+      "spicy": "Agra"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "india_018",
+    "word": "Autorickshaw",
+    "hints": {
+      "easy": "Three",
+      "medium": "City",
+      "spicy": "Meter"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture",
+      "transport"
+    ]
+  },
+  {
+    "id": "india_019",
+    "word": "Jugaad",
+    "hints": {
+      "easy": "Quick",
+      "medium": "Desi",
+      "spicy": "Improvised"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "india_020",
+    "word": "UPSC",
+    "hints": {
+      "easy": "Big",
+      "medium": "Ias",
+      "spicy": "Collector"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "india_021",
+    "word": "Sari",
+    "hints": {
+      "easy": "Women",
+      "medium": "Draped",
+      "spicy": "Six"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture",
+      "clothing"
+    ]
+  },
+  {
+    "id": "india_022",
+    "word": "Bindi",
+    "hints": {
+      "easy": "Forehead",
+      "medium": "Married",
+      "spicy": "Kumkum"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "india_023",
+    "word": "Yoga",
+    "hints": {
+      "easy": "Exercise",
+      "medium": "Ancient",
+      "spicy": "Asana"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "india_024",
+    "word": "Chai Tapri",
+    "hints": {
+      "easy": "Tea",
+      "medium": "Roadside",
+      "spicy": "Cutting"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "places",
+      "food"
+    ]
+  },
+  {
+    "id": "india_025",
+    "word": "Lal Qila",
+    "hints": {
+      "easy": "Red",
+      "medium": "Delhi",
+      "spicy": "Mughal"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "india_026",
+    "word": "Paneer",
+    "hints": {
+      "easy": "White",
+      "medium": "Veg",
+      "spicy": "Curdled"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "india_027",
+    "word": "Thali",
+    "hints": {
+      "easy": "Round",
+      "medium": "Full",
+      "spicy": "Unlimited"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "india_028",
+    "word": "Dhol",
+    "hints": {
+      "easy": "Big",
+      "medium": "Wedding",
+      "spicy": "Bhangra"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "id": "india_029",
+    "word": "Bhangra",
+    "hints": {
+      "easy": "Punjabi",
+      "medium": "Harvest",
+      "spicy": "Dhol"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "music",
+      "dance"
+    ]
+  },
+  {
+    "id": "india_030",
+    "word": "Filmi Gaana",
+    "hints": {
+      "easy": "Movie",
+      "medium": "Bollywood",
+      "spicy": "Playback"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "id": "india_031",
+    "word": "Aarti",
+    "hints": {
+      "easy": "Prayer",
+      "medium": "Lamp",
+      "spicy": "Devotional"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture",
+      "religion"
+    ]
+  },
+  {
+    "id": "india_032",
+    "word": "Prasad",
+    "hints": {
+      "easy": "Temple",
+      "medium": "God",
+      "spicy": "Blessed"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture",
+      "religion"
+    ]
+  },
+  {
+    "id": "india_033",
+    "word": "Lathi",
+    "hints": {
+      "easy": "Long",
+      "medium": "Police",
+      "spicy": "Bamboo"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "india_034",
+    "word": "Puja",
+    "hints": {
+      "easy": "Worship",
+      "medium": "Home",
+      "spicy": "Incense"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture",
+      "religion"
+    ]
+  },
+  {
+    "id": "india_035",
+    "word": "Rakhi",
+    "hints": {
+      "easy": "Wrist",
+      "medium": "Sister",
+      "spicy": "Protection"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "india_036",
+    "word": "Kite Flying",
+    "hints": {
+      "easy": "Sky",
+      "medium": "Makar",
+      "spicy": "Manjha"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "india_037",
+    "word": "Chaat",
+    "hints": {
+      "easy": "Street",
+      "medium": "Tangy",
+      "spicy": "Sev"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "food",
+      "street"
+    ]
+  },
+  {
+    "id": "india_038",
+    "word": "Nehru Jacket",
+    "hints": {
+      "easy": "Indian",
+      "medium": "Political",
+      "spicy": "Collar"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "culture",
+      "clothing"
+    ]
+  },
+  {
+    "id": "india_039",
+    "word": "Monsoon Wedding",
+    "hints": {
+      "easy": "Rainy",
+      "medium": "Outdoor",
+      "spicy": "Drenched"
+    },
+    "category": "family",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "family"
+    ]
+  },
+  {
+    "id": "india_040",
+    "word": "Tabla",
+    "hints": {
+      "easy": "Hand",
+      "medium": "Classical",
+      "spicy": "Taal"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "IN"
+    ],
+    "tags": [
+      "music"
+    ]
+  }
 ]

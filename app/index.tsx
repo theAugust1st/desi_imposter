@@ -38,8 +38,9 @@ export default function HomeScreen() {
           <Text style={styles.subtitle}>A South Asian Party Game</Text>
         </View>
 
-        {/* CTA Button */}
+        {/* Button Section */}
         <View style={styles.buttonSection}>
+          {/* Start Game Button */}
           <Pressable onPress={handleStartGame}>
             <Animated.View style={[
               styles.button,

@@ -109,34 +109,46 @@ export function getTotalWordCount(selectedNationalities: Region[]): number {
 
 /**
  * Builds the word pool based on selected nationalities AND categories.
+ * Optionally includes words from downloaded content packs.
  * 
  * Rules:
- * - First filters by region (shared words + selected country words)
+ * - First filters by region (shared words + selected country words + pack words)
  * - Then filters by selected categories
+ * - Pack words are filtered by region (must match at least one selected region)
  * 
  * @param selectedNationalities - Array of region codes representing user selection
  * @param selectedCategories - Array of category strings to filter by
+ * @param packWords - Optional array of words from downloaded content packs
  * @returns Combined word pool filtered by both region and category
  */
 export function buildWordPoolWithCategories(
   selectedNationalities: Region[],
-  selectedCategories: Category[]
+  selectedCategories: Category[],
+  packWords: WordEntry[] = []
 ): WordEntry[] {
-  // Step 1: Get region-filtered pool
-  const regionPool = buildWordPool(selectedNationalities);
+  // Step 1: Get region-filtered pool from built-in words
+  const builtInPool = buildWordPool(selectedNationalities);
 
-  // Step 2: If no categories selected, return region pool (shouldn't happen with validation)
+  // Step 2: Filter pack words by selected regions
+  const filteredPackWords = packWords.filter((word) =>
+    word.regions.some((region) => selectedNationalities.includes(region))
+  );
+
+  // Step 3: Combine built-in and pack words
+  const combinedPool = [...builtInPool, ...filteredPackWords];
+
+  // Step 4: If no categories selected, return combined pool (shouldn't happen with validation)
   if (selectedCategories.length === 0) {
-    console.warn('[buildWordPoolWithCategories] No categories selected, returning region pool');
-    return regionPool;
+    console.warn('[buildWordPoolWithCategories] No categories selected, returning combined pool');
+    return combinedPool;
   }
 
-  // Step 3: Filter by category
-  const filtered = regionPool.filter((word) =>
+  // Step 5: Filter by category
+  const filtered = combinedPool.filter((word) =>
     selectedCategories.includes(word.category)
   );
 
-  // Step 4: Log warning if empty (for debugging)
+  // Step 6: Log warning if empty (for debugging)
   if (filtered.length === 0) {
     console.warn(
       `[buildWordPoolWithCategories] Empty pool! Regions: ${selectedNationalities.join(', ')}, Categories: ${selectedCategories.join(', ')}`
@@ -166,13 +178,48 @@ export function getAvailableCategories(selectedNationalities: Region[]): Categor
  * 
  * @param selectedNationalities - Array of region codes
  * @param selectedCategories - Array of category strings
+ * @param packWords - Optional array of words from downloaded content packs
  * @returns Number of words matching both filters
  */
 export function getWordCount(
   selectedNationalities: Region[],
-  selectedCategories: Category[]
+  selectedCategories: Category[],
+  packWords: WordEntry[] = []
 ): number {
-  return buildWordPoolWithCategories(selectedNationalities, selectedCategories).length;
+  return buildWordPoolWithCategories(selectedNationalities, selectedCategories, packWords).length;
+}
+
+/**
+ * Get word count breakdown (built-in vs packs)
+ * Used for displaying detailed word count on setup screen
+ * 
+ * @param selectedNationalities - Array of region codes
+ * @param selectedCategories - Array of category strings
+ * @param packWords - Array of words from downloaded content packs
+ * @returns Object with total, builtIn, and fromPacks counts
+ */
+export function getWordCountBreakdown(
+  selectedNationalities: Region[],
+  selectedCategories: Category[],
+  packWords: WordEntry[]
+): { total: number; builtIn: number; fromPacks: number } {
+  const builtInPool = buildWordPoolWithCategories(
+    selectedNationalities,
+    selectedCategories,
+    [] // No pack words for built-in count
+  );
+  
+  const totalPool = buildWordPoolWithCategories(
+    selectedNationalities,
+    selectedCategories,
+    packWords
+  );
+
+  return {
+    total: totalPool.length,
+    builtIn: builtInPool.length,
+    fromPacks: totalPool.length - builtInPool.length,
+  };
 }
 
 /**
@@ -181,15 +228,17 @@ export function getWordCount(
  * 
  * @param selectedNationalities - Array of region codes
  * @param selectedCategories - Array of category strings
+ * @param packWords - Optional array of words from downloaded content packs
  * @param minRequired - Minimum number of words required (default: 10)
  * @returns true if pool has enough words
  */
 export function hasMinimumWords(
   selectedNationalities: Region[],
   selectedCategories: Category[],
+  packWords: WordEntry[] = [],
   minRequired: number = 10
 ): boolean {
-  return getWordCount(selectedNationalities, selectedCategories) >= minRequired;
+  return getWordCount(selectedNationalities, selectedCategories, packWords) >= minRequired;
 }
 
 // Export individual collections for direct access if needed

@@ -1,32 +1,520 @@
 [
-  {"id":"pk_001","word":"Nihari","hints":{"easy":"Slow cooked","medium":"Morning stew","spicy":"Trotters"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_002","word":"Chapli Kebab","hints":{"easy":"Flat kebab","medium":"Peshawari meat","spicy":"Spiced patty"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_003","word":"Karahi","hints":{"easy":"Wok curry","medium":"Restaurant dish","spicy":"Iron wok"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_004","word":"Truck Art","hints":{"easy":"Vehicle painting","medium":"Colourful truck","spicy":"Floral"},"category":"culture","scope":"local","regions":["PK"],"tags":["culture","art"]},
-  {"id":"pk_005","word":"Basant","hints":{"easy":"Kite festival","medium":"Spring kites","spicy":"Yellow"},"category":"festival","scope":"local","regions":["PK"],"tags":["festival"]},
-  {"id":"pk_006","word":"Badshahi Mosque","hints":{"easy":"Big mosque","medium":"Lahore mosque","spicy":"Mughal"},"category":"places","scope":"local","regions":["PK"],"tags":["places"]},
-  {"id":"pk_007","word":"Lahore Fort","hints":{"easy":"Old fort","medium":"Mughal fort","spicy":"Shahi Qila"},"category":"places","scope":"local","regions":["PK"],"tags":["places"]},
-  {"id":"pk_008","word":"Shalimar Garden","hints":{"easy":"Mughal garden","medium":"Lahore garden","spicy":"Terraced"},"category":"places","scope":"local","regions":["PK"],"tags":["places"]},
-  {"id":"pk_009","word":"Imran Khan","hints":{"easy":"Cricket PM","medium":"Captain turned","spicy":"Kaptaan"},"category":"cricket","scope":"local","regions":["PK"],"tags":["cricket"]},
-  {"id":"pk_010","word":"Wasim Akram","hints":{"easy":"Fast bowler","medium":"Sultan swing","spicy":"Left arm"},"category":"cricket","scope":"local","regions":["PK"],"tags":["cricket"]},
-  {"id":"pk_011","word":"Peshwas","hints":{"easy":"Long coat","medium":"Traditional dress","spicy":"Formal"},"category":"culture","scope":"local","regions":["PK"],"tags":["culture","clothing"]},
-  {"id":"pk_012","word":"Ajrak","hints":{"easy":"Printed cloth","medium":"Sindhi shawl","spicy":"Block print"},"category":"culture","scope":"local","regions":["PK"],"tags":["culture"]},
-  {"id":"pk_013","word":"Attan","hints":{"easy":"Circle dance","medium":"Pashtun dance","spicy":"Tribal"},"category":"music","scope":"local","regions":["PK"],"tags":["music","dance"]},
-  {"id":"pk_014","word":"Nusrat Fateh Ali","hints":{"easy":"Qawwali singer","medium":"Sufi legend","spicy":"Thumri"},"category":"music","scope":"local","regions":["PK"],"tags":["music"]},
-  {"id":"pk_015","word":"Karakoram","hints":{"easy":"Mountain range","medium":"K2 range","spicy":"Highway"},"category":"places","scope":"local","regions":["PK"],"tags":["places"]},
-  {"id":"pk_016","word":"Haleem","hints":{"easy":"Thick stew","medium":"Wheat meat","spicy":"Slow cooked"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_017","word":"Paya","hints":{"easy":"Leg soup","medium":"Breakfast curry","spicy":"Trotters"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_018","word":"Lassi Sweet","hints":{"easy":"Sweet drink","medium":"Lahori drink","spicy":"Thick"},"category":"food","scope":"local","regions":["PK"],"tags":["food","drink"]},
-  {"id":"pk_019","word":"Phirni","hints":{"easy":"Rice pudding","medium":"Clay bowl","spicy":"Rosewater"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_020","word":"Sindhi Biryani","hints":{"easy":"Spicy biryani","medium":"Karachi style","spicy":"Potatoes"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]},
-  {"id":"pk_021","word":"Eid Milad","hints":{"easy":"Prophet birthday","medium":"Rabi ul Awwal","spicy":"Procession"},"category":"festival","scope":"local","regions":["PK"],"tags":["festival"]},
-  {"id":"pk_022","word":"Jashn e Azadi","hints":{"easy":"Independence day","medium":"14th August","spicy":"Green flag"},"category":"festival","scope":"local","regions":["PK"],"tags":["festival"]},
-  {"id":"pk_023","word":"Sufi Shrine","hints":{"easy":"Holy place","medium":"Dargah","spicy":"Urs"},"category":"culture","scope":"local","regions":["PK"],"tags":["culture","religion"]},
-  {"id":"pk_024","word":"Chai Dhaba","hints":{"easy":"Tea shop","medium":"Roadside cafe","spicy":"Plastic chairs"},"category":"places","scope":"local","regions":["PK"],"tags":["places","food"]},
-  {"id":"pk_025","word":"Gwadar","hints":{"easy":"Port city","medium":"Arabian sea","spicy":"CPEC"},"category":"places","scope":"local","regions":["PK"],"tags":["places"]},
-  {"id":"pk_026","word":"Sehri","hints":{"easy":"Pre dawn meal","medium":"Ramadan meal","spicy":"Before Fajr"},"category":"festival","scope":"local","regions":["PK"],"tags":["festival","food"]},
-  {"id":"pk_027","word":"Iftar","hints":{"easy":"Breaking fast","medium":"Sunset meal","spicy":"Khajoor"},"category":"festival","scope":"local","regions":["PK"],"tags":["festival","food"]},
-  {"id":"pk_028","word":"Multani Mitti","hints":{"easy":"Face clay","medium":"Skin treatment","spicy":"Fuller's earth"},"category":"culture","scope":"local","regions":["PK"],"tags":["culture"]},
-  {"id":"pk_029","word":"Rabab","hints":{"easy":"String instrument","medium":"Afghan guitar","spicy":"Plucked"},"category":"music","scope":"local","regions":["PK"],"tags":["music"]},
-  {"id":"pk_030","word":"Shami Kebab","hints":{"easy":"Soft kebab","medium":"Lentil patty","spicy":"Pan fried"},"category":"food","scope":"local","regions":["PK"],"tags":["food"]}
+  {
+    "id": "pk_001",
+    "word": "Nihari",
+    "hints": {
+      "easy": "Slow",
+      "medium": "Morning",
+      "spicy": "Trotters"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_002",
+    "word": "Chapli Kebab",
+    "hints": {
+      "easy": "Flat",
+      "medium": "Peshawari",
+      "spicy": "Spiced"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_003",
+    "word": "Karahi",
+    "hints": {
+      "easy": "Wok",
+      "medium": "Restaurant",
+      "spicy": "Iron"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_004",
+    "word": "Truck Art",
+    "hints": {
+      "easy": "Vehicle",
+      "medium": "Colourful",
+      "spicy": "Floral"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "culture",
+      "art"
+    ]
+  },
+  {
+    "id": "pk_005",
+    "word": "Basant",
+    "hints": {
+      "easy": "Kite",
+      "medium": "Spring",
+      "spicy": "Yellow"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "pk_006",
+    "word": "Badshahi Mosque",
+    "hints": {
+      "easy": "Big",
+      "medium": "Lahore",
+      "spicy": "Mughal"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "pk_007",
+    "word": "Lahore Fort",
+    "hints": {
+      "easy": "Old",
+      "medium": "Mughal",
+      "spicy": "Shahi"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "pk_008",
+    "word": "Shalimar Garden",
+    "hints": {
+      "easy": "Mughal",
+      "medium": "Lahore",
+      "spicy": "Terraced"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "pk_009",
+    "word": "Imran Khan",
+    "hints": {
+      "easy": "Cricket",
+      "medium": "Captain",
+      "spicy": "Kaptaan"
+    },
+    "category": "cricket",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "cricket"
+    ]
+  },
+  {
+    "id": "pk_010",
+    "word": "Wasim Akram",
+    "hints": {
+      "easy": "Fast",
+      "medium": "Sultan",
+      "spicy": "Left"
+    },
+    "category": "cricket",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "cricket"
+    ]
+  },
+  {
+    "id": "pk_011",
+    "word": "Peshwas",
+    "hints": {
+      "easy": "Long",
+      "medium": "Traditional",
+      "spicy": "Formal"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "culture",
+      "clothing"
+    ]
+  },
+  {
+    "id": "pk_012",
+    "word": "Ajrak",
+    "hints": {
+      "easy": "Printed",
+      "medium": "Sindhi",
+      "spicy": "Block"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "pk_013",
+    "word": "Attan",
+    "hints": {
+      "easy": "Circle",
+      "medium": "Pashtun",
+      "spicy": "Tribal"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "music",
+      "dance"
+    ]
+  },
+  {
+    "id": "pk_014",
+    "word": "Nusrat Fateh Ali",
+    "hints": {
+      "easy": "Qawwali",
+      "medium": "Sufi",
+      "spicy": "Thumri"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "id": "pk_015",
+    "word": "Karakoram",
+    "hints": {
+      "easy": "Mountain",
+      "medium": "Range",
+      "spicy": "Highway"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "pk_016",
+    "word": "Haleem",
+    "hints": {
+      "easy": "Thick",
+      "medium": "Wheat",
+      "spicy": "Slow"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_017",
+    "word": "Paya",
+    "hints": {
+      "easy": "Leg",
+      "medium": "Breakfast",
+      "spicy": "Trotters"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_018",
+    "word": "Lassi Sweet",
+    "hints": {
+      "easy": "Drink",
+      "medium": "Lahori",
+      "spicy": "Thick"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food",
+      "drink"
+    ]
+  },
+  {
+    "id": "pk_019",
+    "word": "Phirni",
+    "hints": {
+      "easy": "Rice",
+      "medium": "Clay",
+      "spicy": "Rosewater"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_020",
+    "word": "Sindhi Biryani",
+    "hints": {
+      "easy": "Spicy",
+      "medium": "Karachi",
+      "spicy": "Potatoes"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "id": "pk_021",
+    "word": "Eid Milad",
+    "hints": {
+      "easy": "Prophet",
+      "medium": "Rabi",
+      "spicy": "Procession"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "pk_022",
+    "word": "Jashn e Azadi",
+    "hints": {
+      "easy": "Independence",
+      "medium": "Th",
+      "spicy": "Green"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "festival"
+    ]
+  },
+  {
+    "id": "pk_023",
+    "word": "Sufi Shrine",
+    "hints": {
+      "easy": "Holy",
+      "medium": "Dargah",
+      "spicy": "Urs"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "culture",
+      "religion"
+    ]
+  },
+  {
+    "id": "pk_024",
+    "word": "Chai Dhaba",
+    "hints": {
+      "easy": "Tea",
+      "medium": "Roadside",
+      "spicy": "Plastic"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "places",
+      "food"
+    ]
+  },
+  {
+    "id": "pk_025",
+    "word": "Gwadar",
+    "hints": {
+      "easy": "Port",
+      "medium": "Arabian",
+      "spicy": "Cpec"
+    },
+    "category": "places",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "places"
+    ]
+  },
+  {
+    "id": "pk_026",
+    "word": "Sehri",
+    "hints": {
+      "easy": "Pre",
+      "medium": "Ramadan",
+      "spicy": "Before"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "festival",
+      "food"
+    ]
+  },
+  {
+    "id": "pk_027",
+    "word": "Iftar",
+    "hints": {
+      "easy": "Breaking",
+      "medium": "Sunset",
+      "spicy": "Khajoor"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "festival",
+      "food"
+    ]
+  },
+  {
+    "id": "pk_028",
+    "word": "Multani Mitti",
+    "hints": {
+      "easy": "Face",
+      "medium": "Skin",
+      "spicy": "Fuller"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "culture"
+    ]
+  },
+  {
+    "id": "pk_029",
+    "word": "Rabab",
+    "hints": {
+      "easy": "String",
+      "medium": "Afghan",
+      "spicy": "Plucked"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "id": "pk_030",
+    "word": "Shami Kebab",
+    "hints": {
+      "easy": "Soft",
+      "medium": "Lentil",
+      "spicy": "Pan"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "PK"
+    ],
+    "tags": [
+      "food"
+    ]
+  }
 ]

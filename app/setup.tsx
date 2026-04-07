@@ -14,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, radius, fonts } from '../constants/theme';
-import { useGameStore, usePlayers, useConfig } from '../store/gameStore';
+import { useGameStore, usePlayers, useConfig, usePackWords } from '../store/gameStore';
 import { getWordCount, hasMinimumWords } from '../data';
 import { haptics } from '../hooks/useHaptics';
 import type { Region } from '../constants/regions';
@@ -29,9 +29,10 @@ const MIN_PLAYERS = 3;
 const MAX_PLAYERS = 10;
 
 export default function SetupScreen() {
-  const { setConfig, setPlayers, startGame, clearPlayers } = useGameStore();
+  const { setConfig, setPlayers, startGame, clearPlayers, loadPackWords } = useGameStore();
   const storePlayers = usePlayers();
   const storeConfig = useConfig();
+  const packWords = usePackWords();
   
   const [playerNames, setPlayerNames] = useState<string[]>(['', '', '']);
   const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
@@ -39,6 +40,11 @@ export default function SetupScreen() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
 
   const buttonScale = useRef(new Animated.Value(1)).current;
+
+  // Load pack words on mount
+  useEffect(() => {
+    loadPackWords();
+  }, []);
 
   // On mount, pre-fill from store if players exist
   useEffect(() => {
@@ -64,8 +70,8 @@ export default function SetupScreen() {
   }, []);
 
   const validPlayers = playerNames.filter((name) => name.trim().length > 0);
-  const wordCount = getWordCount(selectedRegions, selectedCategories);
-  const hasEnoughWords = hasMinimumWords(selectedRegions, selectedCategories, 10);
+  const wordCount = getWordCount(selectedRegions, selectedCategories, packWords);
+  const hasEnoughWords = hasMinimumWords(selectedRegions, selectedCategories, packWords, 10);
   const canStartGame = 
     validPlayers.length >= MIN_PLAYERS && 
     selectedRegions.length >= 1 && 
@@ -151,6 +157,11 @@ export default function SetupScreen() {
     router.back();
   };
 
+  const handleContentPacks = () => {
+    haptics.lightTap();
+    router.push('/packs');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Rangoli Background Pattern */}
@@ -172,7 +183,9 @@ export default function SetupScreen() {
               <Ionicons name="arrow-back" size={24} color={colors.textDark} />
             </Pressable>
             <Text style={styles.title}>Game Setup</Text>
-            <View style={styles.placeholder} />
+            <Pressable onPress={handleContentPacks} style={styles.packsButton}>
+              <Ionicons name="cube-outline" size={24} color={colors.secondary} />
+            </Pressable>
           </View>
 
           {/* Player Names Section */}
@@ -325,14 +338,15 @@ const styles = StyleSheet.create({
   backButton: {
     padding: spacing.sm,
   },
+  packsButton: {
+    padding: spacing.sm,
+  },
   title: {
     fontFamily: fonts.heading,
     fontSize: 24,
     color: colors.textDark,
   },
-  placeholder: {
-    width: 40,
-  },
+
   section: {
     marginBottom: spacing.xl,
   },

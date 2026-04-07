@@ -1,32 +1,978 @@
 [
-  {"id":"bd_001","word":"Hilsa","hints":{"easy":"National fish","medium":"Rainy season","spicy":"Bony"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_002","word":"Pitha","hints":{"easy":"Rice cake","medium":"Winter sweet","spicy":"Steamed"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_003","word":"Mishti Doi","hints":{"easy":"Sweet yogurt","medium":"Clay pot","spicy":"Caramelised"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_004","word":"Pahela Baishakh","hints":{"easy":"New year","medium":"Bengali new year","spicy":"Mangal Shobhajatra"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
-  {"id":"bd_005","word":"Jamdani","hints":{"easy":"Fine cloth","medium":"Woven sari","spicy":"Muslin"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","clothing"]},
-  {"id":"bd_006","word":"Muslin","hints":{"easy":"Fine fabric","medium":"Dhaka cloth","spicy":"Transparent"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_007","word":"Ekushey","hints":{"easy":"Language day","medium":"21st February","spicy":"Shaheed"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_008","word":"Padma Bridge","hints":{"easy":"Long bridge","medium":"River crossing","spicy":"Padma"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
-  {"id":"bd_009","word":"Sundarbans","hints":{"easy":"Mangrove forest","medium":"Tiger forest","spicy":"Delta"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
-  {"id":"bd_010","word":"Rickshaw Art","hints":{"easy":"Painted vehicle","medium":"Colourful cycle","spicy":"Decorative"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","art"]},
-  {"id":"bd_011","word":"Cox's Bazar","hints":{"easy":"Long beach","medium":"Longest beach","spicy":"Coastal"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
-  {"id":"bd_012","word":"Dhaka","hints":{"easy":"Capital city","medium":"Rickshaw city","spicy":"Megacity"},"category":"places","scope":"local","regions":["BD"],"tags":["places"]},
-  {"id":"bd_013","word":"Lungi","hints":{"easy":"Wrap cloth","medium":"Men sarong","spicy":"Tied"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","clothing"]},
-  {"id":"bd_014","word":"Bhorta","hints":{"easy":"Mashed side","medium":"Smashed veggie","spicy":"Mixed"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_015","word":"Shutki","hints":{"easy":"Dried fish","medium":"Smelly fish","spicy":"Preserved"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_016","word":"Baul","hints":{"easy":"Folk singer","medium":"Mystic music","spicy":"Wandering"},"category":"music","scope":"local","regions":["BD"],"tags":["music"]},
-  {"id":"bd_017","word":"Shorshe Ilish","hints":{"easy":"Fish curry","medium":"Mustard fish","spicy":"Hilsa mustard"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_018","word":"Nakshi Kantha","hints":{"easy":"Embroidered quilt","medium":"Stitched blanket","spicy":"Patchwork"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture","art"]},
-  {"id":"bd_019","word":"Victory Day","hints":{"easy":"National day","medium":"16th December","spicy":"Liberation"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_020","word":"Hilsa Festival","hints":{"easy":"Fish festival","medium":"Rainy celebration","spicy":"Padma fish"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
-  {"id":"bd_021","word":"Luchi","hints":{"easy":"Fried bread","medium":"Puffed bread","spicy":"Deep fried"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_022","word":"Bhapa Pitha","hints":{"easy":"Steamed cake","medium":"Rice dumpling","spicy":"Coconut filled"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]},
-  {"id":"bd_023","word":"Sitalapati","hints":{"easy":"Woven mat","medium":"Cool mat","spicy":"Bamboo weave"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_024","word":"Pohela Falgun","hints":{"easy":"Spring festival","medium":"First spring","spicy":"Yellow dress"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
-  {"id":"bd_025","word":"Mela","hints":{"easy":"Village fair","medium":"Outdoor market","spicy":"Seasonal"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_026","word":"Rabindranath","hints":{"easy":"Poet","medium":"Nobel winner","spicy":"Tagore"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_027","word":"National Anthem","hints":{"easy":"Country song","medium":"Tagore wrote","spicy":"Amar Sonar"},"category":"culture","scope":"local","regions":["BD"],"tags":["culture"]},
-  {"id":"bd_028","word":"Shab e Barat","hints":{"easy":"Night of fate","medium":"Mid Shaban","spicy":"Forgiveness night"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
-  {"id":"bd_029","word":"Boishakhi Mela","hints":{"easy":"New year fair","medium":"Cultural fair","spicy":"Charukola"},"category":"festival","scope":"local","regions":["BD"],"tags":["festival"]},
-  {"id":"bd_030","word":"Hilsa Rice","hints":{"easy":"Fish rice","medium":"National combo","spicy":"Steamed together"},"category":"food","scope":"local","regions":["BD"],"tags":["food"]}
+  {
+    "id": "bangladesh_001",
+    "word": "Hilsa",
+    "hints": {
+      "easy": "River",
+      "medium": "National",
+      "spicy": "Oily"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "fish",
+      "river",
+      "food"
+    ]
+  },
+  {
+    "id": "bangladesh_002",
+    "word": "Panta Bhat",
+    "hints": {
+      "easy": "Soaked",
+      "medium": "Fermented",
+      "spicy": "Pohela"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "rice",
+      "breakfast",
+      "festival"
+    ]
+  },
+  {
+    "id": "bangladesh_003",
+    "word": "Bhuna Khichuri",
+    "hints": {
+      "easy": "Comfort",
+      "medium": "Spiced",
+      "spicy": "Dry"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "rice",
+      "lentil",
+      "comfort"
+    ]
+  },
+  {
+    "id": "bangladesh_004",
+    "word": "Fuchka",
+    "hints": {
+      "easy": "Crisp",
+      "medium": "Tamarind",
+      "spicy": "Dhaka"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "street",
+      "snack",
+      "tamarind"
+    ]
+  },
+  {
+    "id": "bangladesh_005",
+    "word": "Chotpoti",
+    "hints": {
+      "easy": "Spicy",
+      "medium": "Served",
+      "spicy": "Dhaka"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "street",
+      "snack",
+      "chickpea"
+    ]
+  },
+  {
+    "id": "bangladesh_006",
+    "word": "Bakarkhani",
+    "hints": {
+      "easy": "Layered",
+      "medium": "Thick",
+      "spicy": "Dense"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "bread",
+      "street",
+      "old-dhaka"
+    ]
+  },
+  {
+    "id": "bangladesh_007",
+    "word": "Rosogolla",
+    "hints": {
+      "easy": "Syrupy",
+      "medium": "Cottage",
+      "spicy": "Spongy"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "sweet",
+      "dessert",
+      "syrup"
+    ]
+  },
+  {
+    "id": "bangladesh_008",
+    "word": "Mishti Doi",
+    "hints": {
+      "easy": "Caramel",
+      "medium": "Sweetened",
+      "spicy": "Thick"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "dessert",
+      "yogurt",
+      "jaggery"
+    ]
+  },
+  {
+    "id": "bangladesh_009",
+    "word": "Pitha",
+    "hints": {
+      "easy": "Rice",
+      "medium": "Winter",
+      "spicy": "Date"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "winter",
+      "sweet",
+      "rice"
+    ]
+  },
+  {
+    "id": "bangladesh_010",
+    "word": "Shorshe Ilish",
+    "hints": {
+      "easy": "Mustard",
+      "medium": "Hilsa",
+      "spicy": "Steamed"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "fish",
+      "mustard",
+      "curry"
+    ]
+  },
+  {
+    "id": "bangladesh_011",
+    "word": "Bhapa Pitha",
+    "hints": {
+      "easy": "Steamed",
+      "medium": "Filled",
+      "spicy": "Winter"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "winter",
+      "steamed",
+      "sweet"
+    ]
+  },
+  {
+    "id": "bangladesh_012",
+    "word": "Chingri Malai",
+    "hints": {
+      "easy": "Coconut",
+      "medium": "Prawns",
+      "spicy": "Tiger"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "seafood",
+      "coconut",
+      "curry"
+    ]
+  },
+  {
+    "id": "bangladesh_013",
+    "word": "Morog Polao",
+    "hints": {
+      "easy": "Festive",
+      "medium": "Mughlai",
+      "spicy": "Dhaka"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "rice",
+      "chicken",
+      "wedding"
+    ]
+  },
+  {
+    "id": "bangladesh_014",
+    "word": "Beef Bhuna",
+    "hints": {
+      "easy": "Spicy",
+      "medium": "Slow",
+      "spicy": "Dhaka"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "PK"
+    ],
+    "tags": [
+      "beef",
+      "eid",
+      "curry"
+    ]
+  },
+  {
+    "id": "bangladesh_015",
+    "word": "Lal Shak",
+    "hints": {
+      "easy": "Red",
+      "medium": "Stir",
+      "spicy": "Sauteed"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "vegetable",
+      "side",
+      "stirfry"
+    ]
+  },
+  {
+    "id": "bangladesh_016",
+    "word": "Borhani",
+    "hints": {
+      "easy": "Spiced",
+      "medium": "Minty",
+      "spicy": "Cold"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "drink",
+      "digestive",
+      "yogurt"
+    ]
+  },
+  {
+    "id": "bangladesh_017",
+    "word": "Dal Puri",
+    "hints": {
+      "easy": "Stuffed",
+      "medium": "Lentil",
+      "spicy": "Split"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "snack",
+      "fried",
+      "lentil"
+    ]
+  },
+  {
+    "id": "bangladesh_018",
+    "word": "Jhalmuri",
+    "hints": {
+      "easy": "Spicy",
+      "medium": "Street",
+      "spicy": "Puffed"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "street",
+      "snack",
+      "puffed-rice"
+    ]
+  },
+  {
+    "id": "bangladesh_019",
+    "word": "Chanachur",
+    "hints": {
+      "easy": "Savory",
+      "medium": "Spiced",
+      "spicy": "Crunchy"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "snack",
+      "mix",
+      "spiced"
+    ]
+  },
+  {
+    "id": "bangladesh_020",
+    "word": "Shemai",
+    "hints": {
+      "easy": "Vermicelli",
+      "medium": "Roasted",
+      "spicy": "Eid"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "PK",
+      "IN"
+    ],
+    "tags": [
+      "dessert",
+      "eid",
+      "milk"
+    ]
+  },
+  {
+    "id": "bangladesh_021",
+    "word": "Jamuna Bridge",
+    "hints": {
+      "easy": "Major",
+      "medium": "Connects",
+      "spicy": "Bangabandhu"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "infrastructure",
+      "river",
+      "bridge"
+    ]
+  },
+  {
+    "id": "bangladesh_022",
+    "word": "Padma Bridge",
+    "hints": {
+      "easy": "New",
+      "medium": "Links",
+      "spicy": "Two"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "bridge",
+      "infrastructure",
+      "river"
+    ]
+  },
+  {
+    "id": "bangladesh_023",
+    "word": "Sundarbans",
+    "hints": {
+      "easy": "Mangrove",
+      "medium": "Home",
+      "spicy": "World"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "forest",
+      "tiger",
+      "delta"
+    ]
+  },
+  {
+    "id": "bangladesh_024",
+    "word": "Cox's Bazar",
+    "hints": {
+      "easy": "Long",
+      "medium": "Tourist",
+      "spicy": "World"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "beach",
+      "tourism",
+      "sea"
+    ]
+  },
+  {
+    "id": "bangladesh_025",
+    "word": "Srimangal",
+    "hints": {
+      "easy": "Tea",
+      "medium": "Sylhet",
+      "spicy": "Moulvibazar"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "tea",
+      "sylhet",
+      "travel"
+    ]
+  },
+  {
+    "id": "bangladesh_026",
+    "word": "Lalon Fakir",
+    "hints": {
+      "easy": "Mystic",
+      "medium": "Baul",
+      "spicy": "Iconic"
+    },
+    "category": "person",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "baul",
+      "music",
+      "mystic"
+    ]
+  },
+  {
+    "id": "bangladesh_027",
+    "word": "Nazrul",
+    "hints": {
+      "easy": "Rebel",
+      "medium": "National",
+      "spicy": "Kazi"
+    },
+    "category": "person",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "poet",
+      "music",
+      "national"
+    ]
+  },
+  {
+    "id": "bangladesh_028",
+    "word": "Tagore",
+    "hints": {
+      "easy": "Nobel",
+      "medium": "Wrote",
+      "spicy": "Rabindranath"
+    },
+    "category": "person",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "poet",
+      "nobel",
+      "song"
+    ]
+  },
+  {
+    "id": "bangladesh_029",
+    "word": "Mujib",
+    "hints": {
+      "easy": "Bangabandhu",
+      "medium": "Father",
+      "spicy": "Sheikh"
+    },
+    "category": "person",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "leader",
+      "1971",
+      "politics"
+    ]
+  },
+  {
+    "id": "bangladesh_030",
+    "word": "Mashrafe",
+    "hints": {
+      "easy": "Cricket",
+      "medium": "Known",
+      "spicy": "Mortaza"
+    },
+    "category": "cricket",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "cricket",
+      "bowler",
+      "captain"
+    ]
+  },
+  {
+    "id": "bangladesh_031",
+    "word": "Shakib Al Hasan",
+    "hints": {
+      "easy": "All",
+      "medium": "Top",
+      "spicy": "Bangladesh"
+    },
+    "category": "cricket",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "cricket",
+      "allrounder",
+      "captain"
+    ]
+  },
+  {
+    "id": "bangladesh_032",
+    "word": "Chattogram Port",
+    "hints": {
+      "easy": "Major",
+      "medium": "Handles",
+      "spicy": "Chittagong"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "port",
+      "trade",
+      "sea"
+    ]
+  },
+  {
+    "id": "bangladesh_033",
+    "word": "Rangamati",
+    "hints": {
+      "easy": "Hill",
+      "medium": "Kaptai",
+      "spicy": "Chattogram"
+    },
+    "category": "place",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "hills",
+      "lake",
+      "tourism"
+    ]
+  },
+  {
+    "id": "bangladesh_034",
+    "word": "Jamuna TV",
+    "hints": {
+      "easy": "News",
+      "medium": "Dhaka",
+      "spicy": "Bangladeshi"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "media",
+      "news",
+      "tv"
+    ]
+  },
+  {
+    "id": "bangladesh_035",
+    "word": "Baul Song",
+    "hints": {
+      "easy": "Folk",
+      "medium": "Ektara",
+      "spicy": "Soulful"
+    },
+    "category": "music",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "folk",
+      "music",
+      "baul"
+    ]
+  },
+  {
+    "id": "bangladesh_036",
+    "word": "Nakshi Kantha",
+    "hints": {
+      "easy": "Embroidered",
+      "medium": "Colorful",
+      "spicy": "Bengali"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "craft",
+      "embroidery",
+      "folk"
+    ]
+  },
+  {
+    "id": "bangladesh_037",
+    "word": "Rickshaw Art",
+    "hints": {
+      "easy": "Painted",
+      "medium": "Bright",
+      "spicy": "Dhaka"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "art",
+      "street",
+      "transport"
+    ]
+  },
+  {
+    "id": "bangladesh_038",
+    "word": "Shital Pati",
+    "hints": {
+      "easy": "Cool",
+      "medium": "Handwoven",
+      "spicy": "Traditional"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "craft",
+      "weaving",
+      "home"
+    ]
+  },
+  {
+    "id": "bangladesh_039",
+    "word": "Jamdar Mango",
+    "hints": {
+      "easy": "Summer",
+      "medium": "Bangladeshi",
+      "spicy": "Rajshahi"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "fruit",
+      "summer",
+      "rajshahi"
+    ]
+  },
+  {
+    "id": "bangladesh_040",
+    "word": "Khejur Gur",
+    "hints": {
+      "easy": "Date",
+      "medium": "Winter",
+      "spicy": "Thick"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "sweetener",
+      "winter",
+      "jaggery"
+    ]
+  },
+  {
+    "id": "bangladesh_041",
+    "word": "Pohela Boishakh",
+    "hints": {
+      "easy": "Bengali",
+      "medium": "Celebrated",
+      "spicy": "Nobo"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "new-year",
+      "festival",
+      "april"
+    ]
+  },
+  {
+    "id": "bangladesh_042",
+    "word": "Ekushey February",
+    "hints": {
+      "easy": "Language",
+      "medium": "Honors",
+      "spicy": "February"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "language",
+      "memorial",
+      "february"
+    ]
+  },
+  {
+    "id": "bangladesh_043",
+    "word": "Durga Puja",
+    "hints": {
+      "easy": "Autumn",
+      "medium": "Ten",
+      "spicy": "Bengal"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "hindu",
+      "autumn",
+      "pandal"
+    ]
+  },
+  {
+    "id": "bangladesh_044",
+    "word": "Eid-ul-Fitr",
+    "hints": {
+      "easy": "End",
+      "medium": "Morning",
+      "spicy": "Festival"
+    },
+    "category": "festival",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "PK",
+      "IN"
+    ],
+    "tags": [
+      "eid",
+      "islam",
+      "festival"
+    ]
+  },
+  {
+    "id": "bangladesh_045",
+    "word": "Boat Race",
+    "hints": {
+      "easy": "Long",
+      "medium": "Monsoon",
+      "spicy": "Nouka"
+    },
+    "category": "sports",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "race",
+      "river",
+      "monsoon"
+    ]
+  },
+  {
+    "id": "bangladesh_046",
+    "word": "Kabaddi",
+    "hints": {
+      "easy": "Tag",
+      "medium": "Chanting",
+      "spicy": "South"
+    },
+    "category": "sports",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN",
+      "PK"
+    ],
+    "tags": [
+      "sport",
+      "contact",
+      "traditional"
+    ]
+  },
+  {
+    "id": "bangladesh_047",
+    "word": "Handloom Saree",
+    "hints": {
+      "easy": "Woven",
+      "medium": "Tangail",
+      "spicy": "Fine"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "textile",
+      "saree",
+      "loom"
+    ]
+  },
+  {
+    "id": "bangladesh_048",
+    "word": "Jamdani",
+    "hints": {
+      "easy": "Fine",
+      "medium": "UNESCO",
+      "spicy": "Dhakai"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "textile",
+      "muslin",
+      "heritage"
+    ]
+  },
+  {
+    "id": "bangladesh_049",
+    "word": "Seven Layer Tea",
+    "hints": {
+      "easy": "Colorful",
+      "medium": "Sylhet",
+      "spicy": "Srimangal"
+    },
+    "category": "food",
+    "scope": "local",
+    "regions": [
+      "BD"
+    ],
+    "tags": [
+      "tea",
+      "sylhet",
+      "layers"
+    ]
+  },
+  {
+    "id": "bangladesh_050",
+    "word": "Alpana",
+    "hints": {
+      "easy": "Floor",
+      "medium": "White",
+      "spicy": "Bengali"
+    },
+    "category": "culture",
+    "scope": "local",
+    "regions": [
+      "BD",
+      "IN"
+    ],
+    "tags": [
+      "folk-art",
+      "floor",
+      "festival"
+    ]
+  }
 ]
