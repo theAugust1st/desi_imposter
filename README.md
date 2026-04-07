@@ -322,6 +322,11 @@ If a player forgot their word:
 - [x] ~195 curated words across 5 categories
 - [x] Offline-first (no backend needed)
 
+**Setup UX (v2.0.1):**
+- Use the hamburger on the Setup screen to open the Settings sheet (countries, categories, content packs).
+- Manage/download packs from that sheet via **Manage Packs**; changes update word counts instantly.
+- Hint Difficulty stays on the main Setup screen for quick round-to-round tweaks.
+
 **Out of Scope (v2.0+):**
 - [ ] Scoreboard / win tracking
 - [ ] Hindi / Nepali script support

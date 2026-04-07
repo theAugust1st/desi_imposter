@@ -2,7 +2,7 @@
   "expo": {
     "name": "Desi Imposter",
     "slug": "desi-imposter",
-    "version": "1.0.0",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -15,7 +15,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.desiimposter.app"
+      "bundleIdentifier": "com.desiimposter.app",
+      "buildNumber": "201"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +24,8 @@
         "backgroundColor": "#1A1A2E"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.desiimposter.app"
+      "package": "com.desiimposter.app",
+      "versionCode": 201
     },
     "web": {
       "favicon": "./assets/favicon.png",
