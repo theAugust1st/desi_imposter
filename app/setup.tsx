@@ -13,17 +13,16 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, radius, fonts } from '../constants/theme';
+import { colors, spacing, radius, fonts, shadows } from '../constants/theme';
 import { useGameStore, usePlayers, useConfig, usePackWords } from '../store/gameStore';
 import { getWordCount, hasMinimumWords } from '../data';
 import { haptics } from '../hooks/useHaptics';
 import type { Region } from '../constants/regions';
 import type { HintDifficulty, Category } from '../types';
 import { ALL_CATEGORIES } from '../types';
-import RegionPicker from '../components/RegionPicker';
-import CategoryPicker from '../components/CategoryPicker';
 import DifficultyPicker from '../components/DifficultyPicker';
 import RangoliBackground from '../components/RangoliBackground';
+import SetupSettingsSheet from '../components/SetupSettingsSheet';
 
 const MIN_PLAYERS = 3;
 const MAX_PLAYERS = 10;
@@ -38,6 +37,7 @@ export default function SetupScreen() {
   const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([...ALL_CATEGORIES]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const buttonScale = useRef(new Animated.Value(1)).current;
 
@@ -157,8 +157,16 @@ export default function SetupScreen() {
     router.back();
   };
 
-  const handleContentPacks = () => {
+  const handleOpenSettings = () => {
     haptics.lightTap();
+    setSettingsOpen(true);
+  };
+
+  const handleCloseSettings = () => {
+    setSettingsOpen(false);
+  };
+
+  const handleManagePacks = () => {
     router.push('/packs');
   };
 
@@ -183,8 +191,8 @@ export default function SetupScreen() {
               <Ionicons name="arrow-back" size={24} color={colors.textDark} />
             </Pressable>
             <Text style={styles.title}>Game Setup</Text>
-            <Pressable onPress={handleContentPacks} style={styles.packsButton}>
-              <Ionicons name="cube-outline" size={24} color={colors.secondary} />
+            <Pressable onPress={handleOpenSettings} style={styles.packsButton}>
+              <Ionicons name="menu" size={26} color={colors.secondary} />
             </Pressable>
           </View>
 
@@ -237,31 +245,50 @@ export default function SetupScreen() {
             )}
           </View>
 
-          {/* Region Picker */}
-          <View style={styles.section}>
-            <RegionPicker
-              selectedRegions={selectedRegions}
-              onSelectionChange={handleRegionChange}
-            />
-          </View>
+          {/* Game Settings Summary */}
+          <Pressable
+            onPress={handleOpenSettings}
+            style={({ pressed }) => [
+              styles.settingsCard,
+              pressed && styles.settingsCardPressed,
+            ]}
+          >
+            <View style={styles.settingsHeaderRow}>
+              <Text style={styles.settingsTitle}>Game Settings</Text>
+              <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+            </View>
 
-          {/* Category Picker */}
-          <View style={styles.section}>
-            <CategoryPicker
-              selectedCategories={selectedCategories}
-              onSelectionChange={handleCategoryChange}
-            />
-            {/* Word Count Display */}
-            <Text style={styles.wordCount}>
-              {wordCount} words available
-            </Text>
-            {/* Warning if not enough words */}
+            <View style={styles.settingsChipsRow}>
+              <View style={styles.settingsChip}>
+                <Ionicons name="flag-outline" size={14} color={colors.secondary} />
+                <Text style={styles.settingsChipText}>
+                  {selectedRegions.length > 0
+                    ? `${selectedRegions.length} countries`
+                    : 'Select countries'}
+                </Text>
+              </View>
+              <View style={styles.settingsChip}>
+                <Ionicons name="pricetag-outline" size={14} color={colors.secondary} />
+                <Text style={styles.settingsChipText}>
+                  {selectedCategories.length} categories
+                </Text>
+              </View>
+              <View style={styles.settingsChip}>
+                <Ionicons name="cube-outline" size={14} color={colors.secondary} />
+                <Text style={styles.settingsChipText}>
+                  {packWords.length} pack words
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.settingsMetaText}>{wordCount} words available</Text>
+
             {!hasEnoughWords && selectedCategories.length > 0 && selectedRegions.length > 0 && (
               <Text style={styles.warningText}>
-                Not enough words (need at least 10). Try selecting more categories or regions.
+                Not enough words (need at least 10). Select more categories or countries.
               </Text>
             )}
-          </View>
+          </Pressable>
 
           {/* Difficulty Picker */}
           <View style={styles.section}>
@@ -309,6 +336,17 @@ export default function SetupScreen() {
           </Pressable>
         </View>
       </KeyboardAvoidingView>
+
+      <SetupSettingsSheet
+        visible={settingsOpen}
+        onClose={handleCloseSettings}
+        selectedRegions={selectedRegions}
+        onRegionsChange={handleRegionChange}
+        selectedCategories={selectedCategories}
+        onCategoriesChange={handleCategoryChange}
+        packWordsCount={packWords.length}
+        onManagePacks={handleManagePacks}
+      />
     </SafeAreaView>
   );
 }
@@ -424,20 +462,61 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.danger,
   },
-  wordCount: {
+
+  settingsCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    marginBottom: spacing.xl,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.06)',
+    ...shadows.card,
+  },
+  settingsCardPressed: {
+    opacity: 0.96,
+    transform: [{ scale: 0.995 }],
+  },
+  settingsHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacing.md,
+  },
+  settingsTitle: {
+    fontFamily: fonts.label,
+    fontSize: 16,
+    color: colors.textDark,
+  },
+  settingsChipsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+    marginBottom: spacing.md,
+  },
+  settingsChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    paddingVertical: 8,
+    paddingHorizontal: spacing.md,
+    borderRadius: radius.full,
+    backgroundColor: 'rgba(0, 109, 119, 0.08)',
+  },
+  settingsChipText: {
     fontFamily: fonts.body,
-    fontSize: 12,
-    color: colors.accent,
-    textAlign: 'center',
-    marginTop: spacing.sm,
+    fontSize: 13,
+    color: colors.secondary,
+  },
+  settingsMetaText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textMuted,
   },
   warningText: {
     fontFamily: fonts.body,
     fontSize: 13,
     color: colors.danger,
-    textAlign: 'center',
     marginTop: spacing.sm,
-    paddingHorizontal: spacing.md,
   },
   footer: {
     paddingHorizontal: spacing.lg,

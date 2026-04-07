@@ -1,12 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Pressable, Animated, PanResponder, Dimensions } from 'react-native';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { View, Text, StyleSheet, Pressable, Animated, PanResponder, Dimensions, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 import * as ScreenCapture from 'expo-screen-capture';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, radius, fonts, shadows } from '../../constants/theme';
 import { useGameStore } from '../../store/gameStore';
 import { getRegionLabel, SHARED_LABEL } from '../../constants/regions';
+import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const REVEAL_THRESHOLD = 40;
@@ -14,8 +16,13 @@ const SNAP_UP_POSITION = -SCREEN_HEIGHT;
 
 export default function DistributeScreen() {
   const { players, currentWord, config } = useGameStore();
+  const navigation = useNavigation();
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const isNavigatingToSetupRef = useRef(false);
+  const isExitPromptVisibleRef = useRef(false);
+  const allowForwardNavRef = useRef(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
 
   // Card 1 Y position only
   const card1TranslateY = useRef(new Animated.Value(0)).current;
@@ -37,6 +44,55 @@ export default function DistributeScreen() {
     card1TranslateY.setValue(0);
     setIsRevealed(false);
   }, [currentPlayerIndex]);
+
+  const goToSetup = useCallback(() => {
+    if (isNavigatingToSetupRef.current) {
+      return;
+    }
+
+    isNavigatingToSetupRef.current = true;
+    router.replace('/setup');
+  }, []);
+
+  const showExitConfirmation = useCallback(() => {
+    if (isExitPromptVisibleRef.current) {
+      return;
+    }
+    isExitPromptVisibleRef.current = true;
+    setConfirmVisible(true);
+  }, []);
+
+  const handleCancelConfirm = useCallback(() => {
+    isExitPromptVisibleRef.current = false;
+    setConfirmVisible(false);
+  }, []);
+
+  const handleConfirmExit = useCallback(() => {
+    isExitPromptVisibleRef.current = false;
+    setConfirmVisible(false);
+    goToSetup();
+  }, [goToSetup]);
+
+  useFocusEffect(
+    useCallback(() => {
+      allowForwardNavRef.current = false;
+
+      const unsubscribe = navigation.addListener('beforeRemove', (event) => {
+        if (isNavigatingToSetupRef.current) {
+          return;
+        }
+
+        if (allowForwardNavRef.current) {
+          return;
+        }
+
+        event.preventDefault();
+        showExitConfirmation();
+      });
+
+      return unsubscribe;
+    }, [navigation, showExitConfirmation])
+  );
 
   // PanResponder for Card 1 drag
   const panResponder = useRef(
@@ -87,7 +143,8 @@ export default function DistributeScreen() {
     card1TranslateY.setValue(0);
     
     if (isLastPlayer) {
-      router.push('/discussion');
+      allowForwardNavRef.current = true;
+      router.replace('/discussion');
     } else {
       setCurrentPlayerIndex((prev) => prev + 1);
     }
@@ -189,11 +246,11 @@ export default function DistributeScreen() {
       {/* Next Person Button - appears instantly when spring completes */}
       {isRevealed && (
         <View style={styles.buttonWrapper}>
-          <Pressable
-            style={({ pressed }) => [
-              styles.nextButton,
-              pressed && styles.nextButtonPressed,
-            ]}
+      <Pressable
+        style={({ pressed }) => [
+          styles.nextButton,
+          pressed && styles.nextButtonPressed,
+        ]}
             onPress={handleNextPerson}
           >
             <Text style={styles.nextButtonText}>
@@ -202,6 +259,16 @@ export default function DistributeScreen() {
           </Pressable>
         </View>
       )}
+
+      <ThemedConfirmModal
+        visible={confirmVisible}
+        title="Leave game?"
+        message="Go back to Setup?"
+        cancelLabel="Cancel"
+        confirmLabel="Back to Setup"
+        onCancel={handleCancelConfirm}
+        onConfirm={handleConfirmExit}
+      />
     </SafeAreaView>
   );
 }

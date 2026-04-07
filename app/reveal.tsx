@@ -1,7 +1,8 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, fonts, radius, shadows } from '../constants/theme';
 import { useGameStore, usePlayers, useImposterIndex } from '../store/gameStore';
@@ -11,19 +12,49 @@ export default function RevealScreen() {
   const players = usePlayers();
   const imposterIndex = useImposterIndex();
   const playAgain = useGameStore((state) => state.playAgain);
+  const navigation = useNavigation();
+  const isNavigatingToSetupRef = useRef(false);
+  const allowForwardNavRef = useRef(false);
 
   // Play Again - same players, new word, new imposter
   const handlePlayAgain = useCallback(async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await playAgain();
+    allowForwardNavRef.current = true;
     router.replace('/distribute/0');
   }, [playAgain]);
 
   // Back to Setup - go to setup with players pre-filled (no store clearing)
   const handleBackToSetup = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push('/setup');
+    if (isNavigatingToSetupRef.current) {
+      return;
+    }
+
+    isNavigatingToSetupRef.current = true;
+    router.replace('/setup');
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      allowForwardNavRef.current = false;
+
+      const unsubscribe = navigation.addListener('beforeRemove', (event) => {
+        if (isNavigatingToSetupRef.current) {
+          return;
+        }
+
+        if (allowForwardNavRef.current) {
+          return;
+        }
+
+        event.preventDefault();
+        handleBackToSetup();
+      });
+
+      return unsubscribe;
+    }, [handleBackToSetup, navigation])
+  );
 
   // Safety check
   if (imposterIndex === null) {

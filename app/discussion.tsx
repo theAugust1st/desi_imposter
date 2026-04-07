@@ -1,17 +1,24 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useCallback, useMemo, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
 import * as ScreenCapture from 'expo-screen-capture';
 import { colors, spacing, fonts, radius, shadows } from '../constants/theme';
 import { useGameStore, usePlayers } from '../store/gameStore';
 import PlayerAvatar from '../components/PlayerAvatar';
 import PeekButton from '../components/PeekButton';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 
 export default function DiscussionScreen() {
   const players = usePlayers();
   const goToReveal = useGameStore((state) => state.goToReveal);
+  const navigation = useNavigation();
+  const isNavigatingToSetupRef = useRef(false);
+  const isExitPromptVisibleRef = useRef(false);
+  const allowForwardNavRef = useRef(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
 
   // Pick random player instantly on mount
   const randomPlayerIndex = useMemo(() => {
@@ -28,8 +35,58 @@ export default function DiscussionScreen() {
   const handleReveal = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     goToReveal();
-    router.push('/reveal');
+    allowForwardNavRef.current = true;
+    router.replace('/reveal');
   }, [goToReveal]);
+
+  const goToSetup = useCallback(() => {
+    if (isNavigatingToSetupRef.current) {
+      return;
+    }
+
+    isNavigatingToSetupRef.current = true;
+    router.replace('/setup');
+  }, []);
+
+  const showExitConfirmation = useCallback(() => {
+    if (isExitPromptVisibleRef.current) {
+      return;
+    }
+    isExitPromptVisibleRef.current = true;
+    setConfirmVisible(true);
+  }, []);
+
+  const handleCancelConfirm = useCallback(() => {
+    isExitPromptVisibleRef.current = false;
+    setConfirmVisible(false);
+  }, []);
+
+  const handleConfirmExit = useCallback(() => {
+    isExitPromptVisibleRef.current = false;
+    setConfirmVisible(false);
+    goToSetup();
+  }, [goToSetup]);
+
+  useFocusEffect(
+    useCallback(() => {
+      allowForwardNavRef.current = false;
+
+      const unsubscribe = navigation.addListener('beforeRemove', (event) => {
+        if (isNavigatingToSetupRef.current) {
+          return;
+        }
+
+        if (allowForwardNavRef.current) {
+          return;
+        }
+
+        event.preventDefault();
+        showExitConfirmation();
+      });
+
+      return unsubscribe;
+    }, [navigation, showExitConfirmation])
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -75,9 +132,35 @@ export default function DiscussionScreen() {
           </Pressable>
         </View>
       </View>
+
+      <ConfirmModal
+        visible={confirmVisible}
+        onCancel={handleCancelConfirm}
+        onConfirm={handleConfirmExit}
+      />
     </SafeAreaView>
   );
 }
+
+const ConfirmModal = ({
+  visible,
+  onCancel,
+  onConfirm,
+}: {
+  visible: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) => (
+  <ThemedConfirmModal
+    visible={visible}
+    title="Leave game?"
+    message="Go back to Setup?"
+    cancelLabel="Cancel"
+    confirmLabel="Back to Setup"
+    onCancel={onCancel}
+    onConfirm={onConfirm}
+  />
+);
 
 const styles = StyleSheet.create({
   container: {

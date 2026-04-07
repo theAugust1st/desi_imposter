@@ -30,6 +30,7 @@ export default function PacksScreen() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [downloading, setDownloading] = useState<string | null>(null);
+  const [downloadProgress, setDownloadProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   // Load packs on mount
@@ -76,8 +77,11 @@ export default function PacksScreen() {
     try {
       haptics.buttonPress();
       setDownloading(metadata.id);
+      setDownloadProgress(0);
 
-      const pack = await PackManager.downloadPack(metadata);
+      const pack = await PackManager.downloadPack(metadata, (progress) => {
+        setDownloadProgress(progress);
+      });
       await PackManager.installPack(pack);
       
       // Reload packs and update game store
@@ -91,6 +95,7 @@ export default function PacksScreen() {
       Alert.alert('Download Failed', (err as Error).message);
     } finally {
       setDownloading(null);
+      setDownloadProgress(0);
     }
   };
 
@@ -275,6 +280,22 @@ export default function PacksScreen() {
                       {pack.category}
                     </Text>
                   </View>
+
+                  {downloading === pack.id && (
+                    <View style={styles.downloadProgressWrap}>
+                      <Text style={styles.downloadProgressText}>
+                        Downloading... {downloadProgress}%
+                      </Text>
+                      <View style={styles.downloadProgressBarOuter}>
+                        <View
+                          style={[
+                            styles.downloadProgressBarInner,
+                            { width: `${downloadProgress}%` },
+                          ]}
+                        />
+                      </View>
+                    </View>
+                  )}
                 </View>
                 <Pressable
                   onPress={() => handleDownload(pack)}
@@ -285,7 +306,12 @@ export default function PacksScreen() {
                   ]}
                 >
                   {downloading === pack.id ? (
-                    <ActivityIndicator size="small" color={colors.textDark} />
+                    <View style={styles.downloadButtonLoading}>
+                      <ActivityIndicator size="small" color={colors.textDark} />
+                      <Text style={styles.downloadButtonLoadingText}>
+                        {downloadProgress}%
+                      </Text>
+                    </View>
                   ) : (
                     <>
                       <Ionicons name="download" size={18} color={colors.textDark} />
@@ -484,11 +510,41 @@ const styles = StyleSheet.create({
   downloadButtonDisabled: {
     opacity: 0.6,
   },
+  downloadButtonLoading: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+  },
+  downloadButtonLoadingText: {
+    fontFamily: fonts.label,
+    fontSize: 13,
+    color: colors.textDark,
+  },
   downloadButtonText: {
     fontFamily: fonts.label,
     fontSize: 14,
     color: colors.textDark,
     marginLeft: spacing.xs,
+  },
+  downloadProgressWrap: {
+    marginTop: spacing.sm,
+  },
+  downloadProgressText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textMuted,
+    marginBottom: spacing.xs,
+  },
+  downloadProgressBarOuter: {
+    height: 6,
+    borderRadius: 999,
+    backgroundColor: '#E0E0E0',
+    overflow: 'hidden',
+  },
+  downloadProgressBarInner: {
+    height: 6,
+    borderRadius: 999,
+    backgroundColor: colors.accent,
   },
   emptyState: {
     alignItems: 'center',
