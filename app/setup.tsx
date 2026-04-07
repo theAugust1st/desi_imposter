@@ -15,11 +15,13 @@ import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, radius, fonts } from '../constants/theme';
 import { useGameStore, usePlayers, useConfig } from '../store/gameStore';
-import { getTotalWordCount } from '../data';
+import { getWordCount, hasMinimumWords } from '../data';
 import { haptics } from '../hooks/useHaptics';
 import type { Region } from '../constants/regions';
-import type { HintDifficulty } from '../types';
+import type { HintDifficulty, Category } from '../types';
+import { ALL_CATEGORIES } from '../types';
 import RegionPicker from '../components/RegionPicker';
+import CategoryPicker from '../components/CategoryPicker';
 import DifficultyPicker from '../components/DifficultyPicker';
 import RangoliBackground from '../components/RangoliBackground';
 
@@ -33,6 +35,7 @@ export default function SetupScreen() {
   
   const [playerNames, setPlayerNames] = useState<string[]>(['', '', '']);
   const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>([...ALL_CATEGORIES]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<HintDifficulty>('medium');
 
   const buttonScale = useRef(new Animated.Value(1)).current;
@@ -48,9 +51,12 @@ export default function SetupScreen() {
       }
       setPlayerNames(names);
     }
-    // Also restore region and difficulty settings
+    // Also restore region, category, and difficulty settings
     if (storeConfig.selectedNationalities.length > 0) {
       setSelectedRegions(storeConfig.selectedNationalities);
+    }
+    if (storeConfig.selectedCategories && storeConfig.selectedCategories.length > 0) {
+      setSelectedCategories(storeConfig.selectedCategories);
     }
     if (storeConfig.hintDifficulty) {
       setSelectedDifficulty(storeConfig.hintDifficulty);
@@ -58,9 +64,14 @@ export default function SetupScreen() {
   }, []);
 
   const validPlayers = playerNames.filter((name) => name.trim().length > 0);
-  const canStartGame = validPlayers.length >= MIN_PLAYERS && selectedRegions.length >= 1;
+  const wordCount = getWordCount(selectedRegions, selectedCategories);
+  const hasEnoughWords = hasMinimumWords(selectedRegions, selectedCategories, 10);
+  const canStartGame = 
+    validPlayers.length >= MIN_PLAYERS && 
+    selectedRegions.length >= 1 && 
+    selectedCategories.length >= 1 &&
+    hasEnoughWords;
   const canAddPlayer = playerNames.length < MAX_PLAYERS;
-  const wordCount = getTotalWordCount(selectedRegions);
 
   const handleAddPlayer = () => {
     if (!canAddPlayer) return;
@@ -94,6 +105,11 @@ export default function SetupScreen() {
     setSelectedRegions(regions);
   };
 
+  const handleCategoryChange = (categories: Category[]) => {
+    haptics.selection();
+    setSelectedCategories(categories);
+  };
+
   const handleDifficultyChange = (difficulty: HintDifficulty) => {
     haptics.selection();
     setSelectedDifficulty(difficulty);
@@ -111,6 +127,7 @@ export default function SetupScreen() {
     // Update store with config
     setConfig({
       selectedNationalities: selectedRegions,
+      selectedCategories: selectedCategories,
       hintDifficulty: selectedDifficulty,
     });
     
@@ -213,9 +230,24 @@ export default function SetupScreen() {
               selectedRegions={selectedRegions}
               onSelectionChange={handleRegionChange}
             />
+          </View>
+
+          {/* Category Picker */}
+          <View style={styles.section}>
+            <CategoryPicker
+              selectedCategories={selectedCategories}
+              onSelectionChange={handleCategoryChange}
+            />
+            {/* Word Count Display */}
             <Text style={styles.wordCount}>
-              {wordCount} words in pool
+              {wordCount} words available
             </Text>
+            {/* Warning if not enough words */}
+            {!hasEnoughWords && selectedCategories.length > 0 && selectedRegions.length > 0 && (
+              <Text style={styles.warningText}>
+                Not enough words (need at least 10). Try selecting more categories or regions.
+              </Text>
+            )}
           </View>
 
           {/* Difficulty Picker */}
@@ -252,7 +284,13 @@ export default function SetupScreen() {
                   ? `Need ${MIN_PLAYERS - validPlayers.length} more player${
                       MIN_PLAYERS - validPlayers.length === 1 ? '' : 's'
                     }`
-                  : 'Select at least 1 nationality'}
+                  : selectedRegions.length < 1
+                  ? 'Select at least 1 nationality'
+                  : selectedCategories.length < 1
+                  ? 'Select at least 1 category'
+                  : !hasEnoughWords
+                  ? 'Not enough words'
+                  : 'Start Game'}
               </Text>
             </Animated.View>
           </Pressable>
@@ -378,6 +416,14 @@ const styles = StyleSheet.create({
     color: colors.accent,
     textAlign: 'center',
     marginTop: spacing.sm,
+  },
+  warningText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.danger,
+    textAlign: 'center',
+    marginTop: spacing.sm,
+    paddingHorizontal: spacing.md,
   },
   footer: {
     paddingHorizontal: spacing.lg,

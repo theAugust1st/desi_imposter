@@ -1,5 +1,5 @@
 import type { Region } from '../constants/regions';
-import type { WordEntry } from '../types';
+import type { WordEntry, Category } from '../types';
 
 // Import all word data
 import sharedWords from './shared.json';
@@ -105,6 +105,91 @@ export function getSharedWords(): WordEntry[] {
  */
 export function getTotalWordCount(selectedNationalities: Region[]): number {
   return buildWordPool(selectedNationalities).length;
+}
+
+/**
+ * Builds the word pool based on selected nationalities AND categories.
+ * 
+ * Rules:
+ * - First filters by region (shared words + selected country words)
+ * - Then filters by selected categories
+ * 
+ * @param selectedNationalities - Array of region codes representing user selection
+ * @param selectedCategories - Array of category strings to filter by
+ * @returns Combined word pool filtered by both region and category
+ */
+export function buildWordPoolWithCategories(
+  selectedNationalities: Region[],
+  selectedCategories: Category[]
+): WordEntry[] {
+  // Step 1: Get region-filtered pool
+  const regionPool = buildWordPool(selectedNationalities);
+
+  // Step 2: If no categories selected, return region pool (shouldn't happen with validation)
+  if (selectedCategories.length === 0) {
+    console.warn('[buildWordPoolWithCategories] No categories selected, returning region pool');
+    return regionPool;
+  }
+
+  // Step 3: Filter by category
+  const filtered = regionPool.filter((word) =>
+    selectedCategories.includes(word.category)
+  );
+
+  // Step 4: Log warning if empty (for debugging)
+  if (filtered.length === 0) {
+    console.warn(
+      `[buildWordPoolWithCategories] Empty pool! Regions: ${selectedNationalities.join(', ')}, Categories: ${selectedCategories.join(', ')}`
+    );
+  }
+
+  return filtered;
+}
+
+/**
+ * Get all unique categories available in the current region-filtered word pool
+ * Useful for displaying which categories have words based on region selection
+ * 
+ * @param selectedNationalities - Array of region codes
+ * @returns Array of unique categories available in the word pool
+ */
+export function getAvailableCategories(selectedNationalities: Region[]): Category[] {
+  const pool = buildWordPool(selectedNationalities);
+  const categories = new Set<Category>();
+  pool.forEach((word) => categories.add(word.category));
+  return Array.from(categories).sort();
+}
+
+/**
+ * Get word count with both region and category filtering
+ * Used for real-time display in setup screen
+ * 
+ * @param selectedNationalities - Array of region codes
+ * @param selectedCategories - Array of category strings
+ * @returns Number of words matching both filters
+ */
+export function getWordCount(
+  selectedNationalities: Region[],
+  selectedCategories: Category[]
+): number {
+  return buildWordPoolWithCategories(selectedNationalities, selectedCategories).length;
+}
+
+/**
+ * Check if word pool meets minimum requirement
+ * Used for validation before starting the game
+ * 
+ * @param selectedNationalities - Array of region codes
+ * @param selectedCategories - Array of category strings
+ * @param minRequired - Minimum number of words required (default: 10)
+ * @returns true if pool has enough words
+ */
+export function hasMinimumWords(
+  selectedNationalities: Region[],
+  selectedCategories: Category[],
+  minRequired: number = 10
+): boolean {
+  return getWordCount(selectedNationalities, selectedCategories) >= minRequired;
 }
 
 // Export individual collections for direct access if needed

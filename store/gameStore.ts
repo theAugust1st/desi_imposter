@@ -1,13 +1,15 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { GameState, Player, GameConfig, WordEntry } from '../types';
-import { buildWordPool } from '../data';
+import { ALL_CATEGORIES } from '../types';
+import { buildWordPoolWithCategories } from '../data';
 
 const USED_WORDS_KEY = 'desi_imposter_used_words';
 const MAX_HISTORY = 25;
 
 const defaultConfig: GameConfig = {
   selectedNationalities: [],
+  selectedCategories: [...ALL_CATEGORIES], // Default to all categories
   hintDifficulty: 'medium',
   playerCount: 0,
 };
@@ -65,8 +67,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       console.warn('Failed to load used words from storage:', error);
     }
 
-    // Build word pool based on selected nationalities
-    const wordPool = buildWordPool(config.selectedNationalities);
+    // Build word pool based on selected nationalities AND categories
+    const wordPool = buildWordPoolWithCategories(
+      config.selectedNationalities,
+      config.selectedCategories
+    );
 
     // Filter out recently used words
     const availableWords = wordPool.filter(
@@ -154,8 +159,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       console.warn('Failed to load used words from storage:', error);
     }
 
-    // Build word pool based on selected nationalities
-    const wordPool = buildWordPool(config.selectedNationalities);
+    // Build word pool based on selected nationalities AND categories
+    const wordPool = buildWordPoolWithCategories(
+      config.selectedNationalities,
+      config.selectedCategories
+    );
 
     // Filter out recently used words
     const availableWords = wordPool.filter(

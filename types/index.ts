@@ -1,5 +1,33 @@
 import type { Region } from '../constants/regions';
 
+/**
+ * Category type for words
+ * These match the actual categories used in the data files
+ */
+export type Category =
+  | 'food'
+  | 'festival'
+  | 'cricket'
+  | 'culture'
+  | 'places'
+  | 'family'
+  | 'bollywood'
+  | 'music';
+
+/**
+ * All available categories as an array (useful for "All Categories" selection)
+ */
+export const ALL_CATEGORIES: Category[] = [
+  'food',
+  'festival',
+  'cricket',
+  'culture',
+  'places',
+  'family',
+  'bollywood',
+  'music',
+];
+
 export interface WordEntry {
   id: string;
   word: string;
@@ -8,7 +36,7 @@ export interface WordEntry {
     medium: string;
     spicy: string;
   };
-  category: 'food' | 'festival' | 'cricket' | 'culture' | 'place' | 'person';
+  category: Category;
   scope: 'shared' | 'local';
   regions: Region[];
   tags: string[];
@@ -24,6 +52,7 @@ export type HintDifficulty = 'easy' | 'medium' | 'spicy';
 
 export interface GameConfig {
   selectedNationalities: Region[];
+  selectedCategories: Category[];
   hintDifficulty: HintDifficulty;
   playerCount: number;
 }
